@@ -30,8 +30,10 @@ export default function MovieDetails({ person, receipt, date, didBuy, personColl
             <div>
                 <div className="grid place-items-center grid-cols-5 gap-5 justify-items-center p-2 bg-gray-200 max-w">
                     <button className={"bg-blue-300 font-semibold text-center rounded-3xl border shadow-lg p-2 max-w-xs"}>
-                        <Link href={`http://localhost:3000/food/${person.name}`}>
-                            <h1>
+                        {/*<Link href={`http://localhost:3000/food/${person.name}`}>*/}
+                        <Link href={`/food/${person.name}`}>
+
+                        <h1>
                                 Back to all Dates
                             </h1>
                         </Link>

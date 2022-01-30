@@ -18,7 +18,7 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
               {allPeople && allPeople.map(people => (
                  <>
                      <button>
-                         <Link href={`http://localhost:3000/food/${people.name}`}>
+                         <Link href={`/food/${people.name}`}>
                              <h1>
                                  <Profile name={people.name}/>
                              </h1>

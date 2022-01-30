@@ -35,30 +35,30 @@ export async function getServerSideProps(context) {
     const db = client.db("grocery-app");
     const oneBefore = db.collection("10-24-21");
 
-    await createMultipleListings(db, [{
-            "foodName": "Protein Powder",
-            "foodPrice": {"$numberDouble": "7.79"},
-            "buy": [],
-            "totalPeople": {"$numberInt": "0"}
-        },
-        {
-            "foodName": "Frozen Blueberry",
-            "foodPrice": {"$numberDouble": "7.79"},
-            "buy": [],
-            "totalPeople": {"$numberInt": "0"}
-        },
-        {
-            "foodName": "Frozen Blueberry",
-            "foodPrice": {"$numberDouble": "7.79"},
-            "buy": [],
-            "totalPeople": {"$numberInt": "0"}
-        },
-        {
-            "foodName": "Pasta Chicken Ravioli",
-            "foodPrice": {"$numberDouble": "12.79"},
-            "buy": [],
-            "totalPeople": {"$numberInt": "0"}
-        }])
+    // await createMultipleListings(db, [{
+    //         "foodName": "Protein Powder",
+    //         "foodPrice": {"$numberDouble": "7.79"},
+    //         "buy": [],
+    //         "totalPeople": {"$numberInt": "0"}
+    //     },
+    //     {
+    //         "foodName": "Frozen Blueberry",
+    //         "foodPrice": {"$numberDouble": "7.79"},
+    //         "buy": [],
+    //         "totalPeople": {"$numberInt": "0"}
+    //     },
+    //     {
+    //         "foodName": "Frozen Blueberry",
+    //         "foodPrice": {"$numberDouble": "7.79"},
+    //         "buy": [],
+    //         "totalPeople": {"$numberInt": "0"}
+    //     },
+    //     {
+    //         "foodName": "Pasta Chicken Ravioli",
+    //         "foodPrice": {"$numberDouble": "12.79"},
+    //         "buy": [],
+    //         "totalPeople": {"$numberInt": "0"}
+    //     }])
 
 
     return {

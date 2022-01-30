@@ -41,8 +41,10 @@ function Foods(props, { person, receipt, date, didBuy }) {
                 <h1 className="text-lg text-gray-700"> {props.foodName} </h1>
                 <h3 className="text-sm text-gray-400 ">  ${props.foodPrice} </h3>
                 <button className={buyButton} onClick={handleButton}>
-                    <Link href={`http://localhost:3000/food/${props.personName}/${props.date}/${bought}/${props.foodName}/${props.foodPrice}`}>
-                        <h1>
+                    {/*<Link href={`http://localhost:3000/food/${props.personName}/${props.date}/${bought}/${props.foodName}/${props.foodPrice}`}>*/}
+                    <Link href={`/food/${props.personName}/${props.date}/${bought}/${props.foodName}/${props.foodPrice}`}>
+
+                    <h1>
                             Buy
                         </h1>
                     </Link>
