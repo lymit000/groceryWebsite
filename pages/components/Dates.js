@@ -7,7 +7,7 @@ function Dates(props) {
     return (
         <button>
             {/*<Link href={`http://localhost:3000/food/${props.personName}/${props.date}`}>*/}
-            <Link href={`/food/${props.personName}/${props.date}`}>
+            <Link href={`/food/${props.personName}/${props.date}`} scroll={false}>
             {/*<Link href={"http://localhost:3000/food/573a1391f29313caabcd8319"}>*/}
                 <div className="flex items-center justify-center ">
                     <div className="bg-white font-semibold text-center rounded-3xl border shadow-lg p-10">

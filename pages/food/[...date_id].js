@@ -31,7 +31,7 @@ export default function MovieDetails({ person, receipt, date, didBuy, personColl
                 <div className="grid place-items-center grid-cols-5 gap-5 justify-items-center p-2 bg-gray-200 max-w">
                     <button className={"bg-blue-300 font-semibold text-center rounded-3xl border shadow-lg p-2 max-w-xs"}>
                         {/*<Link href={`http://localhost:3000/food/${person.name}`}>*/}
-                        <Link href={`/food/${person.name}`}>
+                        <Link href={`/food/${person.name}`} scroll={false}>
 
                         <h1>
                                 Back to all Dates
@@ -92,7 +92,7 @@ export async function getServerSideProps(context) {
     const itemName = context.query.date_id[3];
     const itemPrice = context.query.date_id[4];
 
-    const data = await fetch(`http://localhost:3000/api/getfood?date_id=${date}`);
+    const data = await fetch(`/api/getfood?date_id=${date}`);
     const receipt = await data.json();
 
     const didBuy = true;

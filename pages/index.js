@@ -18,7 +18,7 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
               {allPeople && allPeople.map(people => (
                  <>
                      <button>
-                         <Link href={`/food/${people.name}`}>
+                         <Link href={`/food/${people.name}`} scroll={false}>
                              <h1>
                                  <Profile name={people.name}/>
                              </h1>
@@ -32,15 +32,6 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
   )
 }
 
-async function createListing(client, newListing) {
-    // Which database youre going to use and which collection in the db
-    // And inserts one
-    // We want to wait for the results so we use await
-    // We're going to store this value in result
-    const result = await client.db("sample_airbnb").collection("listingsAndReviews").insertOne(newListing);
-
-
-}
 
 export async function getServerSideProps(context) {
     const client = await clientPromise

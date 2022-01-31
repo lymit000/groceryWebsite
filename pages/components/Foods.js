@@ -42,7 +42,7 @@ function Foods(props, { person, receipt, date, didBuy }) {
                 <h3 className="text-sm text-gray-400 ">  ${props.foodPrice} </h3>
                 <button className={buyButton} onClick={handleButton}>
                     {/*<Link href={`http://localhost:3000/food/${props.personName}/${props.date}/${bought}/${props.foodName}/${props.foodPrice}`}>*/}
-                    <Link href={`/food/${props.personName}/${props.date}/${bought}/${props.foodName}/${props.foodPrice}`}>
+                    <Link href={`/food/${props.personName}/${props.date}/${bought}/${props.foodName}/${props.foodPrice}`} scroll={false}>
 
                     <h1>
                             Buy
@@ -71,7 +71,7 @@ export async function getServerSideProps(context) {
     const buy = context.query.date_id[2];
     const itemName = context.query.date_id[3];
 
-    const data = await fetch(`http://localhost:3000/api/getfood?date_id=${date}`);
+    const data = await fetch(`/api/getfood?date_id=${date}`);
     const receipt = await data.json();
 
     const didBuy = true;

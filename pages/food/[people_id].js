@@ -62,7 +62,7 @@ export async function getServerSideProps(context) {
     // const data = await fetch(`http://localhost:3000/api/moviedetails?name=${context.query.name}`);
     const personID = context.query.people_id;
 
-    const data = await fetch(`http://localhost:3000/api/getpeople?people_id=${personID}`);
+    const data = await fetch(`/api/getpeople?people_id=${personID}`);
     // const data = await fetch(`http://localhost:3000/api/moviedetails?name_id=Aidan`);
     const personCollection = await data.json();
 
