@@ -18,7 +18,7 @@ export default function MovieDetails({ personCollection, allReceipts, personID }
         <>
                 <div className="grid place-items-center grid-cols-5 gap-5 justify-items-center p-2 bg-gray-200 max-w">
                     <button className={"bg-blue-300 font-semibold text-center rounded-3xl border shadow-lg p-2 max-w-xs"}>
-                        <Link href={`/`}>
+                        <Link href={"/"}>
                             <h1>
                                 Back to all People
                             </h1>
