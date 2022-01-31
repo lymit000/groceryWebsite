@@ -8,6 +8,7 @@ import Dates from "../components/Dates";
 import log from "tailwindcss/lib/util/log";
 import "tailwindcss/tailwind.css"
 import { useRouter } from "next/router";
+import { server } from '../../config';
 
 export default function MovieDetails({ person, receipt, date, didBuy, personCollectionOfDate }) {
 
@@ -92,7 +93,7 @@ export async function getServerSideProps(context) {
     const itemName = context.query.date_id[3];
     const itemPrice = context.query.date_id[4];
 
-    const data = await fetch(`/api/getfood?date_id=${date}`);
+    const data = await fetch(`${server}/api/getfood?date_id=${date}`);
     const receipt = await data.json();
 
     const didBuy = true;

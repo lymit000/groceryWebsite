@@ -61,7 +61,8 @@ function Foods(props, { person, receipt, date, didBuy }) {
 export default Foods;
 
 export async function getServerSideProps(context) {
-
+    // const protocol = context.headers['x-forwarded-proto'] || 'http'
+    // const baseUrl = context ? `${protocol}://${req.headers.host}` : ''
 
     async function updateListingsByName(client, nameOfListing, updatedListing) {
         const result = await param.updateOne({foodName: nameOfListing}, { $set: updatedListing});
@@ -70,8 +71,8 @@ export async function getServerSideProps(context) {
     const date = context.query.date_id[1];
     const buy = context.query.date_id[2];
     const itemName = context.query.date_id[3];
-
-    const data = await fetch(`/api/getfood?date_id=${date}`);
+    const { URL } = process.env;
+    const data = await fetch(URL + `/api/getfood?date_id=${date}`);
     const receipt = await data.json();
 
     const didBuy = true;

@@ -7,6 +7,7 @@ import "tailwindcss/tailwind.css"
 import Link from 'next/link'
 import Foods from "../components/Foods";
 import Dates from "../components/Dates";
+import { server } from '../../config';
 
 export default function MovieDetails({ personCollection, allReceipts, personID }) {
 
@@ -18,7 +19,7 @@ export default function MovieDetails({ personCollection, allReceipts, personID }
         <>
                 <div className="grid place-items-center grid-cols-5 gap-5 justify-items-center p-2 bg-gray-200 max-w">
                     <button className={"bg-blue-300 font-semibold text-center rounded-3xl border shadow-lg p-2 max-w-xs"}>
-                        <Link href={"/"}>
+                        <Link href="/">
                             <h1>
                                 Back to all People
                             </h1>
@@ -61,8 +62,7 @@ export async function getServerSideProps(context) {
 
     // const data = await fetch(`http://localhost:3000/api/moviedetails?name=${context.query.name}`);
     const personID = context.query.people_id;
-
-    const data = await fetch(`/api/getpeople?people_id=${personID}`);
+    const data = await fetch(`${server}/api/getpeople?people_id=${personID}`);
     // const data = await fetch(`http://localhost:3000/api/moviedetails?name_id=Aidan`);
     const personCollection = await data.json();
 
