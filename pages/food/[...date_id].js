@@ -51,7 +51,7 @@ export default function MovieDetails({ person, receipt, date, didBuy, personColl
 
                     </button>
                 </div>
-                <div className="grid place-items-center grid-cols-8 gap-1 justify-items-center p-2 bg-gray-200 max-w">
+                <div className="grid place-items-center grid-cols-3 gap-1 justify-items-center p-2 bg-gray-200 max-w">
                     {receipt && receipt.map(item => (
                         <>
                             <div>
