@@ -22,6 +22,7 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                   <>
                       {/*<h1>SIDEBARALLDATES</h1>*/}
                       <button className={"flex place-items-center items-center justify-items-center bg-gray-100 rounded-xl p-3"}>
+                          HUGE NEW CHANGES
                           {singleDate && singleDate.date}
                       </button>
                   </>

@@ -29,7 +29,7 @@ function Foods(props, { person, receipt, date, didBuy }) {
         // const actuallyUpdate = await fetch("http://localhost/api/updatebuy")
 
         const personDB = await fetch(server + '/api/updatebuy?param0='+props.personName+"&param1="+props.date+"&param2="+props.buy+"&param3="+props.foodName+"&param4="+props.foodPrice);
-
+        forceReload();
     }
 
 
@@ -50,6 +50,7 @@ function Foods(props, { person, receipt, date, didBuy }) {
         }
         console.log("button clicked")
         const result = await updateFoodName();
+        forceReload()
     }
 
     // async function updateListingsByName(client, nameOfListing, updatedListing) {
