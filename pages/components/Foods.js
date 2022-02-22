@@ -4,7 +4,7 @@ import clientPromise from "../../lib/mongodb";
 // import clientPromise from '../../lib/mongodb'
 import { useRouter } from "next/router";
 import Router from 'next/router'
-import {server} from "../../config";
+import { server } from '../../config';
 
 
 function Foods(props, { person, receipt, date, didBuy }) {
@@ -27,12 +27,9 @@ function Foods(props, { person, receipt, date, didBuy }) {
         // );
 
         // const actuallyUpdate = await fetch("http://localhost/api/updatebuy")
-        const { URL } = process.env;
-        console.log("whats up")
-        console.log(URL)
-        const personDB = await fetch(URL + "/api/updatebuy?param0="+props.personName+"&param1="+props.date+"&param2="+props.buy+"&param3="+props.foodName+"&param4="+props.foodPrice);
 
-        console.log("hi")
+        const personDB = await fetch(server + '/api/updatebuy?param0='+props.personName+"&param1="+props.date+"&param2="+props.buy+"&param3="+props.foodName+"&param4="+props.foodPrice);
+
     }
 
 
@@ -95,7 +92,7 @@ export async function getServerSideProps(context) {
     const buy = context.query.date_id[2];
     const itemName = context.query.date_id[3];
     const { URL } = process.env;
-    const data = await fetch(URL + `/api/getfood?date_id=${date}`);
+    const data = await fetch(URL + `${server}/api/getfood?date_id=${date}`);
     const receipt = await data.json();
 
     const didBuy = true;
