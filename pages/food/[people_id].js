@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Profile from "../components/Profile";
 import clientPromise from '../../lib/mongodb'
 import "tailwindcss/tailwind.css"
@@ -8,11 +8,16 @@ import Link from 'next/link'
 import Foods from "../components/Foods";
 import Dates from "../components/Dates";
 import { server } from '../../config';
+import {useRouter} from "next/router";
 
-export default function MovieDetails({ personCollection, allReceipts, personID }) {
+function MovieDetails({ personCollection, allReceipts, personID }) {
 
+    const [markDone, setMarkDone] = useState(personCollection.markDone)
 
-
+    //
+    // useEffect(() => {
+    //     forceReload();
+    // })
 
 
         return (
@@ -40,8 +45,7 @@ export default function MovieDetails({ personCollection, allReceipts, personID }
                     {/*    ))}*/}
                     {personCollection && personCollection.map(singleDate => (
                         <>
-                            {console.log(singleDate.totalPrice)}
-                            {singleDate && <Dates itemPrice={singleDate.totalPrice} date={singleDate.date} personName={personID}/>}
+                            {singleDate && <Dates itemPrice={singleDate.totalPrice} date={singleDate.date} personName={personID} markDone={singleDate.markDone}/>}
 
                         </>
                     ))}
@@ -78,3 +82,5 @@ export async function getServerSideProps(context) {
 
     }
 }
+
+export default MovieDetails;

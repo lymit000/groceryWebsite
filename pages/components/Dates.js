@@ -1,24 +1,47 @@
 import Link from "next/link";
 import Profile from "./Profile";
 import "tailwindcss/tailwind.css"
+import { useState, useEffect } from 'react';
+
 
 function Dates(props) {
 
+    const [ markDoneCSS, setMarkDoneCSS ] = useState("bg-red-600 px-1 py-1 mt-4 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide");
+
+    useEffect(() => {
+        if (props.markDone === false ) {
+            setMarkDoneCSS("bg-red-600 px-1 py-1 mt-4 rounded-3xl text-gray-100 font-semibold tracking-wide")
+        } else if (props.markDone === true) {
+            setMarkDoneCSS("bg-green-600 px-1 py-1 mt-4 rounded-3xl text-gray-100 font-semibold tracking-wide")
+        }
+    }, [props.markDone]);
+
+    function handleButton() {
+        if (props.markDone === false ) {
+            setMarkDone("bg-red-600 px-1 py-1 mt-4 rounded-3xl text-gray-100 font-semibold tracking-wide")
+        } else if (props.markDone === true) {
+            setMarkDone("bg-green-600 px-1 py-1 mt-4 rounded-3xl text-gray-100 font-semibold tracking-wide")
+        }
+
+    }
+
     return (
-        <button>
-            {/*<Link href={`http://localhost:3000/food/${props.personName}/${props.date}`}>*/}
-            <Link href={`/food/${props.personName}/${props.date}`} scroll={false}>
-            {/*<Link href={"http://localhost:3000/food/573a1391f29313caabcd8319"}>*/}
+        <div>
                 <div className="flex items-center justify-center ">
                     <div className="bg-white font-semibold text-center rounded-3xl border shadow-lg p-10">
-                        <button className="bg-red-600 px-1 py-1  rounded-3xl text-gray-100 font-bold uppercase">
+                        <Link href={`/food/${props.personName}/${props.date}`} scroll={false}>
+
+                        <button className={markDoneCSS}>
                             {props.date}
                         </button>
-                        <h1 className="text-sm text-gray-900 my-2"> ${props.itemPrice} </h1>
+                        </Link>
+
+                        <h1 className="text-lg text-gray-900 p-3 my-1"> ${props.itemPrice} </h1>
+                        <button className={markDoneCSS} onClick={handleButton}>Mark Done </button>
                     </div>
+
                 </div>
-            </Link>
-        </button>
+        </div>
 
     )
 }

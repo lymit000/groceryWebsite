@@ -4,6 +4,7 @@ import clientPromise from "../../lib/mongodb";
 // import clientPromise from '../../lib/mongodb'
 import { useRouter } from "next/router";
 import Router from 'next/router'
+import {server} from "../../config";
 
 
 function Foods(props, { person, receipt, date, didBuy }) {
@@ -11,6 +12,28 @@ function Foods(props, { person, receipt, date, didBuy }) {
     const [ bought, setBought ] = useState(props.buy);
     const [ buyButton, setBuyButton ] = useState("");
 
+    const router = useRouter();
+    const forceReload = () => {
+        router.reload();
+    }
+
+    async function updateFoodName() {
+        // const runUpdate = await fetch({server}+'/api/updatebuy?'
+            // 'param1=' + props.personName +
+            // '&param2=' + props.date +
+            // '&param3=' + props.buy +
+            // '&param4=' + props.foodName +
+            // '&param5=' + props.foodPrice
+        // );
+
+        // const actuallyUpdate = await fetch("http://localhost/api/updatebuy")
+        const { URL } = process.env;
+        console.log("whats up")
+        console.log(URL)
+        const personDB = await fetch(URL + "/api/updatebuy?param0="+props.personName+"&param1="+props.date+"&param2="+props.buy+"&param3="+props.foodName+"&param4="+props.foodPrice);
+
+        console.log("hi")
+    }
 
 
     useEffect(() => {
@@ -21,14 +44,15 @@ function Foods(props, { person, receipt, date, didBuy }) {
         }
 
     }, [bought]);
+
     async function handleButton() {
         if (!bought) {
             {!bought && setBought(true), setBuyButton("bg-green-600 px-1 py-1 mt-4 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide")}
         } else {
             {bought && setBought(false), setBuyButton("bg-red-600 px-1 py-1 mt-4 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide")}
         }
-
-        // await updateListingsByName(client, "Chicken Breasts", "Chickenn")
+        console.log("button clicked")
+        const result = await updateFoodName();
     }
 
     // async function updateListingsByName(client, nameOfListing, updatedListing) {
@@ -36,22 +60,21 @@ function Foods(props, { person, receipt, date, didBuy }) {
     // }
 
     return (
-        <div className="flex items-center justify-center ">
-            <div className="bg-white font-semibold text-center rounded-3xl border shadow-lg p-10 max-w-xs">
+        <div className="flex items-center justify-center">
+            <div className=" bg-white font-semibold text-center rounded-3xl border shadow-lg w-48 h-48">
                 <h1 className="text-lg text-gray-700"> {props.foodName} </h1>
                 <h3 className="text-sm text-gray-400 ">  ${props.foodPrice} </h3>
                 <button className={buyButton} onClick={handleButton}>
                     {/*<Link href={`http://localhost:3000/food/${props.personName}/${props.date}/${bought}/${props.foodName}/${props.foodPrice}`}>*/}
-                    <Link href={`/food/${props.personName}/${props.date}/${bought}/${props.foodName}/${props.foodPrice}`} scroll={false}>
-
-                    <h1>
+                        <h1>
                             Buy
                         </h1>
-                    </Link>
                 </button>
                 {props.buy &&
                 <p>
-                    ${(props.foodPrice / (props.totalPeople))} per person
+                    {props.totalPeople} people
+                    <br/>
+                    ${Math.round((props.foodPrice / (props.totalPeople)) * 100) / 100} per person
                 </p>}
             </div>
         </div>
