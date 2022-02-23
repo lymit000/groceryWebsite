@@ -77,11 +77,11 @@ export async function getServerSideProps(context) {
 
     const collectionReceipt = await entireDB.collection(date)
     const collectionAllItemsOnReceipt = await collectionReceipt.find().toArray();
-    const receiptOfDate = JSON.parse(JSON.stringify(collectionAllItemsOnReceipt));
+    const receiptOfDate = await JSON.parse(JSON.stringify(collectionAllItemsOnReceipt));
 
     const collectionPerson = await entireDB.collection(personName)
     const collectionPersonOfDate = await collectionPerson.findOne({date: date});
-    const personOfDate = JSON.parse(JSON.stringify(collectionPersonOfDate));
+    const personOfDate = await JSON.parse(JSON.stringify(collectionPersonOfDate));
 
     return {
         props: { personName, personOfDate, receiptOfDate},

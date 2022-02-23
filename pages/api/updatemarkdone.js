@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     // console.log(query);
 
     const client = await clientPromise
-    const db = client.db("grocery-app");
+    const db = await client.db("grocery-app");
 
     const personName = query.param0;
     const date = query.param1;
@@ -26,8 +26,6 @@ export default async function handler(req, res) {
         console.log("TRUE NOW")
     }
 
-    console.log(personName)
-    console.log(date);
     // res.json(data);
     res.json("worked");
     // res.json({message: "IT WORKS!!"})

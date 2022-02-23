@@ -101,7 +101,7 @@ export async function getServerSideProps(context) {
     const foodCollection = await entireDB.collection("allFoods");
 
     const allFoodCollection = await foodCollection.find().toArray();
-    const allFood = JSON.parse(JSON.stringify(allFoodCollection));
+    const allFood = await JSON.parse(JSON.stringify(allFoodCollection));
     return {
         props: {allFood, collectionName},
     }

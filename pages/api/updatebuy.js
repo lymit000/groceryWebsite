@@ -8,25 +8,22 @@ export default async function handler(req, res) {
     const itemName = req.query.param3;
     const itemPrice = req.query.param4;
 
-    console.log(req.query.param1)
-
-    const didBuy = true;
 
     const client = await clientPromise
-    const db = client.db("grocery-app");
-    const updatePerson = client.db("grocery-app").collection(personName);
-    const param = db.collection(date);
-    const priceParam = db.collection(personName);
+    const db = await client.db("grocery-app");
+    const updatePerson = await client.db("grocery-app").collection(personName);
+    const param = await db.collection(date);
+    const priceParam = await db.collection(personName);
 
     const singlePerson = await db.collection("people").findOne({name: personName})
-    const person = JSON.parse(JSON.stringify(singlePerson));
+    const person = await JSON.parse(JSON.stringify(singlePerson));
 
     const personDB = await db.collection(personName).findOne({date: date});
-    const personCollectionOfDate = JSON.parse(JSON.stringify(personDB));
+    const personCollectionOfDate = await JSON.parse(JSON.stringify(personDB));
 
 
     const singleFood = await db.collection(date).findOne({foodName: itemName})
-    const changeFood = JSON.parse(JSON.stringify(singleFood));
+    const changeFood = await JSON.parse(JSON.stringify(singleFood));
     // console.log(buy)
 
     async function updateBuy(client, foodName, updatedArray) {
@@ -190,11 +187,12 @@ export default async function handler(req, res) {
 
 
             {
-                changeFood.buy && changeFood.buy.map(buyer => {
-                    updateFalse(buyer, array.length, itemPrice)
+                changeFood.buy && changeFood.buy.map(async buyer => {
+                    await updateFalse(buyer, array.length, itemPrice);
                 })
             }
         }
     }
+
     res.json("HI")
 }

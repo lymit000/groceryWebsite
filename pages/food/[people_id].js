@@ -67,9 +67,9 @@ export async function getServerSideProps(context) {
     // console.log(movie)
 
     const client = await clientPromise
-    const db = client.db("grocery-app");
+    const db = await client.db("grocery-app");
     const foodData = await db.collection("food").find().toArray()
-    const allReceipts = JSON.parse(JSON.stringify(foodData));
+    const allReceipts = await JSON.parse(JSON.stringify(foodData));
 
     return {
         props: { personCollection, allReceipts, personID },

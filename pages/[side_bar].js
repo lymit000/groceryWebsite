@@ -139,37 +139,37 @@ export async function getServerSideProps(context) {
     //
     const data = await db.collection("people").find().toArray()
     //
-    const allPeople = JSON.parse(JSON.stringify(data));
+    const allPeople = await JSON.parse(JSON.stringify(data));
 
     const aidanDB = await db.collection("Aidan").findOne({date: query});
-    const Aidan = JSON.parse(JSON.stringify(aidanDB));
+    const Aidan = await JSON.parse(JSON.stringify(aidanDB));
 
     const andoniDB = await db.collection("Andoni").findOne({date: query});
-    const Andoni = JSON.parse(JSON.stringify(andoniDB));
+    const Andoni = await JSON.parse(JSON.stringify(andoniDB));
 
     const atayDB = await db.collection("Atay").findOne({date: query});
-    const Atay = JSON.parse(JSON.stringify(atayDB));
+    const Atay = await JSON.parse(JSON.stringify(atayDB));
 
     const justinDB = await db.collection("Justin").findOne({date: query});
-    const Justin = JSON.parse(JSON.stringify(justinDB));
+    const Justin = await JSON.parse(JSON.stringify(justinDB));
 
     const keshavDB = await db.collection("Keshav").findOne({date: query});
-    const Keshav = JSON.parse(JSON.stringify(keshavDB));
+    const Keshav = await JSON.parse(JSON.stringify(keshavDB));
 
     const kulbirDB = await db.collection("Kulbir").findOne({date: query});
-    const Kulbir = JSON.parse(JSON.stringify(kulbirDB));
+    const Kulbir = await JSON.parse(JSON.stringify(kulbirDB));
 
     const mitchellDB = await db.collection("Mitchell").findOne({date: query});
-    const Mitchell = JSON.parse(JSON.stringify(mitchellDB));
+    const Mitchell = await JSON.parse(JSON.stringify(mitchellDB));
 
     const baseDB = await db.collection("Aidan").find().toArray();
-    const  base = JSON.parse(JSON.stringify(baseDB));
+    const  base = await JSON.parse(JSON.stringify(baseDB));
 
     const nathanielDB = await db.collection("Nathaniel").findOne({date: query});
-    const Nathaniel = JSON.parse(JSON.stringify(nathanielDB));
+    const Nathaniel = await JSON.parse(JSON.stringify(nathanielDB));
 
     const ridgeDB = await db.collection("Ridge").findOne({date: query});
-    const Ridge = JSON.parse(JSON.stringify(ridgeDB));
+    const Ridge = await JSON.parse(JSON.stringify(ridgeDB));
 
 
     // const data = await fetch(`http://localhost:3000/api/moviedetails?movie_id=573a1390f29313caabcd42e8`);

@@ -39,9 +39,9 @@ export default async function handler(req, res) {
     }
 
     db.listCollections({name: newDate})
-        .next(function(err, collinfo) {
+        .next(async function (err, collinfo) {
             if (collinfo) {
-                createListing(dataCollection, {
+                await createListing(dataCollection, {
                     foodName: foodName,
                     foodPrice: foodPrice,
                     buy: [],
@@ -63,58 +63,58 @@ export default async function handler(req, res) {
                 // deleteByName(Nathaniel, newDate)
                 // deleteByName(Ridge, newDate)
                 // console.log("delete ran")
-                db.createCollection(newDate, function(err, result) {
+                await db.createCollection(newDate, function (err, result) {
                     if (err) throw err;
                     console.log("Collection is created!");
                 });
 
-                createListing(Aidan, {
+                await createListing(Aidan, {
                     date: newDate,
                     totalPrice: 0,
                     markDone: "false"
                 })
-                createListing(Andoni, {
+                await createListing(Andoni, {
                     date: newDate,
                     totalPrice: 0,
                     markDone: "false"
                 })
-                createListing(Atay, {
+                await createListing(Atay, {
                     date: newDate,
                     totalPrice: 0,
                     markDone: "false"
                 })
-                createListing(Justin, {
+                await createListing(Justin, {
                     date: newDate,
                     totalPrice: 0,
                     markDone: "false"
                 })
-                createListing(Keshav, {
+                await createListing(Keshav, {
                     date: newDate,
                     totalPrice: 0,
                     markDone: "false"
                 })
-                createListing(Kulbir, {
+                await createListing(Kulbir, {
                     date: newDate,
                     totalPrice: 0,
                     markDone: "false"
                 })
-                createListing(Mitchell, {
+                await createListing(Mitchell, {
                     date: newDate,
                     totalPrice: 0,
                     markDone: "false"
                 })
-                createListing(Nathaniel, {
+                await createListing(Nathaniel, {
                     date: newDate,
                     totalPrice: 0,
                     markDone: "false"
                 })
-                createListing(Ridge, {
+                await createListing(Ridge, {
                     date: newDate,
                     totalPrice: 0,
                     markDone: "false"
                 })
 
-                createListing(dataCollection, {
+                await createListing(dataCollection, {
                     foodName: foodName,
                     foodPrice: foodPrice,
                     buy: [],
@@ -353,7 +353,7 @@ export default async function handler(req, res) {
 
 
             //
-    res.json({message: "temp"});
+    res.json("done");
     // res.json({message: "IT WORKS!!"})
 }
 

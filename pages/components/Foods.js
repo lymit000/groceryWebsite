@@ -94,29 +94,29 @@ export async function getServerSideProps(context) {
     const didBuy = true;
 
     const client = await clientPromise
-    const db = client.db("grocery-app");
-    const param = db.collection(date);
+    const db = await client.db("grocery-app");
+    const param = await db.collection(date);
     const singlePerson = await db.collection("people").findOne({name: personName})
-    const person = JSON.parse(JSON.stringify(singlePerson));
+    const person = await JSON.parse(JSON.stringify(singlePerson));
 
     const singleFood = await db.collection(date).findOne({foodName: itemName})
-    const changeFood = JSON.parse(JSON.stringify(singleFood));
+    const changeFood = await JSON.parse(JSON.stringify(singleFood));
     // console.log(buy)
-    if (buy === "true") {
-
-        const array = changeFood.buy
-        const changedArray = array.filter(item => item !== personName)
-        // console.log(changedArray)
-        await updateListingsByName(param, itemName, {buy: changedArray, totalPeople: changedArray.length});
-    } else if (buy === "false") {
-        const array = changeFood.buy
-        if (!array.includes(personName)) {
-            array.push(personName)
-        }
-        console.log("food")
-
-        await updateListingsByName(param, itemName, {buy: array, totalPeople: array.length});
-    }
+    // if (buy === "true") {
+    //
+    //     const array = changeFood.buy
+    //     const changedArray = array.filter(item => item !== personName)
+    //     // console.log(changedArray)
+    //     await updateListingsByName(param, itemName, {buy: changedArray, totalPeople: changedArray.length});
+    // } else if (buy === "false") {
+    //     const array = changeFood.buy
+    //     if (!array.includes(personName)) {
+    //         array.push(personName)
+    //     }
+    //     console.log("food")
+    //
+    //     await updateListingsByName(param, itemName, {buy: array, totalPeople: array.length});
+    // }
 
     return {
         props: { person, receipt, date, didBuy },
