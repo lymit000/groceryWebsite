@@ -353,7 +353,7 @@ export default async function handler(req, res) {
 
 
             //
-    res.json("done");
+    await res.json("done");
     // res.json({message: "IT WORKS!!"})
 }
 

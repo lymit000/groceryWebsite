@@ -27,6 +27,6 @@ export default async function handler(req, res) {
     }
 
     // res.json(data);
-    res.json("worked");
+    await res.json("worked");
     // res.json({message: "IT WORKS!!"})
 }

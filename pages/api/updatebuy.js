@@ -1,5 +1,4 @@
 import clientPromise from "../../lib/mongodb";
-import {server} from "../../config";
 
 export default async function handler(req, res) {
     const personName = req.query.param0;
@@ -14,9 +13,6 @@ export default async function handler(req, res) {
     const updatePerson = await client.db("grocery-app").collection(personName);
     const param = await db.collection(date);
     const priceParam = await db.collection(personName);
-
-    const singlePerson = await db.collection("people").findOne({name: personName})
-    const person = await JSON.parse(JSON.stringify(singlePerson));
 
     const personDB = await db.collection(personName).findOne({date: date});
     const personCollectionOfDate = await JSON.parse(JSON.stringify(personDB));
@@ -56,8 +52,8 @@ export default async function handler(req, res) {
             console.log(personDB.totalPrice)
             console.log("FOR A TOTAL OF ")
             console.log(newTotal)
-            await updateWeekTotal(buyer, date, {totalPrice: newTotal});
-            await updateFalseTwo(buyer, size, itemPrice)
+            const result1 = await updateWeekTotal(buyer, date, {totalPrice: newTotal});
+            const result = await updateFalseTwo(buyer, size, itemPrice)
         }
     }
 
@@ -76,7 +72,7 @@ export default async function handler(req, res) {
         console.log(personDB.totalPrice)
         console.log("FOR A TOTAL OF ")
         console.log(finalTotal)
-        await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
+        const result = await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
 
         // UPDATE FINAL TOTAL
     }
@@ -99,8 +95,8 @@ export default async function handler(req, res) {
             console.log(personCollectionOfDate.totalPrice)
             console.log("FOR A TOTAL OF ")
             console.log(newTotal)
-            await updateWeekTotal(buyer, date, {totalPrice: newTotal});
-            await updateTrueTwo(buyer, size, itemPrice);
+            const result1 = await updateWeekTotal(buyer, date, {totalPrice: newTotal});
+            const result = await updateTrueTwo(buyer, size, itemPrice);
         }
     }
 
@@ -115,7 +111,7 @@ export default async function handler(req, res) {
         console.log(add)
         console.log("FOR A TOTAL OF ")
         console.log(finalTotal)
-        await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
+        const result = await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
     }
 
     if (buy === "true") {
@@ -133,16 +129,16 @@ export default async function handler(req, res) {
             console.log(personCollectionOfDate.totalPrice)
             console.log("FOR A TOTAL OF ")
             console.log(newTotal)
-            await updateWeekTotal(personName, date, {totalPrice: newTotal});
+            const result1 = await updateWeekTotal(personName, date, {totalPrice: newTotal});
 
 
             const changedArray = array.filter(item => item !== personName)
-            await updateBuy(param, itemName, {buy: changedArray, totalPeople: changedArray.length});
+            const result = await updateBuy(param, itemName, {buy: changedArray, totalPeople: changedArray.length});
 
             // we need to add money to the other people
             {changeFood.buy && changeFood.buy.map(async buyer => {
                 if (buyer.toString() !== personName) {
-                    await updateTrue(buyer, changedArray.length, itemPrice)
+                    const result = await updateTrue(buyer, changedArray.length, itemPrice)
                 }
             })}
         }
@@ -151,7 +147,7 @@ export default async function handler(req, res) {
         if (!array.includes(personName)) {
             array.push(personName)
             // await updateWeekTotal(updatePerson, date, {totalPrice: newTotal});
-            await updateBuy(param, itemName, {buy: array, totalPeople: array.length});
+            const result = await updateBuy(param, itemName, {buy: array, totalPeople: array.length});
             // WE need to subtract money from the other people
 
             // 1
@@ -160,7 +156,7 @@ export default async function handler(req, res) {
             if (array.length === 1) {
                 const firstAdd = Math.round((itemPrice / (array.length)) * 100) / 100
                 const firstTotal = Math.round((personCollectionOfDate.totalPrice + firstAdd) * 100) / 100;
-                await updateWeekTotal(personName, date, {totalPrice: firstTotal});
+                const result = await updateWeekTotal(personName, date, {totalPrice: firstTotal});
                 console.log("THIS IS THE FIRST ADD if size === 1")
                 console.log("WE ARE ADDING ")
                 console.log(itemPrice)
@@ -173,7 +169,7 @@ export default async function handler(req, res) {
             } else {
                 const firstAdd = Math.round((itemPrice / (array.length - 1)) * 100) / 100
                 const firstTotal = Math.round((personCollectionOfDate.totalPrice + firstAdd) * 100) / 100;
-                await updateWeekTotal(personName, date, {totalPrice: firstTotal});
+                const result = await updateWeekTotal(personName, date, {totalPrice: firstTotal});
                 console.log("THIS IS THE FIRST ADD if size !=== 1")
                 console.log("WE ARE ADDING ")
                 console.log(itemPrice)
@@ -186,13 +182,14 @@ export default async function handler(req, res) {
             }
 
 
-            {
-                changeFood.buy && changeFood.buy.map(async buyer => {
-                    await updateFalse(buyer, array.length, itemPrice);
-                })
+            if (changeFood.buy === "true") {
+                const result = await updateFalse(buyer, array.length, itemPrice);
+
             }
+            // {changeFood.buy && changeFood.buy.map(async buyer => {
+            // })}
         }
     }
 
-    res.json("HI")
+    const result = await res.json("HI")
 }
