@@ -181,13 +181,9 @@ export default async function handler(req, res) {
                 console.log(firstTotal)
             }
 
-
-            if (changeFood.buy === "true") {
+            {changeFood.buy && changeFood.buy.map(async buyer => {
                 const result = await updateFalse(buyer, array.length, itemPrice);
-
-            }
-            // {changeFood.buy && changeFood.buy.map(async buyer => {
-            // })}
+            })}
         }
     }
 
