@@ -50,15 +50,21 @@ function MovieDetails({ personName, personOfDate, receiptOfDate}) {
                 <div className="grid place-items-center grid-cols-3 gap-1 justify-items-center p-2 bg-gray-200 max-w">
                     {receiptOfDate && receiptOfDate.map(item => (
                         <>
-                            <div>
                                 {calculateTotal(item.foodPrice, JSON.parse(JSON.stringify(item.buy)).includes(personName), item.totalPeople)}
                                 {/*{item.totalPeople}*/}
                                 {/*{console.log(item.foodPrice)}*/}
-                                {/*// foodPrice={item.foodPrice}*/}
+
+                        </>
+                    ))}
+
+                    {receiptOfDate && receiptOfDate.map(item => (
+                        <>
+                            <div>
                                 <Foods foodName={item.foodName} foodPrice={item.foodPrice} personName={personName} buy={JSON.parse(JSON.stringify(item.buy)).includes(personName)} date={personOfDate.date} totalPeople={item.totalPeople} img={item.img}/>
                             </div>
                         </>
                     ))}
+
                 </div>
 
             </div>

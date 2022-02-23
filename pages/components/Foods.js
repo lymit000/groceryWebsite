@@ -40,6 +40,7 @@ function Foods(props, { person, receipt, date, didBuy }) {
         }
         console.log("button clicked")
         const result = await updateFoodName();
+        forceReload();
     }
 
 
