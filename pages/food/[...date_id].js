@@ -14,17 +14,30 @@ import dates from "../components/Dates";
 function MovieDetails({ personName, personOfDate, receiptOfDate}) {
 
 
-    let totalPrice = personOfDate.totalPrice;
+    let totalPrice = 0;
 
     function calculateTotal(otherPrice, flag, totalPeople) {
         if (flag) {
-            totalPrice = (otherPrice / totalPeople) + totalPrice
+            totalPrice = Math.round(((otherPrice / totalPeople) + totalPrice) * 100) / 100
+
+            console.log()
         }
     }
 
+    async function updateTotal() {
+        await fetch ()
+    }
     return (
         <>
             <div>
+                {receiptOfDate && receiptOfDate.map(item => (
+                    <>
+                        {calculateTotal(item.foodPrice, JSON.parse(JSON.stringify(item.buy)).includes(personName), item.totalPeople)}
+                        {/*{item.totalPeople}*/}
+                        {/*{console.log(item.foodPrice)}*/}
+
+                    </>
+                ))}
                 <div className="bg-blue-700 grid place-items-center grid-cols-5 gap-5 justify-items-center p-2 bg-gray-200 max-w">
                     <button className={"bg-blue-600 font-semibold text-center rounded-3xl border shadow-lg p-2 max-w-xs"}>
                         {/*<Link href={`http://localhost:3000/food/${person.name}`}>*/}
@@ -48,14 +61,7 @@ function MovieDetails({ personName, personOfDate, receiptOfDate}) {
                     {/*</button>*/}
                 </div>
                 <div className="grid place-items-center grid-cols-3 gap-1 justify-items-center p-2 bg-gray-200 max-w">
-                    {receiptOfDate && receiptOfDate.map(item => (
-                        <>
-                                {calculateTotal(item.foodPrice, JSON.parse(JSON.stringify(item.buy)).includes(personName), item.totalPeople)}
-                                {/*{item.totalPeople}*/}
-                                {/*{console.log(item.foodPrice)}*/}
 
-                        </>
-                    ))}
 
                     {receiptOfDate && receiptOfDate.map(item => (
                         <>

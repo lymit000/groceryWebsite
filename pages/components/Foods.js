@@ -82,8 +82,7 @@ export async function getServerSideProps(context) {
     const date = context.query.date_id[1];
     const buy = context.query.date_id[2];
     const itemName = context.query.date_id[3];
-    const { URL } = process.env;
-    const data = await fetch(URL + `${server}/api/getfood?date_id=${date}`);
+    const data = await fetch(server + "/api/getfood?date_id=${date}");
     const receipt = await data.json();
 
     const didBuy = true;
