@@ -11,33 +11,15 @@ import { server } from '../../config';
 import {render} from "react-dom";
 import dates from "../components/Dates";
 
-function MovieDetails({ personName, personOfDate, receiptOfDate}) {
+function MovieDetails({ personName, personOfDate, receiptOfDate, date}) {
 
 
-    let totalPrice = 0;
 
-    function calculateTotal(otherPrice, flag, totalPeople) {
-        if (flag) {
-            totalPrice = Math.round(((otherPrice / totalPeople) + totalPrice) * 100) / 100
 
-            console.log()
-        }
-    }
 
-    async function updateTotal() {
-        await fetch ()
-    }
     return (
         <>
             <div>
-                {receiptOfDate && receiptOfDate.map(item => (
-                    <>
-                        {calculateTotal(item.foodPrice, JSON.parse(JSON.stringify(item.buy)).includes(personName), item.totalPeople)}
-                        {/*{item.totalPeople}*/}
-                        {/*{console.log(item.foodPrice)}*/}
-
-                    </>
-                ))}
                 <div className="bg-blue-700 grid place-items-center grid-cols-5 gap-5 justify-items-center p-2 bg-gray-200 max-w">
                     <button className={"bg-blue-600 font-semibold text-center rounded-3xl border shadow-lg p-2 max-w-xs"}>
                         {/*<Link href={`http://localhost:3000/food/${person.name}`}>*/}
@@ -95,8 +77,30 @@ export async function getServerSideProps(context) {
     const collectionPersonOfDate = await collectionPerson.findOne({date: date});
     const personOfDate = await JSON.parse(JSON.stringify(collectionPersonOfDate));
 
+
+    let totalPrice = 0;
+
+    function calculateTotal(otherPrice, flag, totalPeople) {
+        if (flag) {
+            totalPrice = Math.round(((otherPrice / totalPeople) + totalPrice) * 100) / 100
+
+            console.log()
+        }
+    }
+
+
+    {receiptOfDate && receiptOfDate.map(item => (
+        <>
+            {calculateTotal(item.foodPrice, JSON.parse(JSON.stringify(item.buy)).includes(personName), item.totalPeople)}
+            {/*{item.totalPeople}*/}
+            {/*{console.log(item.foodPrice)}*/}
+        </>
+    ))}
+
+    const result = await client.db("grocery-app").collection(personName).updateOne({date: date}, { $set: {totalPrice: totalPrice}});
+
     return {
-        props: { personName, personOfDate, receiptOfDate},
+        props: { personName, personOfDate, receiptOfDate, date},
     }
 }
 
