@@ -9,6 +9,7 @@ import log from "tailwindcss/lib/util/log";
 import "tailwindcss/tailwind.css"
 import { server } from '../../config';
 import {render} from "react-dom";
+import dates from "../components/Dates";
 
 function MovieDetails({ personName, personOfDate, receiptOfDate}) {
 
@@ -24,12 +25,12 @@ function MovieDetails({ personName, personOfDate, receiptOfDate}) {
     return (
         <>
             <div>
-                <div className="grid place-items-center grid-cols-5 gap-5 justify-items-center p-2 bg-gray-200 max-w">
-                    <button className={"bg-blue-300 font-semibold text-center rounded-3xl border shadow-lg p-2 max-w-xs"}>
+                <div className="bg-blue-700 grid place-items-center grid-cols-5 gap-5 justify-items-center p-2 bg-gray-200 max-w">
+                    <button className={"bg-blue-600 font-semibold text-center rounded-3xl border shadow-lg p-2 max-w-xs"}>
                         {/*<Link href={`http://localhost:3000/food/${person.name}`}>*/}
                         <Link href={`/food/${personName}`} scroll={false}>
 
-                        <h1>
+                            <h1>
                                 Back to all Dates
                             </h1>
                         </Link>
@@ -54,7 +55,7 @@ function MovieDetails({ personName, personOfDate, receiptOfDate}) {
                                 {/*{item.totalPeople}*/}
                                 {/*{console.log(item.foodPrice)}*/}
                                 {/*// foodPrice={item.foodPrice}*/}
-                                <Foods foodName={item.foodName} foodPrice={item.foodPrice} personName={personName} buy={JSON.parse(JSON.stringify(item.buy)).includes(personName)} date={personOfDate.date} totalPeople={item.totalPeople}/>
+                                <Foods foodName={item.foodName} foodPrice={item.foodPrice} personName={personName} buy={JSON.parse(JSON.stringify(item.buy)).includes(personName)} date={personOfDate.date} totalPeople={item.totalPeople} img={item.img}/>
                             </div>
                         </>
                     ))}

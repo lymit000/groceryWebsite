@@ -3,15 +3,11 @@ import {ObjectId} from "mongodb";
 import Foods from "../components/Foods";
 
 export default async function handler(req, res) {
-        const newDate = "10-24-21"
-
-    async function createMultipleListings(client, newListings) {
-        // Which database youre going to use and which collection in the db
-        // And inserts one
-        // We want to wait for the results so we use await
-        // We're going to store this value in result
-        const result = await client.collection(newDate).insertMany(newListings);
-    }
+    const foodName = (req.query.param0)
+    const foodPrice = (req.query.param1)
+    const newDate = (req.query.param2)
+    const itemNumber = (req.query.param3)
+    const img = (req.query.param4)
 
     async function createListing(client, newListing) {
         // Which database youre going to use and which collection in the db
@@ -22,9 +18,11 @@ export default async function handler(req, res) {
     }
 
 
+
     const client = await clientPromise
-    const db = client.db("grocery-app");
-    const oneBefore = await db.collection(newDate);
+    const db = await client.db("grocery-app")
+
+    const dataCollection = await db.collection(newDate);
 
     const Aidan = await db.collection("Aidan");
     const Andoni = await db.collection("Andoni");
@@ -36,10 +34,106 @@ export default async function handler(req, res) {
     const Nathaniel = await db.collection("Nathaniel");
     const Ridge = await db.collection("Ridge");
 
+    async function deleteByName(dataCollection, newDate) {
+        const result = await dataCollection.deleteOne({date: newDate});
+    }
+
+    db.listCollections({name: newDate})
+        .next(function(err, collinfo) {
+            if (collinfo) {
+                createListing(dataCollection, {
+                    foodName: foodName,
+                    foodPrice: foodPrice,
+                    buy: [],
+                    totalPeople: 0,
+                    itemNumber: itemNumber,
+                    img: img
+                })
+                console.log("we just added " + foodName)
+
+
+            } else {
+                // deleteByName(Aidan, newDate)
+                // deleteByName(Andoni, newDate)
+                // deleteByName(Atay, newDate)
+                // deleteByName(Justin, newDate)
+                // deleteByName(Keshav, newDate)
+                // deleteByName(Kulbir, newDate)
+                // deleteByName(Mitchell, newDate)
+                // deleteByName(Nathaniel, newDate)
+                // deleteByName(Ridge, newDate)
+                // console.log("delete ran")
+                db.createCollection(newDate, function(err, result) {
+                    if (err) throw err;
+                    console.log("Collection is created!");
+                });
+
+                createListing(Aidan, {
+                    date: newDate,
+                    totalPrice: 0,
+                    markDone: "false"
+                })
+                createListing(Andoni, {
+                    date: newDate,
+                    totalPrice: 0,
+                    markDone: "false"
+                })
+                createListing(Atay, {
+                    date: newDate,
+                    totalPrice: 0,
+                    markDone: "false"
+                })
+                createListing(Justin, {
+                    date: newDate,
+                    totalPrice: 0,
+                    markDone: "false"
+                })
+                createListing(Keshav, {
+                    date: newDate,
+                    totalPrice: 0,
+                    markDone: "false"
+                })
+                createListing(Kulbir, {
+                    date: newDate,
+                    totalPrice: 0,
+                    markDone: "false"
+                })
+                createListing(Mitchell, {
+                    date: newDate,
+                    totalPrice: 0,
+                    markDone: "false"
+                })
+                createListing(Nathaniel, {
+                    date: newDate,
+                    totalPrice: 0,
+                    markDone: "false"
+                })
+                createListing(Ridge, {
+                    date: newDate,
+                    totalPrice: 0,
+                    markDone: "false"
+                })
+
+                createListing(dataCollection, {
+                    foodName: foodName,
+                    foodPrice: foodPrice,
+                    buy: [],
+                    totalPeople: 0,
+                    itemNumber: itemNumber,
+                    img: img
+                })
+
+                console.log("we just added " + foodName)
+            }
+        });
+
+
+
 
     // await createListing(Aidan, {
     //     "date": newDate,
-    //     "totalPrice": 0
+    //     "totalPrice": 0,
+    //     "markDone": "false"
     // })
 
         // await createMultipleListings(db, [{

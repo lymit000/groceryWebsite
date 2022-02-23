@@ -22,8 +22,8 @@ function MovieDetails({ personCollection, allReceipts, personID }) {
 
         return (
         <>
-                <div className="grid place-items-center grid-cols-5 gap-5 justify-items-center p-2 bg-gray-200 max-w">
-                    <button className={"bg-blue-300 font-semibold text-center rounded-3xl border shadow-lg p-2 max-w-xs"}>
+                <div className="grid place-items-center grid-cols-5 gap-5 justify-items-center p-2 bg-blue-700 max-w">
+                    <button className={"bg-blue-600 font-semibold text-center rounded-3xl border shadow-lg p-2 max-w-xs"}>
                         <Link href="/">
                             <h1>
                                 Back to all People
@@ -31,11 +31,11 @@ function MovieDetails({ personCollection, allReceipts, personID }) {
                         </Link>
                     </button>
                     <p></p>
-                    <Profile name={personID}/>
+                        <Profile name={personID}/>
                     <p></p>
                 </div>
             <div>
-                <div className="grid place-items-center grid-cols-4 gap-5 justify-items-center p-2 bg-gray-200 max-w">
+                <div className="grid place-items-center grid-cols-4 gap-5 justify-items-center p-2 bg-gray-200 max-w h-screen">
                     {/*{allReceipts && allReceipts.map(singleDate => (*/}
                     {/*        <>*/}
 
@@ -46,7 +46,6 @@ function MovieDetails({ personCollection, allReceipts, personID }) {
                     {personCollection && personCollection.map(singleDate => (
                         <>
                             {singleDate && <Dates itemPrice={singleDate.totalPrice} date={singleDate.date} personName={personID} markDone={singleDate.markDone}/>}
-
                         </>
                     ))}
                 </div>
@@ -56,14 +55,9 @@ function MovieDetails({ personCollection, allReceipts, personID }) {
 }
 
 export async function getServerSideProps(context) {
-
-    //
     // const data = await db.collection("movies").find({year: 2013, 'imdb.rating': {$gt: 8}}).limit(20).toArray()
-    //
     // const movies = JSON.parse(JSON.stringify(data));
-
     // const data = await fetch(`http://localhost:3000/api/moviedetails?movie_id=573a1390f29313caabcd42e8`);
-
     // const data = await fetch(`http://localhost:3000/api/moviedetails?name=${context.query.name}`);
     const personID = context.query.people_id;
     const data = await fetch(`${server}/api/getpeople?people_id=${personID}`);
