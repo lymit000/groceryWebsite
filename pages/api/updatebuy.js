@@ -10,9 +10,7 @@ export default async function handler(req, res) {
 
     console.log(req.query.param1)
 
-    console.log("this api runs")
     const didBuy = true;
-    res.json("HI")
 
     const client = await clientPromise
     const db = client.db("grocery-app");
@@ -198,4 +196,5 @@ export default async function handler(req, res) {
             }
         }
     }
+    res.json("HI")
 }

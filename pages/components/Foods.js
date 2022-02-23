@@ -4,7 +4,7 @@ import clientPromise from "../../lib/mongodb";
 // import clientPromise from '../../lib/mongodb'
 import { useRouter } from "next/router";
 import Router from 'next/router'
-import { server } from '../../config';
+import {server} from '../../config';
 import Image from "next/image";
 
 
@@ -19,6 +19,7 @@ function Foods(props, { person, receipt, date, didBuy }) {
     }
 
     async function updateFoodName() {
+        alert("bought");
         const personDB = await fetch(server + '/api/updatebuy?param0='+props.personName+"&param1="+props.date+"&param2="+props.buy+"&param3="+props.foodName+"&param4="+props.foodPrice);
     }
 
@@ -49,7 +50,7 @@ function Foods(props, { person, receipt, date, didBuy }) {
     // }
     return (
         <div className="flex items-center justify-center">
-            <div className="bg-white font-semibold text-center rounded-3xl border shadow-lg w-48 h-48 items-center justify-center">
+            <div className="bg-white font-semibold text-center rounded-3xl border shadow-lg w-40 h-52 items-center justify-center">
                 <h1 className="text-lg text-gray-700"> {props.foodName} </h1>
                 <h3 className="text-med text-gray-400 ">  ${props.foodPrice} </h3>
                 <div className={"flex justify-center"}>
@@ -64,8 +65,8 @@ function Foods(props, { person, receipt, date, didBuy }) {
                 </button>
                 {props.buy &&
                 <p>
-                    {/*{props.totalPeople} people*/}
-                    {/*<br/>*/}
+                    {props.totalPeople} people
+                    <br/>
                     ${Math.round((props.foodPrice / (props.totalPeople)) * 100) / 100} per person
                 </p>}
             </div>
