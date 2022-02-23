@@ -19,7 +19,6 @@ function Foods(props, { person, receipt, date, didBuy }) {
     }
 
     async function updateFoodName() {
-        alert("bought");
         const personDB = await fetch(server + '/api/updatebuy?param0='+props.personName+"&param1="+props.date+"&param2="+props.buy+"&param3="+props.foodName+"&param4="+props.foodPrice);
     }
 

@@ -140,9 +140,9 @@ export default async function handler(req, res) {
             await updateBuy(param, itemName, {buy: changedArray, totalPeople: changedArray.length});
 
             // we need to add money to the other people
-            {changeFood.buy && changeFood.buy.map(buyer => {
+            {changeFood.buy && changeFood.buy.map(async buyer => {
                 if (buyer.toString() !== personName) {
-                    updateTrue(buyer, changedArray.length, itemPrice)
+                    await updateTrue(buyer, changedArray.length, itemPrice)
                 }
             })}
         }
