@@ -27,6 +27,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
         const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2=allFoods"+"&param3="+data.itemNumber+"&param4="+data.img);
         // Send the data to the server in JSON format.
         forceReload();
+        alert("just added " + first + "to all foods");
         // API endpoint where we send form data.
     }
 
@@ -43,6 +44,8 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
         // Send the data to the server in JSON format.
 
         // API endpoint where we send form data.
+        alert("just added " + first + "to " + collectionName.toString());
+
     }
 
     return (
