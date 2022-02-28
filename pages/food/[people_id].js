@@ -14,10 +14,17 @@ function MovieDetails({ personCollection, allReceipts, personID }) {
 
     const [markDone, setMarkDone] = useState(personCollection.markDone)
 
-    //
-    // useEffect(() => {
-    //     forceReload();
-    // })
+    const router = useRouter();
+    const forceReload = () => {
+        router.reload();
+    }
+
+    function refreshPage() {
+        window.location.reload(false);
+    }
+
+    useEffect(() => {
+    }, (allReceipts))
 
 
         return (

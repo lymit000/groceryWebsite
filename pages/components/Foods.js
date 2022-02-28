@@ -50,7 +50,7 @@ function Foods(props, { person, receipt, date, didBuy }) {
     // }
     return (
         <div className="flex items-center justify-center">
-            <div className="bg-white font-semibold text-center rounded-3xl border shadow-lg w-40 h-52 items-center justify-center">
+            <div className="bg-white font-semibold text-center rounded-3xl border shadow-lg w-40 h-60777 items-center justify-center">
                 <h1 className="text-lg text-gray-700"> {props.foodName} </h1>
                 <h3 className="text-med text-gray-400 ">  ${props.foodPrice} </h3>
                 <div className={"flex justify-center"}>

@@ -6,11 +6,17 @@ import Profile from "../components/Profile";
 import Dates from "../components/Dates";
 import {server} from "../../config";
 import Foods from "../components/Foods";
+import {useRouter} from "next/router";
 
 
 export default function PageWithJSbasedForm({allFood, collectionName}) {
+    const router = useRouter();
+    const forceReload = () => {
+        router.reload();
+    }
     // Handles the submit event on form submit.
     const refreshSubmit = async (event) => {
+        event.preventDefault()
         const data = {
             first: event.target.first.value,
             last: event.target.last.value,
@@ -18,9 +24,9 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
             img: event.target.img.value
         }
 
-        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2="+collectionName.toString()+"&param3="+data.itemNumber+"&param4="+data.img);
+        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2=allFoods"+"&param3="+data.itemNumber+"&param4="+data.img);
         // Send the data to the server in JSON format.
-
+        forceReload();
         // API endpoint where we send form data.
     }
 

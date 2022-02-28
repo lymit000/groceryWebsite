@@ -3,11 +3,21 @@ import Profile from "./Profile";
 import "tailwindcss/tailwind.css"
 import { useState, useEffect } from 'react';
 import {server} from "../../config";
+import {useRouter} from "next/router";
 
 
 function Dates(props) {
 
     const [ markDoneCSS, setMarkDoneCSS ] = useState("bg-red-600 px-1 py-1 mt-4 rounded-lg text-gray-100 font-semibold tracking-wide");
+
+    const router = useRouter();
+    const forceReload = () => {
+        router.reload();
+    }
+
+    function refreshPage() {
+        window.location.reload(false);
+    }
 
     useEffect(() => {
         if (props.markDone === false ) {
@@ -24,6 +34,8 @@ function Dates(props) {
             setMarkDoneCSS("bg-green-600 px-1 py-1 mt-4 rounded-lg text-gray-100 font-semibold tracking-wide")
         }
         const result = await updateMarkDone();
+        forceReload();
+        refreshPage();
     }
 
     async function updateMarkDone() {
