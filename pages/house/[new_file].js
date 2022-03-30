@@ -41,7 +41,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
         // Send the data to the server in JSON format.
 
         // API endpoint where we send form data.
-        alert("just added " + first + "to " + collectionName.toString());
+        alert("Just added " + data.first + "to " + collectionName.toString());
 
     }
 

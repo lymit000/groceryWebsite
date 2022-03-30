@@ -47,7 +47,7 @@ export default async function handler(req, res) {
                     itemNumber: itemNumber,
                     img: img
                 })
-                console.log("we just added " + foodName)
+                // console.log("we just added " + foodName)
 
 
             } else {
@@ -63,7 +63,7 @@ export default async function handler(req, res) {
                 // console.log("delete ran")
                 await db.createCollection(newDate, function (err, result) {
                     if (err) throw err;
-                    console.log("Collection is created!");
+                    // console.log("Collection is created!");
                 });
 
                 await createListing(Aidan, {
@@ -121,7 +121,7 @@ export default async function handler(req, res) {
                     img: img
                 })
 
-                console.log("we just added " + foodName)
+                // console.log("we just added " + foodName)
             }
         });
 

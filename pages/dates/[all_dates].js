@@ -49,13 +49,12 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                     <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                         <a href={"#0"} passHref className="btn btn-circle" >❮</a>
                         <a href={server + "dates/allDates" } passHref className={"bg-primary rounded-xl p-1 text-6xl text-white font-mono"}> {"All Dates"}</a>
-
                         <a href={"#2"} passHref className="btn btn-circle">❯</a>
                     </div>
                 </div>
                 {base && base.map(singleDate => (
-                    // <div id={i.toString()} className="carousel-item relative w-full">
-                    <div id={"test"} className="carousel-item relative w-full" key={"test"}>
+                    <div id={i.toString()} className="carousel-item relative w-full">
+                    {/*<div id={"test"} className="carousel-item relative w-full" key={"test"}>*/}
 
                     <CardDate  totalPrice={singleDate.totalPrice}/>
                         {count()}
