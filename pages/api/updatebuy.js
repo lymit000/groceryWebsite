@@ -66,8 +66,7 @@ export default async function handler(req, res) {
             console.log(personDB.totalPrice)
             console.log("FOR A TOTAL OF ")
             console.log(finalTotal)
-            return finalTotal;
-            // const result = await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
+            const result = await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
         }
     }
 
@@ -118,8 +117,7 @@ export default async function handler(req, res) {
             console.log(add)
             console.log("FOR A TOTAL OF ")
             console.log(finalTotal)
-            // const result = await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
-            return finalTotal;
+            const result = await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
         }
     }
 
@@ -137,81 +135,81 @@ export default async function handler(req, res) {
         // const result = await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
     }
 
-    if (buy === "true") {
-        const array = changeFood.buy
-        if (array.includes(personName)) {
-            // 1 the caller person goes down ITEM / SIZE
-            const firstSubtract = Math.round((itemPrice / array.length) * 100) / 100;
-            const newTotal = Math.round((personCollectionOfDate.totalPrice - firstSubtract) * 100) / 100;
-            console.log("THIS IS THE FIRST SUBTRACT if size === 1 OR ANYTHING")
-            console.log("WE ARE SUBBING ")
-            console.log(itemPrice)
-            console.log(array.length)
-            console.log(firstSubtract)
-            console.log("TO")
-            console.log(personCollectionOfDate.totalPrice)
-            console.log("FOR A TOTAL OF ")
-            console.log(newTotal)
-
-            const result1 = await updateWeekTotal(personName, date, {totalPrice: newTotal});
-
-
-            const changedArray = array.filter(item => item !== personName)
-            const result = await updateBuy(param, itemName, {buy: changedArray, totalPeople: changedArray.length});
-
-            // we need to add money to the other people
-            {changeFood.buy && changeFood.buy.map(async buyer => {
-                if (buyer.toString() !== personName) {
-                    const result = await updateTrue(buyer, array.length = 1, itemPrice)
-                    await updateWeekTotal(buyer, date, {totalPrice: result})
-                }
-            })}
-        }
-    } else if (buy === "false") {
-        const array = changeFood.buy
-        if (!array.includes(personName)) {
-            array.push(personName)
-            // await updateWeekTotal(updatePerson, date, {totalPrice: newTotal});
-            const result = await updateBuy(param, itemName, {buy: array, totalPeople: array.length});
-            // WE need to subtract money from the other people
-
-            // 1
-            console.log("WE ARE adding A PERSON")
-            console.log(personName)
-            if (array.length === 1) {
-                const firstAdd = Math.round((itemPrice / (array.length)) * 100) / 100
-                const firstTotal = Math.round((personCollectionOfDate.totalPrice + firstAdd) * 100) / 100;
-                const result = await updateWeekTotal(personName, date, {totalPrice: firstTotal});
-                console.log("THIS IS THE FIRST ADD if size === 1")
-                console.log("WE ARE ADDING ")
+    const testAsync = async () => {
+        if (buy === "true") {
+            const array = changeFood.buy
+            if (array.includes(personName)) {
+                // 1 the caller person goes down ITEM / SIZE
+                const firstSubtract = Math.round((itemPrice / array.length) * 100) / 100;
+                const newTotal = Math.round((personCollectionOfDate.totalPrice - firstSubtract) * 100) / 100;
+                console.log("THIS IS THE FIRST SUBTRACT if size === 1 OR ANYTHING")
+                console.log("WE ARE SUBBING ")
                 console.log(itemPrice)
                 console.log(array.length)
-                console.log(firstAdd)
+                console.log(firstSubtract)
                 console.log("TO")
                 console.log(personCollectionOfDate.totalPrice)
                 console.log("FOR A TOTAL OF ")
-                console.log(firstTotal)
-            } else {
-                const firstAdd = Math.round((itemPrice / (array.length - 1)) * 100) / 100
-                const firstTotal = Math.round((personCollectionOfDate.totalPrice + firstAdd) * 100) / 100;
-                const result = await updateWeekTotal(personName, date, {totalPrice: firstTotal});
-                console.log("THIS IS THE FIRST ADD if size !=== 1")
-                console.log("WE ARE ADDING ")
-                console.log(itemPrice)
-                console.log(array.length)
-                console.log(firstAdd)
-                console.log("TO")
-                console.log(personCollectionOfDate.totalPrice)
-                console.log("FOR A TOTAL OF ")
-                console.log(firstTotal)
+                console.log(newTotal)
+                const result1 = await updateWeekTotal(personName, date, {totalPrice: newTotal});
+
+
+                const changedArray = array.filter(item => item !== personName)
+                const result = await updateBuy(param, itemName, {buy: changedArray, totalPeople: changedArray.length});
+
+                // we need to add money to the other people
+                {changeFood.buy && changeFood.buy.map(async buyer => {
+                    if (buyer.toString() !== personName) {
+                        const result = await updateTrue(buyer, changedArray.length, itemPrice)
+                    }
+                })}
             }
+        } else if (buy === "false") {
+            const array = changeFood.buy
+            if (!array.includes(personName)) {
+                array.push(personName)
+                // await updateWeekTotal(updatePerson, date, {totalPrice: newTotal});
+                const result = await updateBuy(param, itemName, {buy: array, totalPeople: array.length});
+                // WE need to subtract money from the other people
 
-            {array && array.map(async buyer => {
-                const result = await updateFalse(buyer, array.length, itemPrice)
-                await updateWeekTotal(buyer, date, {totalPrice: result})
+                // 1
+                console.log("WE ARE adding A PERSON")
+                console.log(personName)
+                if (array.length === 1) {
+                    const firstAdd = Math.round((itemPrice / (array.length)) * 100) / 100
+                    const firstTotal = Math.round((personCollectionOfDate.totalPrice + firstAdd) * 100) / 100;
+                    const result = await updateWeekTotal(personName, date, {totalPrice: firstTotal});
+                    console.log("THIS IS THE FIRST ADD if size === 1")
+                    console.log("WE ARE ADDING ")
+                    console.log(itemPrice)
+                    console.log(array.length)
+                    console.log(firstAdd)
+                    console.log("TO")
+                    console.log(personCollectionOfDate.totalPrice)
+                    console.log("FOR A TOTAL OF ")
+                    console.log(firstTotal)
+                } else {
+                    const firstAdd = Math.round((itemPrice / (array.length - 1)) * 100) / 100
+                    const firstTotal = Math.round((personCollectionOfDate.totalPrice + firstAdd) * 100) / 100;
+                    const result = await updateWeekTotal(personName, date, {totalPrice: firstTotal});
+                    console.log("THIS IS THE FIRST ADD if size !=== 1")
+                    console.log("WE ARE ADDING ")
+                    console.log(itemPrice)
+                    console.log(array.length)
+                    console.log(firstAdd)
+                    console.log("TO")
+                    console.log(personCollectionOfDate.totalPrice)
+                    console.log("FOR A TOTAL OF ")
+                    console.log(firstTotal)
+                }
 
-            })}
+                {array && array.map(async buyer => {
+                    const result = await updateFalse(buyer, array.length, itemPrice);
+                })}
+            }
         }
     }
+
+    await testAsync();
     const result = await res.json("HI")
 }
