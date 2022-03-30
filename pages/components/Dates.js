@@ -44,7 +44,7 @@ function Dates(props) {
         <div>
                 <div className="flex items-center justify-center ">
                     <div className={"bg-white font-semibold text-center rounded-3xl border shadow-lg p-2"}>
-                        <Link href={`/food/${props.personName}/${props.date}`} scroll={false}>
+                        <Link href={server + `food/${props.personName}/${props.date}`} scroll={false} passHref>
 
                         <button className={markDoneCSS}>
                             {props.date}

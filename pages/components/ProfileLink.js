@@ -36,7 +36,7 @@ function Profile(props) {
 
     return (
         <div className={"w-full items-center justify-center text-center"}>
-        <Link href={props.link}>
+        <Link href={props.link} passHref>
             <button className={"w-full flex items-center justify-center mx-2 bg-otherBlack flex items-center justify-center text-3xl font-mono h-5/6 border-l-4 border-t-4 border-r-2 border-background"}>
                 <div>
                     <div>

@@ -54,7 +54,7 @@ function Foods(props, { person, receipt, date, didBuy }) {
                     <h1 className="text-lg"> {props.foodName} </h1>
                     <h3 className="text-med ">  ${props.foodPrice} </h3>
                     <div className={"flex justify-center"}>
-                        <img src={props.img} className={"h-5/6 w-screen"}/>
+                        <img alt={props.foodName} src={props.img} className={"h-5/6 w-screen"} width={"50"} height={"50"}/>
 
                     </div>
                     {props.buy &&

@@ -20,7 +20,7 @@ function MovieDetails({ personName, personOfDate, receiptOfDate, date}) {
                     <HomeButton/>
                     <div></div>
                     <div className={"text-right"}>
-                        <Link href={server + "/people/" + personName}>
+                        <Link href={server + "people/" + personName} passHref>
                             <button className={"bg-otherBlack text-primary mx-1 w-fit font-mono rounded-lg p-1"}>
                                 Back to {personName}
                             </button>

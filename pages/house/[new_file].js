@@ -6,6 +6,8 @@ import Dates from "../components/Dates";
 import {server} from "../../config";
 import Foods from "../components/Foods";
 import {useRouter} from "next/router";
+import Image from "next/image";
+
 
 
 export default function PageWithJSbasedForm({allFood, collectionName}) {
@@ -52,7 +54,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
         <>
             <div className={"bg-background h-full text-white text-center"}>
                 <button className={"bg-otherBlack p-3"}>
-                    <Link href={`/`} scroll={false}>
+                    <Link href={`/`} scroll={false} passHref>
                         <h1>
                             Home Page
                         </h1>
@@ -85,7 +87,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
                                 <input type="text" id="last" name="last" className={"bg-otherBlack"} required defaultValue={item.foodPrice}/>
                                 <input type="text" id="itemNumber" className={"bg-otherBlack"} name="itemNumber" defaultValue={item.itemNumber} required/>
                                 <input type="text" id="img" name="img" className={"bg-otherBlack"} defaultValue={item.img} required />
-                                <img src={item.img}/>
+                                <img src={item.img} alt={"not working so temp right here"} alt={"temp end"} width={"25"} height={"25"}/>
                                 <button className={"w-full border-2 border-primary border-dashed  stext-white p-1 "} type="submit" scroll={false}>Add</button>
                             </form>
                             <br/>

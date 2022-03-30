@@ -31,7 +31,7 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                 <div></div>
                 <div className={"text-right"}>
                     <Link href={server + "" +
-                        "dates/allDates#1"}>
+                        "dates/allDates#1"} passHref>
                         <button className={"bg-otherBlack text-primary mx-1 w-fit font-mono rounded-lg p-1"}>
                             Back to All Dates
                         </button>
@@ -42,7 +42,7 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
 
             <div className="carousel w-full">
                 <div id={"1"} className="carousel-item relative w-full">
-                    <Link href={"dates/allDates"}>
+                    <Link href={"dates/allDates"} passHref>
                         <button className={"text-white w-full rounded-3xl mx-3"}>
                             <div className="flex items-center justify-center mx-20  font-mono h-full text-center bg-otherBlack rounded-3xl">
                                 <p1 className={"items-center justify-center h-max text-6xl text-otherBlack"}> All Dates <br/> </p1>
@@ -58,7 +58,7 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                     </div>
                 </div>
                 {base && base.map(singleDate => (
-                    <div id={i} className="carousel-item relative w-full">
+                    <div id={i.toString()} className="carousel-item relative w-full">
                         <CardDate  totalPrice={singleDate.totalPrice}/>
                         {count()}
                         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">

@@ -7,25 +7,25 @@ import Link from 'next/link'
 import Foods from "../components/Foods";
 import Dates from "../components/Dates";
 import { server } from '../../config';
-import {useRouter} from "next/router";
+// import {useRouter} from "next/router";
 
 function MovieDetails({ personCollection, allReceipts, personID }) {
 
-    const [markDone, setMarkDone] = useState(personCollection.markDone)
-
-    const router = useRouter();
-    const forceReload = () => {
-        router.reload();
-    }
-
-    function refreshPage() {
-        window.location.reload(false);
-    }
-
-    useEffect(() => {
-    }, (allReceipts))
-
-
+    // const [markDone, setMarkDone] = useState(personCollection.markDone)
+    //
+    // const router = useRouter();
+    // const forceReload = () => {
+    //     router.reload();
+    // }
+    //
+    // function refreshPage() {
+    //     window.location.reload(false);
+    // }
+    //
+    // useEffect(() => {
+    // }, (allReceipts))
+    //
+    //
         return (
         <>
             {/*<div className={"max-w flex items-center justify-center"}>*/}

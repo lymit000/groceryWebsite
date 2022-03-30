@@ -19,7 +19,7 @@ function Profile(props) {
     }, [bought]);
 
     return (
-        <Link href={server + "dates/" + props.Name+"#" + props.i}>
+        <Link href={server + "dates/" + props.Name+"#" + props.i} passHref>
             <button className={buyButton}>
                 {props.buy ? <div className={"text-green-400"}>
                     {props.Name}

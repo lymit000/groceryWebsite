@@ -6,7 +6,7 @@ import {server} from "../../config";
 function Profile(props) {
 
     return (
-        <Link href={server + "people/" + props.Name}>
+        <Link href={server + "people/" + props.Name} passHref>
             <button className="flex items-center justify-center mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-3xl font-mono h-5/6 ">
                 <div>
                     {props.Name}

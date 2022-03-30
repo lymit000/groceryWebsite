@@ -26,7 +26,7 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                     <HomeButton/>
                     <div></div>
                     <div className={"text-right"}>
-                        <Link href={server + "people/allPeople"}>
+                        <Link href={server + "people/allPeople"} passHref>
                             <button className={"bg-otherBlack text-primary mx-1 w-fit font-mono rounded-lg p-1"}>
                                 Back to All People
                             </button>
