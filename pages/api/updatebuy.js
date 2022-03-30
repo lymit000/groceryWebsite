@@ -66,7 +66,8 @@ export default async function handler(req, res) {
             console.log(personDB.totalPrice)
             console.log("FOR A TOTAL OF ")
             console.log(finalTotal)
-            const result = await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
+            return finalTotal;
+            // const result = await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
         }
     }
 
@@ -117,7 +118,8 @@ export default async function handler(req, res) {
             console.log(add)
             console.log("FOR A TOTAL OF ")
             console.log(finalTotal)
-            const result = await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
+            // const result = await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
+            return finalTotal;
         }
     }
 
@@ -150,6 +152,7 @@ export default async function handler(req, res) {
             console.log(personCollectionOfDate.totalPrice)
             console.log("FOR A TOTAL OF ")
             console.log(newTotal)
+
             const result1 = await updateWeekTotal(personName, date, {totalPrice: newTotal});
 
 
@@ -159,7 +162,8 @@ export default async function handler(req, res) {
             // we need to add money to the other people
             {changeFood.buy && changeFood.buy.map(async buyer => {
                 if (buyer.toString() !== personName) {
-                    const result = await updateTrue(buyer, changedArray.length, itemPrice)
+                    const result = await updateTrue(buyer, array.length = 1, itemPrice)
+                    await updateWeekTotal(buyer, date, {totalPrice: result})
                 }
             })}
         }
@@ -203,7 +207,9 @@ export default async function handler(req, res) {
             }
 
             {array && array.map(async buyer => {
-                const result = await updateFalse(buyer, array.length, itemPrice);
+                const result = await updateFalse(buyer, array.length, itemPrice)
+                await updateWeekTotal(buyer, date, {totalPrice: result})
+
             })}
         }
     }
