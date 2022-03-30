@@ -87,7 +87,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
                                 <input type="text" id="last" name="last" className={"bg-otherBlack"} required defaultValue={item.foodPrice}/>
                                 <input type="text" id="itemNumber" className={"bg-otherBlack"} name="itemNumber" defaultValue={item.itemNumber} required/>
                                 <input type="text" id="img" name="img" className={"bg-otherBlack"} defaultValue={item.img} required />
-                                <img src={item.img} alt={"not working so temp right here"} alt={"temp end"} width={"25"} height={"25"}/>
+                                <Image src={"/" + item.img} alt={"not working so temp right here"} alt={"temp end"} width={"25"} height={"25"}/>
                                 <button className={"w-full border-2 border-primary border-dashed  stext-white p-1 "} type="submit" scroll={false}>Add</button>
                             </form>
                             <br/>
