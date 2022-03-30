@@ -30,7 +30,8 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                 <HomeButton/>
                 <div></div>
                 <div className={"text-right"}>
-                    <Link href={server + "dates/allDates#1"}>
+                    <Link href={server + "" +
+                        "dates/allDates#1"}>
                         <button className={"bg-otherBlack text-primary mx-1 w-fit font-mono rounded-lg p-1"}>
                             Back to All Dates
                         </button>
@@ -50,10 +51,10 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                     </Link>
                     {count()}
                     <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href={"#0"} className="btn btn-circle">❮</a>
-                        <a href={server + "dates/allDates" } className={"bg-primary rounded-xl p-1 text-6xl text-white font-mono"}> {"All Dates"}</a>
+                        <a href={"#0"} passHref className="btn btn-circle" >❮</a>
+                        <a href={server + "dates/allDates" } passHref className={"bg-primary rounded-xl p-1 text-6xl text-white font-mono"}> {"All Dates"}</a>
 
-                        <a href={"#2"} className="btn btn-circle">❯</a>
+                        <a href={"#2"} passHref className="btn btn-circle">❯</a>
                     </div>
                 </div>
                 {base && base.map(singleDate => (
@@ -61,10 +62,10 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                         <CardDate  totalPrice={singleDate.totalPrice}/>
                         {count()}
                         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                            <a href={"#"+j} className="btn btn-circle">❮</a>
-                            <a href={server + "dates/" + singleDate.date + "#" + (j + 1)} className={"bg-primary rounded-xl p-1 text-6xl text-white font-mono"}> {singleDate.date}</a>
+                            <a href={"#"+j} className="btn btn-circle" passHref>❮</a>
+                            <a href={server + "dates/" + singleDate.date + "#" + (j + 1)} passHref className={"bg-primary rounded-xl p-1 text-6xl text-white font-mono"}> {singleDate.date}</a>
 
-                            <a href={"#"+i} className="btn btn-circle">❯</a>
+                            <a href={"#"+i} passHref className="btn btn-circle">❯</a>
                         </div>
                     </div>
                 ))}
