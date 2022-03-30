@@ -7,7 +7,7 @@ import Image from "next/image";
 
 function Foods(props, { person, receipt, date, didBuy }) {
 
-    const [bought, setBought] = useState(props.buy);
+    const [bought, setBought] = useState(props.bu);
     const [buyButton, setBuyButton] = useState("");
 
     const router = useRouter();
@@ -16,7 +16,7 @@ function Foods(props, { person, receipt, date, didBuy }) {
     }
 
     async function updateFoodName() {
-        const personDB = await fetch(server + '/api/updatebuy?param0=' + props.personName + "&param1=" + props.date + "&param2=" + props.buy + "&param3=" + props.foodName + "&param4=" + props.foodPrice);
+        const personDB = await fetch(server + '/api/updatebuy?param0=' + props.personName + "&param1=" + props.date + "&param2=" + props.bu + "&param3=" + props.foodName + "&param4=" + props.foodPrice);
     }
 
 
@@ -52,21 +52,21 @@ function Foods(props, { person, receipt, date, didBuy }) {
                            height={"50"}/>
 
                 </div>
-                {props.buy &&
+                {props.bu &&
                     <p>
                         {props.totalPeople} people
                         <br/>
                         ${Math.round((props.foodPrice / (props.totalPeople)) * 100) / 100} per person
                     </p>}
-                {props.buy ?
+                {props.bu ?
                     <button className={"border-2 border-green-400 border-dotted w-full"} onClick={handleButton}>
                         <h1>
-                            {props.buy ? <h1> Sell </h1> : <h1> Buy </h1>}
+                            {props.bu ? <h1> Sell </h1> : <h1> Buy </h1>}
                         </h1>
                     </button> :
                     <button className={"border-2 border-red-500 border-dotted w-full"} onClick={handleButton}>
                         <h1>
-                            {props.buy ? <h1> Sell </h1> : <h1> Buy </h1>}
+                            {props.bu ? <h1> Sell </h1> : <h1> Buy </h1>}
                         </h1>
                     </button>}
 
@@ -88,7 +88,7 @@ function Foods(props, { person, receipt, date, didBuy }) {
         // {/*                    Buy*/}
         // {/*                </h1>*/}
         // {/*        </button>*/}
-        // {/*        {props.buy &&*/}
+        // {/*        {props.bu &&*/}
         // {/*        <p>*/}
         // {/*            {props.totalPeople} people*/}
         // {/*            <br/>*/}
