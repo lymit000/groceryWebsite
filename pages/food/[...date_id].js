@@ -64,28 +64,6 @@ export async function getServerSideProps(context) {
     const collectionPersonOfDate = await collectionPerson.findOne({date: date});
     const personOfDate = await JSON.parse(JSON.stringify(collectionPersonOfDate));
 
-
-    let totalPrice = 0;
-
-    function calculateTotal(otherPrice, flag, totalPeople) {
-        if (flag) {
-            totalPrice = Math.round(((otherPrice / totalPeople) + totalPrice) * 100) / 100
-
-            console.log()
-        }
-    }
-
-
-    {receiptOfDate && receiptOfDate.map(item => (
-        <>
-            {calculateTotal(item.foodPrice, JSON.parse(JSON.stringify(item.buy)).includes(personName), item.totalPeople)}
-            {/*{item.totalPeople}*/}
-            {/*{console.log(item.foodPrice)}*/}
-        </>
-    ))}
-
-    const result = await client.db("grocery-app").collection(personName).updateOne({date: date}, { $set: {totalPrice: totalPrice}});
-
     return {
         props: { personName, personOfDate, receiptOfDate, date},
     }

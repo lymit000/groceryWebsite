@@ -9,7 +9,7 @@ import Dates from "../components/Dates";
 import { server } from '../../config';
 // import {useRouter} from "next/router";
 
-function MovieDetails({ personCollection, allReceipts, personID }) {
+function MovieDetails() {
 
     // const [markDone, setMarkDone] = useState(personCollection.markDone)
     //
@@ -75,26 +75,6 @@ function MovieDetails({ personCollection, allReceipts, personID }) {
             </div>
         </>
     );
-}
-
-export async function getServerSideProps(context) {
-    // const data = await db.collection("movies").find({year: 2013, 'imdb.rating': {$gt: 8}}).limit(20).toArray()
-    // const movies = JSON.parse(JSON.stringify(data));
-    const personID = context.query.people_id;
-    const data = await fetch(server + `/api/getpeople?people_id=${personID}`);
-    const personCollection = await data.json();
-
-    // console.log(movie)
-
-    const client = await clientPromise
-    const db = await client.db("grocery-app");
-    const foodData = await db.collection("food").find().toArray()
-    const allReceipts = await JSON.parse(JSON.stringify(foodData));
-
-    return {
-        props: { personCollection, allReceipts, personID },
-
-    }
 }
 
 export default MovieDetails;

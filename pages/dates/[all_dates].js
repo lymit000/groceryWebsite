@@ -11,7 +11,7 @@ import NoCash from "../components/NoCash";
 import ProfileLink from "../components/ProfileLink";
 
 
-export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitchell, Nathaniel, Ridge, allPeople, query, base }) {
+export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitchell, Nathaniel, Ridge, base }) {
     const allNames = ["Aidan", "Andoni", "Atay", "Justin", "Keshav", "Kulbir", "Mitchell", "Nathaniel", "Ridge"]
     let i = 1;
     let j = -1;
@@ -106,18 +106,9 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
 
 
 export async function getServerSideProps(context) {
-    const query = context.query.all_dates;
-
-
     const personName = context.query
-    const date = context.query.all_dates[1];
-
     const client = await clientPromise
     const db = client.db("grocery-app");
-
-    const data = await db.collection("people").find().toArray()
-
-    const allPeople = await JSON.parse(JSON.stringify(data));
 
     const aidanDB = await db.collection("Aidan").findOne({date: query});
     const Aidan = await JSON.parse(JSON.stringify(aidanDB));
@@ -158,6 +149,6 @@ export async function getServerSideProps(context) {
     // console.log(movie)
 
     return {
-        props: { Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitchell, Nathaniel, Ridge, allPeople, query, base },
+        props: { Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitchell, Nathaniel, Ridge, base},
     }
 }
