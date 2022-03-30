@@ -33,8 +33,8 @@ function Dates(props) {
             setMarkDoneCSS("bg-green-600 px-1 py-1 mt-4 rounded-lg text-gray-100 font-semibold tracking-wide")
         }
         const result = await updateMarkDone();
-        forceReload();
-        refreshPage();
+        // forceReload();
+        // refreshPage();
     }
 
     async function updateMarkDone() {
