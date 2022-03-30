@@ -182,12 +182,9 @@ export default async function handler(req, res) {
             }
 
 
-            if (changeFood.buy === "true") {
-                const result = await updateFalse(buyer, array.length, itemPrice);
-
-            }
-            // {changeFood.buy && changeFood.buy.map(async buyer => {
-            // })}
+            {changeFood.buy && changeFood.buy.map(async buyer => {
+                const result = await updateFalse(buyer, personCollectionOfDate.buy.length, itemPrice);
+            })}
         }
     }
 
