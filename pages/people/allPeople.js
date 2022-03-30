@@ -16,7 +16,7 @@ export default function Home() {
 
             <div className={"bg-background h-screen grid grid-cols-3 flex items-center justify-center text-white"}>
                 {allNames.map(singleName => (
-                    <NoProfile Name={singleName.toString()}/>
+                    <NoProfile Name={singleName.toString()} key={"test"}/>
                 ))}
             </div>
         </div>
