@@ -3,7 +3,7 @@ import clientPromise from "../../lib/mongodb";
 export default async function handler(req, res) {
     const personName = req.query.param0;
     const date = req.query.param1;
-    const buy = req.query.param2;
+    const buy = req.query.param2.toString();
     const itemName = req.query.param3;
     const itemPrice = req.query.param4;
 
