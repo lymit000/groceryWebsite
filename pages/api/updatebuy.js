@@ -6,7 +6,6 @@ export default async function handler(req, res) {
     const buy = req.query.param2;
     const itemName = req.query.param3;
     const itemPrice = req.query.param4;
-    const finalTotal = "ff";
 
 
     const client = await clientPromise
@@ -72,7 +71,7 @@ export default async function handler(req, res) {
         console.log("TO")
         console.log(personDB.totalPrice)
         console.log("FOR A TOTAL OF ")
-        // console.log(finalTotal)
+        console.log(finalTotal)
         const result = await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
 
         // UPDATE FINAL TOTAL
@@ -182,10 +181,15 @@ export default async function handler(req, res) {
                 console.log(firstTotal)
             }
 
-            {changeFood.buy && changeFood.buy.map(async buyer => {
+
+            if (changeFood.buy === "true") {
                 const result = await updateFalse(buyer, array.length, itemPrice);
-            })}
+
+            }
+            // {changeFood.buy && changeFood.buy.map(async buyer => {
+            // })}
         }
     }
+
     const result = await res.json("HI")
 }
