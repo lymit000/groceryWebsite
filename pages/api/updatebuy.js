@@ -163,8 +163,30 @@ export default async function handler(req, res) {
                 const result = await updateBuy(param, itemName, {buy: changedArray, totalPeople: changedArray.length});
 
                 // we need to add money to the other people
-                {changeFood.buy && changeFood.buy.map(buyer => {
-                    inside(buyer, changedArray, itemPrice)
+                {changeFood.buy && changeFood.buy.map(async buyer => {
+                    const personDB = await db.collection(buyer.toString()).findOne({date: date});
+                    // 3 everyone goes down ITEM / SIZE + 1
+                    const firstSubtract = Math.round((itemPrice / (size + 1)) * 100) / 100
+                    const newTotal = Math.round((personDB.totalPrice - firstSubtract) * 100) / 100;
+                    console.log("THIS IS THE next SUBTRACT")
+                    console.log("WE ARE SUBBING ")
+                    console.log(itemPrice)
+                    console.log(size + 1)
+                    console.log(firstSubtract)
+                    console.log("TO")
+                    console.log(personCollectionOfDate.totalPrice)
+                    console.log("FOR A TOTAL OF ")
+                    console.log(newTotal)
+                    // const result1 = await updateWeekTotal(buyer, date, {totalPrice: newTotal});
+                    // const result = await updateTrueTwo(buyer, size, itemPrice, newTotal);
+                    const add = Math.round((itemPrice / size) * 100) / 100
+                    const finalTotal = Math.round((newTotal+ add )* 100) / 100;
+                    console.log("FINAL ADD IS ")
+                    console.log(personDB.totalPrice + " ( " + newTotal)
+                    console.log(add)
+                    console.log("FOR A TOTAL OF ")
+                    console.log(finalTotal)
+                    const result = await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
                 })}
             }
         } else if (buy === "false") {
@@ -206,8 +228,43 @@ export default async function handler(req, res) {
                     console.log(firstTotal)
                 }
 
-                {array && array.map(buyer => {
-                    falseUpdate(buyer, array, itemPrice)
+                {array && array.map(async buyer => {
+                    // 0 if size == 1 new person goes up by ITEM
+                    // else
+                    // 1 the new person goes up ITEM / SIZE - 1
+                    // 2 everyone goes down ITEM / SIZE - 1
+                    // 3 everyone goes up ITEM / SIZE
+                    const personDB = await db.collection(buyer.toString()).findOne({date: date});
+                    if (size === 1) {
+
+                    } else {
+                        // 2
+                        const subtract = Math.round((itemPrice / (size - 1)) * 100) / 100;
+                        const newTotal = Math.round((personDB.totalPrice - subtract) * 100) / 100
+                        console.log("THIS IS THE FIRST SUBTRACT ")
+                        console.log("WE ARE SUBTRACTING ")
+                        console.log(itemPrice)
+                        console.log(size - 1)
+                        console.log(subtract)
+                        console.log("TO")
+                        console.log(personDB.totalPrice)
+                        console.log("FOR A TOTAL OF ")
+                        console.log(newTotal)
+                        // const result1 = await updateWeekTotal(buyer, date, {totalPrice: newTotal});
+                        // const result = await updateFalseTwo(buyer, size, itemPrice, newTotal)
+                        const add = Math.round((itemPrice / size) * 100) / 100
+                        const finalTotal = Math.round((newTotal + add) * 100) / 100;
+                        console.log("THIS IS THE last add ")
+                        console.log("WE ARE adding ")
+                        console.log(itemPrice)
+                        console.log(size)
+                        console.log(add)
+                        console.log("TO")
+                        console.log(personDB.totalPrice)
+                        console.log("FOR A TOTAL OF ")
+                        console.log(finalTotal)
+                        const result = await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
+                    }
                 })}
             }
         }
