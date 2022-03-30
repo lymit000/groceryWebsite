@@ -6,4 +6,4 @@ export default function handler(request, response) {
         cookies: request.cookies,
     });
 }
-export const server = dev ? 'http://localhost:3000/' : 'https://grocerycostco.vercel.app';
+export const server = dev ? 'http://localhost:3000/' : 'https://house-grocery.herokuapp.com';
