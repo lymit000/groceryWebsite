@@ -166,12 +166,12 @@ export default async function handler(req, res) {
                 {changeFood.buy && changeFood.buy.map(async buyer => {
                     const personDB = await db.collection(buyer.toString()).findOne({date: date});
                     // 3 everyone goes down ITEM / SIZE + 1
-                    const firstSubtract = Math.round((itemPrice / (size + 1)) * 100) / 100
+                    const firstSubtract = Math.round((itemPrice / (changeFood.buy.length + 1)) * 100) / 100
                     const newTotal = Math.round((personDB.totalPrice - firstSubtract) * 100) / 100;
                     console.log("THIS IS THE next SUBTRACT")
                     console.log("WE ARE SUBBING ")
                     console.log(itemPrice)
-                    console.log(size + 1)
+                    console.log(changeFood.buy.length + 1)
                     console.log(firstSubtract)
                     console.log("TO")
                     console.log(personCollectionOfDate.totalPrice)
@@ -179,7 +179,7 @@ export default async function handler(req, res) {
                     console.log(newTotal)
                     // const result1 = await updateWeekTotal(buyer, date, {totalPrice: newTotal});
                     // const result = await updateTrueTwo(buyer, size, itemPrice, newTotal);
-                    const add = Math.round((itemPrice / size) * 100) / 100
+                    const add = Math.round((itemPrice / changeFood.buy.length) * 100) / 100
                     const finalTotal = Math.round((newTotal+ add )* 100) / 100;
                     console.log("FINAL ADD IS ")
                     console.log(personDB.totalPrice + " ( " + newTotal)
@@ -214,7 +214,9 @@ export default async function handler(req, res) {
                     console.log("FOR A TOTAL OF ")
                     console.log(firstTotal)
                 } else {
+                    // const firstAdd = Math.round((itemPrice / (array.length - 1)) * 100) / 100
                     const firstAdd = Math.round((itemPrice / (array.length - 1)) * 100) / 100
+
                     const firstTotal = Math.round((personCollectionOfDate.totalPrice + firstAdd) * 100) / 100;
                     const result = await updateWeekTotal(personName, date, {totalPrice: firstTotal});
                     console.log("THIS IS THE FIRST ADD if size !=== 1")
@@ -235,16 +237,16 @@ export default async function handler(req, res) {
                     // 2 everyone goes down ITEM / SIZE - 1
                     // 3 everyone goes up ITEM / SIZE
                     const personDB = await db.collection(buyer.toString()).findOne({date: date});
-                    if (size === 1) {
+                    if (array.length === 1) {
 
                     } else {
                         // 2
-                        const subtract = Math.round((itemPrice / (size - 1)) * 100) / 100;
+                        const subtract = Math.round((itemPrice / (changeFood.buy.length - 1)) * 100) / 100;
                         const newTotal = Math.round((personDB.totalPrice - subtract) * 100) / 100
                         console.log("THIS IS THE FIRST SUBTRACT ")
                         console.log("WE ARE SUBTRACTING ")
                         console.log(itemPrice)
-                        console.log(size - 1)
+                        console.log(changeFood.buy.length - 1)
                         console.log(subtract)
                         console.log("TO")
                         console.log(personDB.totalPrice)
@@ -252,7 +254,7 @@ export default async function handler(req, res) {
                         console.log(newTotal)
                         // const result1 = await updateWeekTotal(buyer, date, {totalPrice: newTotal});
                         // const result = await updateFalseTwo(buyer, size, itemPrice, newTotal)
-                        const add = Math.round((itemPrice / size) * 100) / 100
+                        const add = Math.round((itemPrice / changeFood.buy.length) * 100) / 100
                         const finalTotal = Math.round((newTotal + add) * 100) / 100;
                         console.log("THIS IS THE last add ")
                         console.log("WE ARE adding ")
