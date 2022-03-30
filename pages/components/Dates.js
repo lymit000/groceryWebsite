@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Profile from "./Profile";
 import "tailwindcss/tailwind.css"
 import { useState, useEffect } from 'react';
 import {server} from "../../config";

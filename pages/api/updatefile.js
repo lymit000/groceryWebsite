@@ -71,47 +71,47 @@ export default async function handler(req, res) {
                 await createListing(Aidan, {
                     date: newDate,
                     totalPrice: 0,
-                    markDone: "false"
+                    markDone: false
                 })
                 await createListing(Andoni, {
                     date: newDate,
                     totalPrice: 0,
-                    markDone: "false"
+                    markDone: false
                 })
                 await createListing(Atay, {
                     date: newDate,
                     totalPrice: 0,
-                    markDone: "false"
+                    markDone: false
                 })
                 await createListing(Justin, {
                     date: newDate,
                     totalPrice: 0,
-                    markDone: "false"
+                    markDone: false
                 })
                 await createListing(Keshav, {
                     date: newDate,
                     totalPrice: 0,
-                    markDone: "false"
+                    markDone: false
                 })
                 await createListing(Kulbir, {
                     date: newDate,
                     totalPrice: 0,
-                    markDone: "false"
+                    markDone: false
                 })
                 await createListing(Mitchell, {
                     date: newDate,
                     totalPrice: 0,
-                    markDone: "false"
+                    markDone: false
                 })
                 await createListing(Nathaniel, {
                     date: newDate,
                     totalPrice: 0,
-                    markDone: "false"
+                    markDone: false
                 })
                 await createListing(Ridge, {
                     date: newDate,
                     totalPrice: 0,
-                    markDone: "false"
+                    markDone: false
                 })
 
                 await createListing(dataCollection, {

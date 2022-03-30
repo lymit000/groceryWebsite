@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import { useState, useEffect } from 'react';
-import Profile from "../components/Profile";
 import clientPromise from '../../lib/mongodb'
 import Link from 'next/link'
 import Foods from "../components/Foods";
@@ -10,54 +9,43 @@ import "tailwindcss/tailwind.css"
 import { server } from '../../config';
 import {render} from "react-dom";
 import dates from "../components/Dates";
+import HomeButton from "../components/HomeButton";
+import NameHeader from "../components/NameHeader";
 
 function MovieDetails({ personName, personOfDate, receiptOfDate, date}) {
 
-
-
-
-
     return (
-        <>
-            <div>
-                <div className="bg-blue-700 grid place-items-center grid-cols-5 gap-5 justify-items-center p-2 bg-gray-200 max-w">
-                    <button className={"bg-blue-600 font-semibold text-center rounded-3xl border shadow-lg p-2 max-w-xs"}>
-                        {/*<Link href={`http://localhost:3000/food/${person.name}`}>*/}
-                        <Link href={`/food/${personName}`} scroll={false}>
-
-                            <h1>
-                                Back to all Dates
-                            </h1>
+            <div className={"bg-background h-screen w-screen "}>
+                <div className={"grid grid-cols-3"}>
+                    <HomeButton/>
+                    <div></div>
+                    <div className={"text-right"}>
+                        <Link href={server + "/people/" + personName}>
+                            <button className={"bg-otherBlack text-primary mx-1 w-fit font-mono rounded-lg p-1"}>
+                                Back to {personName}
+                            </button>
                         </Link>
-                    </button>
-                    <p></p>
-                    {/*{console.log(personCollectionOfDate.totalPrice)}*/}
-                    <Profile name={personName} moneyOwed={personOfDate.totalPrice}/>
-                    <p></p>
-                    {/*<button className={"bg-blue-300 font-semibold text-center rounded-3xl border shadow-lg p-2 "}>*/}
-                    {/*    <h1 className={"font-bold"}>*/}
-                    {/*        Refresh*/}
-                    {/*    </h1>*/}
-                    {/*    <p className={"text-sm"}>(Click refresh to make sure all <br/>information is accurate)</p>*/}
-
-                    {/*</button>*/}
+                    </div>
                 </div>
-                <div className="grid place-items-center grid-cols-3 gap-1 justify-items-center p-2 bg-gray-200 max-w">
 
-
-                    {receiptOfDate && receiptOfDate.map(item => (
-                        <>
-                            <div>
-                                <Foods foodName={item.foodName} foodPrice={item.foodPrice} personName={personName} buy={JSON.parse(JSON.stringify(item.buy)).includes(personName)} date={personOfDate.date} totalPeople={item.totalPeople} img={item.img}/>
-                            </div>
-                        </>
-                    ))}
-
+            <div className={"text-white w-full rounded-3xl mx-3"}>
+                <div className="flex items-center justify-center mx-20 text-6xl font-mono h-full text-center bg-otherBlack rounded-3xl">
+                    <NameHeader Name={personName} totalPrice={personOfDate.totalPrice} date={date} buy={personOfDate.markDone}/>
                 </div>
+            </div>
+            <div className={"grid grid-cols-4 bg-background"}>
+                {receiptOfDate && receiptOfDate.map(item => (
+                    <>
+                        <div>
+                            <Foods foodName={item.foodName} foodPrice={item.foodPrice} personName={personName} buy={JSON.parse(JSON.stringify(item.buy)).includes(personName)} date={personOfDate.date} totalPeople={item.totalPeople} img={item.img}/>
+                        </div>
+                    </>
+                ))}
+
 
             </div>
+            </div>
 
-        </>
     );
 }
 
@@ -68,7 +56,6 @@ export async function getServerSideProps(context) {
 
     const personName = context.query.date_id[0];
     const date = context.query.date_id[1];
-
     const collectionReceipt = await entireDB.collection(date)
     const collectionAllItemsOnReceipt = await collectionReceipt.find().toArray();
     const receiptOfDate = await JSON.parse(JSON.stringify(collectionAllItemsOnReceipt));

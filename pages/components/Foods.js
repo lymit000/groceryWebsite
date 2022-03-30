@@ -25,18 +25,18 @@ function Foods(props, { person, receipt, date, didBuy }) {
 
     useEffect(() => {
         if (bought === false ) {
-            setBuyButton("bg-red-600 px-1 py-1 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide")
+            setBuyButton("border-2 border-red-500 border-solid mx-2 my-2 bg-primary  flex items-center justify-center text-3xl font-mono h-max text-white")
         } else if (bought === true) {
-            setBuyButton("bg-green-600 px-1 py-1 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide")
+            setBuyButton("border-2 border-green-400 border-solid mx-2 my-2 bg-primary  flex items-center justify-center text-3xl font-mono h-max text-white")
         }
 
     }, [bought]);
 
     async function handleButton() {
         if (!bought) {
-            {!bought && setBought(true), setBuyButton("bg-green-600 px-1 py-1 mt-4 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide")}
+            {!bought && setBought(true), setBuyButton("border-2 border-red-500 border-solid mx-2 my-2 bg-primary  flex items-center justify-center text-3xl font-mono h-max text-white")}
         } else {
-            {bought && setBought(false), setBuyButton("bg-red-600 px-1 py-1 mt-4 rounded-3xl text-gray-100 font-semibold uppercase tracking-wide")}
+            {bought && setBought(false), setBuyButton("border-2 border-green-400 border-solid mx-2 my-2 bg-primary  flex items-center justify-center text-3xl font-mono h-max text-white")}
         }
         console.log("button clicked")
         const result = await updateFoodName();
@@ -49,28 +49,57 @@ function Foods(props, { person, receipt, date, didBuy }) {
     //     const result = receipt.updateOne({name: nameOfListing}, { $set: updatedListing});
     // }
     return (
-        <div className="flex items-center justify-center">
-            <div className="bg-white font-semibold text-center rounded-3xl border shadow-lg w-40 h-60777 items-center justify-center">
-                <h1 className="text-lg text-gray-700"> {props.foodName} </h1>
-                <h3 className="text-med text-gray-400 ">  ${props.foodPrice} </h3>
-                <div className={"flex justify-center"}>
-                    <img src={props.img} width={"75"} height={"75"}/>
-                </div>
+            <div className={buyButton}>
+                <div className={"bg-otherBlack h-full"}>
+                    <h1 className="text-lg"> {props.foodName} </h1>
+                    <h3 className="text-med ">  ${props.foodPrice} </h3>
+                    <div className={"flex justify-center"}>
+                        <img src={props.img} className={"h-5/6 w-screen"}/>
 
-                <button className={buyButton} onClick={handleButton}>
-                    {/*<Link href={`http://localhost:3000/food/${props.personName}/${props.date}/${bought}/${props.foodName}/${props.foodPrice}`}>*/}
-                        <h1>
-                            Buy
-                        </h1>
-                </button>
-                {props.buy &&
-                <p>
-                    {props.totalPeople} people
-                    <br/>
-                    ${Math.round((props.foodPrice / (props.totalPeople)) * 100) / 100} per person
-                </p>}
+                    </div>
+                    {props.buy &&
+                        <p>
+                            {props.totalPeople} people
+                            <br/>
+                            ${Math.round((props.foodPrice / (props.totalPeople)) * 100) / 100} per person
+                        </p>}
+                    {props.buy ?
+                        <button className={"border-2 border-green-400 border-dotted w-full"} onClick={handleButton}>
+                            <h1>
+                                {props.buy ? <h1> Sell </h1> : <h1> Buy </h1>}
+                            </h1>
+                        </button>: <button className={"border-2 border-red-500 border-dotted w-full"} onClick={handleButton}>
+                            <h1>
+                                {props.buy ? <h1> Sell </h1> : <h1> Buy </h1>}
+                            </h1>
+                        </button> }
+
+
+                </div>
             </div>
-        </div>
+
+            // {/*<div className="flex items-center justify-center">*/}
+            // {/*    <div className="bg-white font-semibold text-center rounded-3xl border shadow-lg w-40 h-60777 items-center justify-center">*/}
+            // {/*        <h1 className="text-lg text-gray-700"> {props.foodName} </h1>*/}
+            // {/*        <h3 className="text-med text-gray-400 ">  ${props.foodPrice} </h3>*/}
+            // {/*        <div className={"flex justify-center"}>*/}
+            // {/*            <img src={"../../img/bacon.jfif"} class={"w-full"}/>*/}
+            // {/*        </div>*/}
+            //
+            // {/*        <button className={buyButton} onClick={handleButton}>*/}
+            // {/*            /!*<Link href={`http://localhost:3000/food/${props.personName}/${props.date}/${bought}/${props.foodName}/${props.foodPrice}`}>*!/*/}
+            // {/*                <h1>*/}
+            // {/*                    Buy*/}
+            // {/*                </h1>*/}
+            // {/*        </button>*/}
+            // {/*        {props.buy &&*/}
+            // {/*        <p>*/}
+            // {/*            {props.totalPeople} people*/}
+            // {/*            <br/>*/}
+            // {/*            ${Math.round((props.foodPrice / (props.totalPeople)) * 100) / 100} per person*/}
+            // {/*        </p>}*/}
+            // {/*    </div>*/}
+            // {/*</div>*/}
     )
 }
 

@@ -2,7 +2,6 @@ import Head from 'next/head'
 import "tailwindcss/tailwind.css"
 import clientPromise from '../../lib/mongodb'
 import Link from "next/link";
-import Profile from "../components/Profile";
 import Dates from "../components/Dates";
 import {server} from "../../config";
 import Foods from "../components/Foods";
@@ -27,7 +26,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
         const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2=allFoods"+"&param3="+data.itemNumber+"&param4="+data.img);
         // Send the data to the server in JSON format.
         forceReload();
-        alert("just added " + first + "to all foods");
+        // alert("just added " + first + "to all foods");
         // API endpoint where we send form data.
     }
 
@@ -51,8 +50,8 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
     return (
         // We pass the event to the handleSubmit() function on submit.
         <>
-            <div className={"bg-blue-700"}>
-                <button>
+            <div className={"bg-background h-full text-white text-center"}>
+                <button className={"bg-otherBlack p-3"}>
                     <Link href={`/`} scroll={false}>
                         <h1>
                             Home Page
@@ -61,36 +60,35 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
                 </button>
                 <form onSubmit={refreshSubmit}>
                     <label htmlFor="first">Food Name</label>
-                    <input type="text" id="first" name="first" required className={"block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"}/>
+                    <input type="text" id="first" name="first" required className={"bg-otherBlack block w-full shadow py-3 px-4 placeholder-otherBlack focus:ring-blue-500 focus:border-blue-500 border-otherBlack rounded-md focus:outline-none focus:ring-2"}/>
 
                     <label htmlFor="last">Food Price</label>
-                    <input type="text" id="last" name="last" required className={"block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"}/>
+                    <input type="text" id="last" name="last" required className={"bg-otherBlack block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"}/>
 
                     <label htmlFor="itemNumber">Item Number</label>
-                    <input type="text" id="itemNumber" name="itemNumber" required className={"block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"}/>
+                    <input type="text" id="itemNumber" name="itemNumber" required className={"bg-otherBlack bg-otherBlack block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"}/>
 
                     <label htmlFor="img">Img</label>
-                    <input defaultValue={"../../img/"} type="text" id="img" name="img" required className={"block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"}/>
+                    <input defaultValue={"../../img/"} type="text" id="img" name="img" required className={"bg-otherBlack block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"}/>
 
-                    <button className={"bg-blue-600 p-1 rounded-lg my-1"} type="submit">Submit</button>
+                    <button className={"bg-otherBlack p-3 rounded-lg my-1"} type="submit">Add New Food</button>
                 </form>
             </div>
 
-            <div className={"bg-blue-700 grid place-items-center grid-cols-7 gap-5 justify-items-center p-2 bg-gray-200 max-w"}>
+            <div className={"bg-background h-full grid place-items-center grid-cols-6 gap-4 justify-items-center text-white p-2 max-w"}>
 
                 {allFood && allFood.map(item => (
                     <>
-                        <div className={"bg-gray-300 font-semibold text-center rounded-3xl border w-min p-2"}>
+                        <div className={"bg-otherBlack font-semibold text-center w-min p-2 bg-otherBlack"}>
                             <form onSubmit={handleSubmit}>
-                                <input type="text" id="first" name="first" defaultValue={item.foodName} required/>
-                                <input type="text" id="last" name="last" required defaultValue={item.foodPrice}/>
-                                <input type="text" id="itemNumber" name="itemNumber" defaultValue={item.itemNumber} required/>
-                                <input type="text" id="img" name="img" defaultValue={item.img} required />
-
-                                <button className={"bg-blue-600 p-1 rounded-lg my-1"} type="submit" scroll={false}>Add</button>
+                                <input type="text" id="first" name="first" className={"bg-otherBlack"} defaultValue={item.foodName} required/>
+                                <input type="text" id="last" name="last" className={"bg-otherBlack"} required defaultValue={item.foodPrice}/>
+                                <input type="text" id="itemNumber" className={"bg-otherBlack"} name="itemNumber" defaultValue={item.itemNumber} required/>
+                                <input type="text" id="img" name="img" className={"bg-otherBlack"} defaultValue={item.img} required />
+                                <img src={item.img}/>
+                                <button className={"w-full border-2 border-primary border-dashed  stext-white p-1 "} type="submit" scroll={false}>Add</button>
                             </form>
                             <br/>
-                            <img src={item.img}/>
                             <br/>
                         </div>
                     </>
