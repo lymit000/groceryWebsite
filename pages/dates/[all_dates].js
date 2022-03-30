@@ -30,7 +30,7 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                 <HomeButton/>
                 <div></div>
                 <div className={"text-right"}>
-                    <Link href={server + "/dates/allDates#1"}>
+                    <Link href={server + "dates/allDates#1"}>
                         <button className={"bg-otherBlack text-primary mx-1 w-fit font-mono rounded-lg p-1"}>
                             Back to All Dates
                         </button>
@@ -41,7 +41,7 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
 
             <div className="carousel w-full">
                 <div id={"1"} className="carousel-item relative w-full">
-                    <Link href={"/dates/allDates"}>
+                    <Link href={"dates/allDates"}>
                         <button className={"text-white w-full rounded-3xl mx-3"}>
                             <div className="flex items-center justify-center mx-20  font-mono h-full text-center bg-otherBlack rounded-3xl">
                                 <p1 className={"items-center justify-center h-max text-6xl text-otherBlack"}> All Dates <br/> </p1>
@@ -108,12 +108,6 @@ export async function getServerSideProps(context) {
 
     const personName = context.query
     const date = context.query.all_dates[1];
-    console.log("hi")
-    console.log(query)
-    console.log(personName)
-    console.log(date)
-
-
 
     const client = await clientPromise
     const db = client.db("grocery-app");

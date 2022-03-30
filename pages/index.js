@@ -16,19 +16,19 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
             </div>
 
             <div className={"text-white grid grid-cols-3 flex items-center justify-center"}>
-                <Link href={server + "/dates/allDates"}>
+                <Link href={server + "dates/allDates"}>
                     <button className={"h-5/6 mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-6xl font-mono"}>
                         All Dates
                     </button>
                 </Link>
 
-                <Link href={server + "/house/allFoods"}>
+                <Link href={server + "house/allFoods"}>
                     <button className={"h-screen mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-6xl font-mono"}>
                         Add Foods
                     </button>
                 </Link>
 
-                <Link href={server + "/people/allPeople"}>
+                <Link href={server + "people/allPeople"}>
                     <button className={"h-5/6 mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-6xl font-mono"}>
                         All People
                     </button>
