@@ -39,15 +39,9 @@ function Foods(props, { person, receipt, date, didBuy }) {
                 bought && setBought(false), setBuyButton("border-2 border-green-400 border-solid mx-2 my-2 bg-primary  flex items-center justify-center text-3xl font-mono h-max text-white")
             }
         }
-        console.log("button clicked")
         const result = await updateFoodName();
-        // forceReload();
     }
 
-
-    // async function updateListingsByName(client, nameOfListing, updatedListing) {
-    //     const result = receipt.updateOne({name: nameOfListing}, { $set: updatedListing});
-    // }
     return (
         <div className={buyButton}>
             <div className={"bg-otherBlack h-full"}>

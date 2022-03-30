@@ -44,16 +44,16 @@ export default async function handler(req, res) {
             // 2
             const subtract = Math.round((itemPrice / (size - 1)) * 100) / 100 ;
             const newTotal = Math.round((personDB.totalPrice - subtract)* 100) / 100
-            // console.log("THIS IS THE FIRST SUBTRACT ")
-            // console.log("WE ARE SUBTRACTING ")
-            // console.log(itemPrice)
-            // console.log(size - 1)
-            // console.log(subtract)
-            // console.log("TO")
-            // console.log(personDB.totalPrice)
-            // console.log("FOR A TOTAL OF ")
-            // console.log(newTotal)
-            // const result1 = await updateWeekTotal(buyer, date, {totalPrice: newTotal});
+            console.log("THIS IS THE FIRST SUBTRACT ")
+            console.log("WE ARE SUBTRACTING ")
+            console.log(itemPrice)
+            console.log(size - 1)
+            console.log(subtract)
+            console.log("TO")
+            console.log(personDB.totalPrice)
+            console.log("FOR A TOTAL OF ")
+            console.log(newTotal)
+            const result1 = await updateWeekTotal(buyer, date, {totalPrice: newTotal});
             const result = await updateFalseTwo(buyer, size, itemPrice)
         }
     }
@@ -64,14 +64,14 @@ export default async function handler(req, res) {
 
         const add = Math.round((itemPrice / size) * 100) / 100
         // const finalTotal = Math.round((personDB.totalPrice + add) * 100) / 100;
-        // console.log("THIS IS THE last add ")
-        // console.log("WE ARE adding ")
-        // console.log(itemPrice)
-        // console.log(size )
-        // console.log(add)
-        // console.log("TO")
-        // console.log(personDB.totalPrice)
-        // console.log("FOR A TOTAL OF ")
+        console.log("THIS IS THE last add ")
+        console.log("WE ARE adding ")
+        console.log(itemPrice)
+        console.log(size )
+        console.log(add)
+        console.log("TO")
+        console.log(personDB.totalPrice)
+        console.log("FOR A TOTAL OF ")
         // console.log(finalTotal)
         // const result = await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
 
@@ -87,15 +87,15 @@ export default async function handler(req, res) {
             // 3 everyone goes down ITEM / SIZE + 1
             const firstSubtract = Math.round((itemPrice / (size + 1)) * 100) / 100
             const newTotal = Math.round((personDB.totalPrice - firstSubtract) * 100) / 100;
-            // console.log("THIS IS THE next SUBTRACT")
-            // console.log("WE ARE SUBBING ")
-            // console.log(itemPrice)
-            // console.log(size + 1)
-            // console.log(firstSubtract)
-            // console.log("TO")
-            // console.log(personCollectionOfDate.totalPrice)
-            // console.log("FOR A TOTAL OF ")
-            // console.log(newTotal)
+            console.log("THIS IS THE next SUBTRACT")
+            console.log("WE ARE SUBBING ")
+            console.log(itemPrice)
+            console.log(size + 1)
+            console.log(firstSubtract)
+            console.log("TO")
+            console.log(personCollectionOfDate.totalPrice)
+            console.log("FOR A TOTAL OF ")
+            console.log(newTotal)
             // const result1 = await updateWeekTotal(buyer, date, {totalPrice: newTotal});
             const result = await updateTrueTwo(buyer, size, itemPrice);
         }
@@ -107,12 +107,12 @@ export default async function handler(req, res) {
         // 2 everyone goes up ITEM / SIZE
         const add = Math.round((itemPrice / size) * 100) / 100
         const finalTotal = Math.round((personDB.totalPrice + add )* 100) / 100;
-        // console.log("FINAL ADD IS ")
-        // console.log(personDB.totalPrice)
-        // console.log(add)
-        // console.log("FOR A TOTAL OF ")
-        // console.log(finalTotal)
-        // const result = await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
+        console.log("FINAL ADD IS ")
+        console.log(personDB.totalPrice)
+        console.log(add)
+        console.log("FOR A TOTAL OF ")
+        console.log(finalTotal)
+        const result = await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
     }
 
     if (buy === "true") {
@@ -121,16 +121,16 @@ export default async function handler(req, res) {
             // 1 the caller person goes down ITEM / SIZE
             const firstSubtract = Math.round((itemPrice / array.length) * 100) / 100;
             const newTotal = Math.round((personCollectionOfDate.totalPrice - firstSubtract) * 100) / 100;
-            // console.log("THIS IS THE FIRST SUBTRACT if size === 1 OR ANYTHING")
-            // console.log("WE ARE SUBBING ")
-            // console.log(itemPrice)
-            // console.log(array.length)
-            // console.log(firstSubtract)
-            // console.log("TO")
-            // console.log(personCollectionOfDate.totalPrice)
-            // console.log("FOR A TOTAL OF ")
-            // console.log(newTotal)
-            // const result1 = await updateWeekTotal(personName, date, {totalPrice: newTotal});
+            console.log("THIS IS THE FIRST SUBTRACT if size === 1 OR ANYTHING")
+            console.log("WE ARE SUBBING ")
+            console.log(itemPrice)
+            console.log(array.length)
+            console.log(firstSubtract)
+            console.log("TO")
+            console.log(personCollectionOfDate.totalPrice)
+            console.log("FOR A TOTAL OF ")
+            console.log(newTotal)
+            const result1 = await updateWeekTotal(personName, date, {totalPrice: newTotal});
 
 
             const changedArray = array.filter(item => item !== personName)
@@ -152,34 +152,34 @@ export default async function handler(req, res) {
             // WE need to subtract money from the other people
 
             // 1
-            // console.log("WE ARE adding A PERSON")
-            // console.log(personName)
+            console.log("WE ARE adding A PERSON")
+            console.log(personName)
             if (array.length === 1) {
                 const firstAdd = Math.round((itemPrice / (array.length)) * 100) / 100
                 const firstTotal = Math.round((personCollectionOfDate.totalPrice + firstAdd) * 100) / 100;
-                // const result = await updateWeekTotal(personName, date, {totalPrice: firstTotal});
-                // console.log("THIS IS THE FIRST ADD if size === 1")
-                // console.log("WE ARE ADDING ")
-                // console.log(itemPrice)
-                // console.log(array.length)
-                // console.log(firstAdd)
-                // console.log("TO")
-                // console.log(personCollectionOfDate.totalPrice)
-                // console.log("FOR A TOTAL OF ")
-                // console.log(firstTotal)
+                const result = await updateWeekTotal(personName, date, {totalPrice: firstTotal});
+                console.log("THIS IS THE FIRST ADD if size === 1")
+                console.log("WE ARE ADDING ")
+                console.log(itemPrice)
+                console.log(array.length)
+                console.log(firstAdd)
+                console.log("TO")
+                console.log(personCollectionOfDate.totalPrice)
+                console.log("FOR A TOTAL OF ")
+                console.log(firstTotal)
             } else {
                 const firstAdd = Math.round((itemPrice / (array.length - 1)) * 100) / 100
                 const firstTotal = Math.round((personCollectionOfDate.totalPrice + firstAdd) * 100) / 100;
-                // const result = await updateWeekTotal(personName, date, {totalPrice: firstTotal});
-                // console.log("THIS IS THE FIRST ADD if size !=== 1")
-                // console.log("WE ARE ADDING ")
-                // console.log(itemPrice)
-                // console.log(array.length)
-                // console.log(firstAdd)
-                // console.log("TO")
-                // console.log(personCollectionOfDate.totalPrice)
-                // console.log("FOR A TOTAL OF ")
-                // console.log(firstTotal)
+                const result = await updateWeekTotal(personName, date, {totalPrice: firstTotal});
+                console.log("THIS IS THE FIRST ADD if size !=== 1")
+                console.log("WE ARE ADDING ")
+                console.log(itemPrice)
+                console.log(array.length)
+                console.log(firstAdd)
+                console.log("TO")
+                console.log(personCollectionOfDate.totalPrice)
+                console.log("FOR A TOTAL OF ")
+                console.log(firstTotal)
             }
 
             {changeFood.buy && changeFood.buy.map(async buyer => {
