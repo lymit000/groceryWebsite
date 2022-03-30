@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const buy = req.query.param2;
     const itemName = req.query.param3;
     const itemPrice = req.query.param4;
-    const finalTotal = "ff";
+    const finalTotal = 0;
 
 
     const client = await clientPromise
@@ -63,7 +63,7 @@ export default async function handler(req, res) {
         const personDB = await db.collection(buyer.toString()).findOne({date: date});
 
         const add = Math.round((itemPrice / size) * 100) / 100
-        // const finalTotal = Math.round((personDB.totalPrice + add) * 100) / 100;
+        const finalTotal = Math.round((personDB.totalPrice + add) * 100) / 100;
         console.log("THIS IS THE last add ")
         console.log("WE ARE adding ")
         console.log(itemPrice)
@@ -72,8 +72,9 @@ export default async function handler(req, res) {
         console.log("TO")
         console.log(personDB.totalPrice)
         console.log("FOR A TOTAL OF ")
-        // console.log(finalTotal)
-        // const result = await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
+        console.log(finalTotal)
+        const result = await
+            updateWeekTotal(buyer, date, {totalPrice: finalTotal});
 
         // UPDATE FINAL TOTAL
     }
@@ -96,7 +97,7 @@ export default async function handler(req, res) {
             console.log(personCollectionOfDate.totalPrice)
             console.log("FOR A TOTAL OF ")
             console.log(newTotal)
-            // const result1 = await updateWeekTotal(buyer, date, {totalPrice: newTotal});
+            const result1 = await updateWeekTotal(buyer, date, {totalPrice: newTotal});
             const result = await updateTrueTwo(buyer, size, itemPrice);
         }
     }
@@ -115,6 +116,7 @@ export default async function handler(req, res) {
         const result = await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
     }
 
+    // Selling
     if (buy === "true") {
         const array = changeFood.buy
         if (array.includes(personName)) {
@@ -143,6 +145,7 @@ export default async function handler(req, res) {
                 }
             })}
         }
+        // Buying
     } else if (buy === "false") {
         const array = changeFood.buy
         if (!array.includes(personName)) {
