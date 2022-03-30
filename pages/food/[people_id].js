@@ -1,7 +1,5 @@
 import "tailwindcss/tailwind.css"
 
-// import {useRouter} from "next/router";
-
 function MovieDetails() {
 
     // const [markDone, setMarkDone] = useState(personCollection.markDone)
@@ -18,7 +16,7 @@ function MovieDetails() {
     // useEffect(() => {
     // }, (allReceipts))
     //
-    //
+
         return (
         <>
             {/*<div className={"max-w flex items-center justify-center"}>*/}
