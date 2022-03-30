@@ -1,9 +1,4 @@
-import Head from 'next/head'
 import "tailwindcss/tailwind.css"
-import clientPromise from '../../lib/mongodb'
-import Link from "next/link";
-import Dates from "../components/Dates";
-import {server} from "../../config";
 
 
 export default function Home() {

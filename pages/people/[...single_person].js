@@ -1,12 +1,8 @@
-import Head from 'next/head'
 import "tailwindcss/tailwind.css"
 import clientPromise from '../../lib/mongodb'
 import Link from "next/link";
-import Dates from "../components/Dates";
 import {server} from "../../config";
-import Foods from "../components/Foods";
 import HomeButton from "../components/HomeButton";
-import ProfileLink from "../components/ProfileLink";
 import ProfileLinkFlipped from "../components/ProfileLinkFlipped";
 
 export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitchell, Nathaniel, Ridge, allPeople, query, base, personName }) {

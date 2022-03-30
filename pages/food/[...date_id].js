@@ -1,14 +1,8 @@
-import Head from 'next/head'
-import { useState, useEffect } from 'react';
 import clientPromise from '../../lib/mongodb'
 import Link from 'next/link'
 import Foods from "../components/Foods";
-import Dates from "../components/Dates";
-import log from "tailwindcss/lib/util/log";
 import "tailwindcss/tailwind.css"
-import { server } from '../../config';
-import {render} from "react-dom";
-import dates from "../components/Dates";
+import {server} from '../../config';
 import HomeButton from "../components/HomeButton";
 import NameHeader from "../components/NameHeader";
 

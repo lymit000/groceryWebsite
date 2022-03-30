@@ -1,13 +1,9 @@
-import Head from 'next/head'
 import "tailwindcss/tailwind.css"
 import clientPromise from '../../lib/mongodb'
 import Link from "next/link";
-import Dates from "../components/Dates";
 import {server} from "../../config";
-import Foods from "../components/Foods";
 import {useRouter} from "next/router";
 import Image from "next/image";
-
 
 
 export default function PageWithJSbasedForm({allFood, collectionName}) {

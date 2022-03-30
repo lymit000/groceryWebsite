@@ -1,17 +1,14 @@
-import Link from "next/link";
-import { useState, useEffect } from 'react';
-import clientPromise from "../../lib/mongodb";
+import {useEffect, useState} from 'react';
 // import clientPromise from '../../lib/mongodb'
-import { useRouter } from "next/router";
-import Router from 'next/router'
+import {useRouter} from "next/router";
 import {server} from '../../config';
 import Image from "next/image";
 
 
 function Foods(props, { person, receipt, date, didBuy }) {
 
-    const [ bought, setBought ] = useState(props.buy);
-    const [ buyButton, setBuyButton ] = useState("");
+    const [bought, setBought] = useState(props.buy);
+    const [buyButton, setBuyButton] = useState("");
 
     const router = useRouter();
     const forceReload = () => {
@@ -19,12 +16,12 @@ function Foods(props, { person, receipt, date, didBuy }) {
     }
 
     async function updateFoodName() {
-        const personDB = await fetch(server + '/api/updatebuy?param0='+props.personName+"&param1="+props.date+"&param2="+props.buy+"&param3="+props.foodName+"&param4="+props.foodPrice);
+        const personDB = await fetch(server + '/api/updatebuy?param0=' + props.personName + "&param1=" + props.date + "&param2=" + props.buy + "&param3=" + props.foodName + "&param4=" + props.foodPrice);
     }
 
 
     useEffect(() => {
-        if (bought === false ) {
+        if (bought === false) {
             setBuyButton("border-2 border-red-500 border-solid mx-2 my-2 bg-primary  flex items-center justify-center text-3xl font-mono h-max text-white")
         } else if (bought === true) {
             setBuyButton("border-2 border-green-400 border-solid mx-2 my-2 bg-primary  flex items-center justify-center text-3xl font-mono h-max text-white")
@@ -34,9 +31,13 @@ function Foods(props, { person, receipt, date, didBuy }) {
 
     async function handleButton() {
         if (!bought) {
-            {!bought && setBought(true), setBuyButton("border-2 border-red-500 border-solid mx-2 my-2 bg-primary  flex items-center justify-center text-3xl font-mono h-max text-white")}
+            {
+                !bought && setBought(true), setBuyButton("border-2 border-red-500 border-solid mx-2 my-2 bg-primary  flex items-center justify-center text-3xl font-mono h-max text-white")
+            }
         } else {
-            {bought && setBought(false), setBuyButton("border-2 border-green-400 border-solid mx-2 my-2 bg-primary  flex items-center justify-center text-3xl font-mono h-max text-white")}
+            {
+                bought && setBought(false), setBuyButton("border-2 border-green-400 border-solid mx-2 my-2 bg-primary  flex items-center justify-center text-3xl font-mono h-max text-white")
+            }
         }
         console.log("button clicked")
         const result = await updateFoodName();
@@ -44,105 +45,64 @@ function Foods(props, { person, receipt, date, didBuy }) {
     }
 
 
-
     // async function updateListingsByName(client, nameOfListing, updatedListing) {
     //     const result = receipt.updateOne({name: nameOfListing}, { $set: updatedListing});
     // }
     return (
-            <div className={buyButton}>
-                <div className={"bg-otherBlack h-full"}>
-                    <h1 className="text-lg"> {props.foodName} </h1>
-                    <h3 className="text-med ">  ${props.foodPrice} </h3>
-                    <div className={"flex justify-center"}>
-                        <Image alt={props.foodName} src={"/" + props.img} className={"h-5/6 w-screen"} width={"50"} height={"50"}/>
-
-                    </div>
-                    {props.buy &&
-                        <p>
-                            {props.totalPeople} people
-                            <br/>
-                            ${Math.round((props.foodPrice / (props.totalPeople)) * 100) / 100} per person
-                        </p>}
-                    {props.buy ?
-                        <button className={"border-2 border-green-400 border-dotted w-full"} onClick={handleButton}>
-                            <h1>
-                                {props.buy ? <h1> Sell </h1> : <h1> Buy </h1>}
-                            </h1>
-                        </button>: <button className={"border-2 border-red-500 border-dotted w-full"} onClick={handleButton}>
-                            <h1>
-                                {props.buy ? <h1> Sell </h1> : <h1> Buy </h1>}
-                            </h1>
-                        </button> }
-
+        <div className={buyButton}>
+            <div className={"bg-otherBlack h-full"}>
+                <h1 className="text-lg"> {props.foodName} </h1>
+                <h3 className="text-med "> ${props.foodPrice} </h3>
+                <div className={"flex justify-center"}>
+                    <Image alt={props.foodName} src={"/" + props.img} className={"h-5/6 w-screen"} width={"50"}
+                           height={"50"}/>
 
                 </div>
+                {props.buy &&
+                    <p>
+                        {props.totalPeople} people
+                        <br/>
+                        ${Math.round((props.foodPrice / (props.totalPeople)) * 100) / 100} per person
+                    </p>}
+                {props.buy ?
+                    <button className={"border-2 border-green-400 border-dotted w-full"} onClick={handleButton}>
+                        <h1>
+                            {props.buy ? <h1> Sell </h1> : <h1> Buy </h1>}
+                        </h1>
+                    </button> :
+                    <button className={"border-2 border-red-500 border-dotted w-full"} onClick={handleButton}>
+                        <h1>
+                            {props.buy ? <h1> Sell </h1> : <h1> Buy </h1>}
+                        </h1>
+                    </button>}
+
+
             </div>
+        </div>
 
-            // {/*<div className="flex items-center justify-center">*/}
-            // {/*    <div className="bg-white font-semibold text-center rounded-3xl border shadow-lg w-40 h-60777 items-center justify-center">*/}
-            // {/*        <h1 className="text-lg text-gray-700"> {props.foodName} </h1>*/}
-            // {/*        <h3 className="text-med text-gray-400 ">  ${props.foodPrice} </h3>*/}
-            // {/*        <div className={"flex justify-center"}>*/}
-            // {/*            <img src={"../../img/bacon.jfif"} class={"w-full"}/>*/}
-            // {/*        </div>*/}
-            //
-            // {/*        <button className={buyButton} onClick={handleButton}>*/}
-            // {/*            /!*<Link href={`http://localhost:3000/food/${props.personName}/${props.date}/${bought}/${props.foodName}/${props.foodPrice}`}>*!/*/}
-            // {/*                <h1>*/}
-            // {/*                    Buy*/}
-            // {/*                </h1>*/}
-            // {/*        </button>*/}
-            // {/*        {props.buy &&*/}
-            // {/*        <p>*/}
-            // {/*            {props.totalPeople} people*/}
-            // {/*            <br/>*/}
-            // {/*            ${Math.round((props.foodPrice / (props.totalPeople)) * 100) / 100} per person*/}
-            // {/*        </p>}*/}
-            // {/*    </div>*/}
-            // {/*</div>*/}
+        // {/*<div className="flex items-center justify-center">*/}
+        // {/*    <div className="bg-white font-semibold text-center rounded-3xl border shadow-lg w-40 h-60777 items-center justify-center">*/}
+        // {/*        <h1 className="text-lg text-gray-700"> {props.foodName} </h1>*/}
+        // {/*        <h3 className="text-med text-gray-400 ">  ${props.foodPrice} </h3>*/}
+        // {/*        <div className={"flex justify-center"}>*/}
+        // {/*            <img src={"../../img/bacon.jfif"} class={"w-full"}/>*/}
+        // {/*        </div>*/}
+        //
+        // {/*        <button className={buyButton} onClick={handleButton}>*/}
+        // {/*            /!*<Link href={`http://localhost:3000/food/${props.personName}/${props.date}/${bought}/${props.foodName}/${props.foodPrice}`}>*!/*/}
+        // {/*                <h1>*/}
+        // {/*                    Buy*/}
+        // {/*                </h1>*/}
+        // {/*        </button>*/}
+        // {/*        {props.buy &&*/}
+        // {/*        <p>*/}
+        // {/*            {props.totalPeople} people*/}
+        // {/*            <br/>*/}
+        // {/*            ${Math.round((props.foodPrice / (props.totalPeople)) * 100) / 100} per person*/}
+        // {/*        </p>}*/}
+        // {/*    </div>*/}
+        // {/*</div>*/}
     )
-}
 
+}
 export default Foods;
-
-export async function getServerSideProps(context) {
-
-    const personName = context.query.date_id[0];
-    const date = context.query.date_id[1];
-    const buy = context.query.date_id[2];
-    const itemName = context.query.date_id[3];
-    const data = await fetch(server + "/api/getfood?date_id=${date}");
-    const receipt = await data.json();
-
-    const didBuy = true;
-
-    const client = await clientPromise
-    const db = await client.db("grocery-app");
-    const param = await db.collection(date);
-    const singlePerson = await db.collection("people").findOne({name: personName})
-    const person = await JSON.parse(JSON.stringify(singlePerson));
-
-    const singleFood = await db.collection(date).findOne({foodName: itemName})
-    const changeFood = await JSON.parse(JSON.stringify(singleFood));
-    // console.log(buy)
-    // if (buy === "true") {
-    //
-    //     const array = changeFood.buy
-    //     const changedArray = array.filter(item => item !== personName)
-    //     // console.log(changedArray)
-    //     await updateListingsByName(param, itemName, {buy: changedArray, totalPeople: changedArray.length});
-    // } else if (buy === "false") {
-    //     const array = changeFood.buy
-    //     if (!array.includes(personName)) {
-    //         array.push(personName)
-    //     }
-    //     console.log("food")
-    //
-    //     await updateListingsByName(param, itemName, {buy: array, totalPeople: array.length});
-    // }
-
-    return {
-        props: { person, receipt, date, didBuy },
-
-    }
-}

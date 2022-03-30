@@ -1,12 +1,5 @@
-import Head from 'next/head'
-import { useState, useEffect } from 'react';
-import clientPromise from '../../lib/mongodb'
 import "tailwindcss/tailwind.css"
 
-import Link from 'next/link'
-import Foods from "../components/Foods";
-import Dates from "../components/Dates";
-import { server } from '../../config';
 // import {useRouter} from "next/router";
 
 function MovieDetails() {

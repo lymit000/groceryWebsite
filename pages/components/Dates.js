@@ -1,6 +1,6 @@
 import Link from "next/link";
 import "tailwindcss/tailwind.css"
-import { useState, useEffect } from 'react';
+import {useEffect, useState} from 'react';
 import {server} from "../../config";
 import {useRouter} from "next/router";
 

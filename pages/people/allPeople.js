@@ -1,8 +1,4 @@
-import Head from 'next/head'
 import "tailwindcss/tailwind.css"
-import Link from "next/link";
-import Dates from "../components/Dates";
-import {server} from "../../config";
 import HomeButton from "../components/HomeButton";
 import NoProfile from "../components/NoProfile";
 

@@ -1,6 +1,4 @@
 import clientPromise from '../../lib/mongodb'
-import {ObjectId} from "mongodb";
-import Foods from "../components/Foods";
 
 export default async function handler(req, res) {
     const foodName = (req.query.param0)
