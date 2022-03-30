@@ -142,7 +142,7 @@ export default async function handler(req, res) {
 
     const testAsync = async () => {
         if (buy === "true") {
-            const array = changeFood.buy
+            let array = changeFood.buy
             if (array.includes(personName)) {
                 // 1 the caller person goes down ITEM / SIZE
                 const firstSubtract = Math.round((itemPrice / array.length) * 100) / 100;
@@ -159,7 +159,7 @@ export default async function handler(req, res) {
                 const result1 = await updateWeekTotal(personName, date, {totalPrice: newTotal});
 
 
-                const changedArray = array.filter(item => item !== personName)
+                let changedArray = array.filter(item => item !== personName)
                 const result = await updateBuy(param, itemName, {buy: changedArray, totalPeople: changedArray.length});
 
                 // we need to add money to the other people
@@ -190,9 +190,9 @@ export default async function handler(req, res) {
                 })}
             }
         } else if (buy === "false") {
-            const array = changeFood.buy
+            let array = changeFood.buy
             if (!array.includes(personName)) {
-                array.push(personName)
+                array = array.push(personName)
                 // await updateWeekTotal(updatePerson, date, {totalPrice: newTotal});
                 const result = await updateBuy(param, itemName, {buy: array, totalPeople: array.length});
                 // WE need to subtract money from the other people
