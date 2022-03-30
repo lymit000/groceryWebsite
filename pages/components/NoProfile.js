@@ -18,3 +18,8 @@
 // }
 //
 // export default Profile;
+
+function Profile(props) {
+    return (<div>test</div>)
+}
+export default Profile;

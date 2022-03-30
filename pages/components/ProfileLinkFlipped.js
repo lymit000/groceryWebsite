@@ -67,3 +67,7 @@
 // }
 //
 // export default ProfileLinked;
+function Profile(props) {
+    return (<div>test</div>)
+}
+    export default Profile;
