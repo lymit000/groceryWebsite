@@ -53,7 +53,7 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                     </div>
                 </div>
                 {base && base.map(singleDate => (
-                    <div id={i.toString()} className="carousel-item relative w-full">
+                    <div id={i.toString()} className="carousel-item relative w-full" key={"test"}>
                     {/*<div id={"test"} className="carousel-item relative w-full" key={"test"}>*/}
 
                     <CardDate  totalPrice={singleDate.totalPrice}/>
@@ -82,15 +82,15 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                     </>
                 ) : (
                     <>
-                        <ProfileLink link={server + "food/Aidan/" + Aidan.date} totalPrice={Aidan.totalPrice} date={Aidan.date} Name={"Aidan"} markDone={Aidan.markDone}/>
-                        <ProfileLink link={server + "food/Andoni/" + Andoni.date} totalPrice={Andoni.totalPrice} date={Andoni.date} Name={"Andoni"} markDone={Andoni.markDone}/>
-                        <ProfileLink link={server + "food/Atay/" + Atay.date} totalPrice={Atay.totalPrice} date={Atay.date} Name={"Atay"} markDone={Atay.markDone}/>
-                        <ProfileLink link={server + "food/Justin" + Justin.date} totalPrice={Justin.totalPrice} date={Justin.date} Name={"Justin"} markDone={Justin.markDone}/>
-                        <ProfileLink link={server + "food/Keshav/" + Keshav.date} totalPrice={Keshav.totalPrice} date={Keshav.date} Name={"Keshav"} markDone={Keshav.markDone}/>
-                        <ProfileLink link={server + "food/Kulbir/" + Kulbir.date} totalPrice={Kulbir.totalPrice} date={Kulbir.date} Name={"Kulbir"} markDone={Kulbir.markDone}/>
-                        <ProfileLink link={server + "food/Mitchell/" + Mitchell.date} totalPrice={Mitchell.totalPrice} date={Mitchell.date} Name={"Mitchell"} markDone={Mitchell.markDone}/>
-                        <ProfileLink link={server + "food/Nathaniel/" + Nathaniel.date} totalPrice={Nathaniel.totalPrice} date={Nathaniel.date} Name={"Nathaniel"} markDone={Nathaniel.markDone}/>
-                        <ProfileLink link={server + "food/Ridge/" + Ridge.date} totalPrice={Ridge.totalPrice} date={Ridge.date} Name={"Ridge"} markDone={Ridge.markDone}/>
+                        <ProfileLink totalPrice={Aidan.totalPrice} date={Aidan.date} Name={"Aidan"} markDone={Aidan.markDone}/>
+                        <ProfileLink totalPrice={Andoni.totalPrice} date={Andoni.date} Name={"Andoni"} markDone={Andoni.markDone}/>
+                        <ProfileLink talPrice={Atay.totalPrice} date={Atay.date} Name={"Atay"} markDone={Atay.markDone}/>
+                        <ProfileLink totalPrice={Justin.totalPrice} date={Justin.date} Name={"Justin"} markDone={Justin.markDone}/>
+                        <ProfileLink totalPrice={Keshav.totalPrice} date={Keshav.date} Name={"Keshav"} markDone={Keshav.markDone}/>
+                        <ProfileLink totalPrice={Kulbir.totalPrice} date={Kulbir.date} Name={"Kulbir"} markDone={Kulbir.markDone}/>
+                        <ProfileLink totalPrice={Mitchell.totalPrice} date={Mitchell.date} Name={"Mitchell"} markDone={Mitchell.markDone}/>
+                        <ProfileLink totalPrice={Nathaniel.totalPrice} date={Nathaniel.date} Name={"Nathaniel"} markDone={Nathaniel.markDone}/>
+                        <ProfileLink totalPrice={Ridge.totalPrice} date={Ridge.date} Name={"Ridge"} markDone={Ridge.markDone}/>
                     </>
                     )}
 

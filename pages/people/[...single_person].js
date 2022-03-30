@@ -34,7 +34,7 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                 <div className={"grid grid-cols-3 h-full w-full bg-background text-white"}>
                     {base && base.map(singleDate => (
                         <>
-                            <ProfileLinkFlipped link={server + "food/" + personName + "/" + singleDate.date} totalPrice={singleDate.totalPrice} date={singleDate.date} Name={personName} markDone={singleDate.markDone}/>
+                            <ProfileLinkFlipped totalPrice={singleDate.totalPrice} date={singleDate.date} Name={personName} markDone={singleDate.markDone}/>
                         </>
                     ))}
                 </div>
