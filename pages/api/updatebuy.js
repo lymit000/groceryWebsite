@@ -91,6 +91,11 @@ export default async function handler(req, res) {
     }
 
 
+    async function inside(buyer, changedArray, itemPrice) {
+        if (buyer.toString() !== personName) {
+            const result = await updateTrue(buyer, changedArray.length, itemPrice)
+        }
+    }
     async function updateTrue(buyer, size, itemPrice) {
         if (size == 0) {
 
@@ -158,10 +163,8 @@ export default async function handler(req, res) {
                 const result = await updateBuy(param, itemName, {buy: changedArray, totalPeople: changedArray.length});
 
                 // we need to add money to the other people
-                {changeFood.buy && changeFood.buy.map(async buyer => {
-                    if (buyer.toString() !== personName) {
-                        const result = await updateTrue(buyer, changedArray.length, itemPrice)
-                    }
+                {changeFood.buy && changeFood.buy.map(buyer => {
+                    inside(buyer, changedArray, itemPrice)
                 })}
             }
         } else if (buy === "false") {
@@ -203,13 +206,16 @@ export default async function handler(req, res) {
                     console.log(firstTotal)
                 }
 
-                {array && array.map(async buyer => {
-                    const result = await updateFalse(buyer, array.length, itemPrice);
+                {array && array.map(buyer => {
+                    falseUpdate(buyer, array, itemPrice)
                 })}
             }
         }
     }
 
+    async function falseUpdate(buyer, array, itemPrice) {
+        const result = await updateFalse(buyer, array.length, itemPrice);
+    }
     await testAsync();
     const result = await res.json("HI")
 }
