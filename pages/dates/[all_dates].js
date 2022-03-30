@@ -106,6 +106,8 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
 
 
 export async function getServerSideProps(context) {
+
+    const query = context.query;
     const personName = context.query
     const client = await clientPromise
     const db = client.db("grocery-app");
