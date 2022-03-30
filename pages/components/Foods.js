@@ -36,7 +36,7 @@ function Foods(props, { person, receipt, date, didBuy }) {
             }
         } else {
             {
-                bought && setBought(false), setBuyButton("border-2 border-green-400 border-solid mx-2 my-2 bg-primary  flex items-center justify-center text-3xl font-mono h-max text-white")
+                bought && setBought(false), setBuyButton("border-2 border-green-400 border-solid mx-2 my-2 bg-primary  flex items-center justify-center text-3xl font-mono h-max htext-white")
             }
         }
         const result = await updateFoodName();
@@ -48,7 +48,7 @@ function Foods(props, { person, receipt, date, didBuy }) {
                 <h1 className="text-lg"> {props.foodName} </h1>
                 <h3 className="text-med "> ${props.foodPrice} </h3>
                 <div className={"flex justify-center"}>
-                    <img alt={props.foodName} src={"/" + props.img} className={"h-5/6 w-screen"} width={"50"}
+                    <img alt={props.foodName} src={"/" + props.img} className={"h-full w-screen"} width={"50"}
                            height={"50"}/>
 
                 </div>

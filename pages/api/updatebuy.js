@@ -6,8 +6,6 @@ export default async function handler(req, res) {
     const buy = req.query.param2;
     const itemName = req.query.param3;
     const itemPrice = req.query.param4;
-    const finalTotal = 0;
-
 
     const client = await clientPromise
     const db = await client.db("grocery-app");
@@ -73,8 +71,7 @@ export default async function handler(req, res) {
         console.log(personDB.totalPrice)
         console.log("FOR A TOTAL OF ")
         console.log(finalTotal)
-        const result = await
-            updateWeekTotal(buyer, date, {totalPrice: finalTotal});
+        const result = await updateWeekTotal(buyer, date, {totalPrice: finalTotal});
 
         // UPDATE FINAL TOTAL
     }
@@ -117,7 +114,7 @@ export default async function handler(req, res) {
     }
 
     // Selling
-    if (buy === "true") {
+    if (buy === "true" || buy) {
         const array = changeFood.buy
         if (array.includes(personName)) {
             // 1 the caller person goes down ITEM / SIZE
@@ -146,7 +143,7 @@ export default async function handler(req, res) {
             })}
         }
         // Buying
-    } else if (buy === "false") {
+    } else {
         const array = changeFood.buy
         if (!array.includes(personName)) {
             array.push(personName)

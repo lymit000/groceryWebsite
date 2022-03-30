@@ -27,7 +27,7 @@ function MovieDetails({ personName, personOfDate, receiptOfDate, date}) {
                     <NameHeader Name={personName} totalPrice={personOfDate.totalPrice} date={date} buy={personOfDate.markDone}/>
                 </div>
             </div>
-            <div className={"grid grid-cols-4 bg-background"}>
+            <div className={"grid grid-cols-3 bg-background"}>
                 {receiptOfDate && receiptOfDate.map(item => (
                     <>
                         <div>
