@@ -174,7 +174,7 @@ export default async function handler(req, res) {
                 console.log(personName + "FOR A TOTAL OF ")
                 console.log(firstTotal)
             } else {
-                const firstAdd = Math.round((itemPrice / (array.length - 1)) * 100) / 100
+                const firstAdd = Math.round((itemPrice / (array.length)) * 100) / 100
                 const firstTotal = Math.round((personCollectionOfDate.totalPrice + firstAdd) * 100) / 100;
                 const result = await updateWeekTotal(personName, date, {totalPrice: firstTotal});
                 console.log("THIS IS THE FIRST ADD if size !=== 1")
