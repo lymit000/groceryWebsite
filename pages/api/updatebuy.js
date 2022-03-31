@@ -142,7 +142,7 @@ export default async function handler(req, res) {
             const changedArray = array.filter(item => item !== personName)
             const result = await updateBuy(param, itemName, {buy: changedArray, totalPeople: changedArray.length});
 
-            await updateTrueFor(array, itemPrice)
+            await updateTrueFor(changedArray, itemPrice)
             // we need to add money to the other people
 
         }
