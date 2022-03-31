@@ -142,12 +142,9 @@ export default async function handler(req, res) {
             const changedArray = array.filter(item => item !== personName)
             const result = await updateBuy(param, itemName, {buy: changedArray, totalPeople: changedArray.length});
 
+            await updateTrueFor(array, itemPrice)
             // we need to add money to the other people
-            {changeFood.buy && changeFood.buy.map(async buyer => {
-                if (buyer.toString() !== personName) {
-                    const result = await updateTrue(buyer.toString(), changedArray.length, itemPrice)
-                }
-            })}
+
         }
     } else if (buy === "false") {
         const array = changeFood.buy
@@ -188,21 +185,22 @@ export default async function handler(req, res) {
                 console.log(firstTotal)
             }
 
-            await printFiles(array, itemPrice);
+            await updateFalseFor(array, itemPrice);
 
         }
     }
 
-    async function test(tester, array) {
-        tester.buy.forEach(buyer => {
-            console.log(array.length + " is this size going into this")
-            updateFalse(buyer.toString(), array.length, itemPrice);
-            console.log(buyer + " what is this ")
-        })
-    }
-    async function printFiles(array, itemPrice) {
+    async function updateFalseFor(array, itemPrice) {
         for (const element of changeFood.buy) {
             await updateFalse(element, array.length, itemPrice)
+        }
+    }
+
+    async function updateTrueFor(array, itemPrice) {
+        for (const element of changeFood.buy) {
+            if (buyer.toString() !== personName) {
+                await updateTrue(element.toString(), array.length, itemPrice)
+            }
         }
     }
     const result = await res.json("HI")
