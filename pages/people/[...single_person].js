@@ -7,15 +7,9 @@ import ProfileLinkFlipped from "../components/ProfileLinkFlipped";
 
 export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitchell, Nathaniel, Ridge, allPeople, query, base, personName }) {
 
-    let i = 1;
-    let j = -1;
-
-    function count() {
-        i = i + 1;
-        j = j + 1;
-    }
     return (
         <div className={"max-w flex items-center justify-center"}>
+            {count()}
             <div className={"bg-background h-screen w-screen "}>
                 <div className={"grid grid-cols-3"}>
                     <HomeButton/>
@@ -28,6 +22,8 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                         </Link>
                     </div>
                 </div>
+
+
                 <div className="bg-otherBlack text-center w-full h-12 mx-2 my-2 text-white font-mono text-4xl">
                     {personName}
                 </div>

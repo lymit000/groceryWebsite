@@ -20,11 +20,15 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                     </button>
                 </Link>
 
-                <Link href={server + "house/allFoods"} passHref>
-                    <button className={"h-screen mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-3xl font-mono"}>
-                        Add Foods
-                    </button>
-                </Link>
+                {/*<Link href={server + "house/allFoods"} passHref>*/}
+                    <div className={"h-screen mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-3xl font-mono text-center"}>
+                        When marking food
+                        <br/>
+                        ONLY CLICK THE BUTTON ONCE EACH TIME
+                        <br/>
+                        Close the alert and wait for the page to refresh before clicking the next button
+                    </div>
+                {/*</Link>*/}
 
                 <Link href={server + "people/allPeople"} passHref>
                     <button className={"h-5/6 mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-3xl font-mono"}>

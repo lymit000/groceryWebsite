@@ -5,8 +5,21 @@ import "tailwindcss/tailwind.css"
 import {server} from '../../config';
 import HomeButton from "../components/HomeButton";
 import NameHeader from "../components/NameHeader";
+import CardDate from "../components/CardDate";
 
-function MovieDetails({ personName, personOfDate, receiptOfDate, date}) {
+function MovieDetails({ personName, personOfDate, receiptOfDate, date, returnCollection}) {
+
+    let i = 1;
+    let j = -1;
+
+    function count() {
+        i = i + 1;
+        j = j + 1;
+    }
+    function reset() {
+        i = 1;
+        j = -1;
+    }
 
     return (
             <div className={"bg-background h-screen w-screen "}>
@@ -27,6 +40,7 @@ function MovieDetails({ personName, personOfDate, receiptOfDate, date}) {
                     <NameHeader Name={personName} totalPrice={personOfDate.totalPrice} date={date} buy={personOfDate.markDone}/>
                 </div>
             </div>
+
             <div className={"grid grid-cols-3 bg-background"}>
                 {receiptOfDate && receiptOfDate.map(item => (
                     <>
@@ -55,11 +69,15 @@ export async function getServerSideProps(context) {
     const receiptOfDate = await JSON.parse(JSON.stringify(collectionAllItemsOnReceipt));
 
     const collectionPerson = await entireDB.collection(personName)
+
+    const baseDB = await entireDB.collection("Aidan").find().toArray();
+    const  returnCollection = await JSON.parse(JSON.stringify(baseDB));
+
     const collectionPersonOfDate = await collectionPerson.findOne({date: date});
     const personOfDate = await JSON.parse(JSON.stringify(collectionPersonOfDate));
 
     return {
-        props: { personName, personOfDate, receiptOfDate, date},
+        props: { personName, personOfDate, receiptOfDate, date, returnCollection},
     }
 }
 
