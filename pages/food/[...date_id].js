@@ -31,7 +31,7 @@ function MovieDetails({ personName, personOfDate, receiptOfDate, date}) {
                 {receiptOfDate && receiptOfDate.map(item => (
                     <>
                         <div>
-                            <Foods foodName={item.foodName} foodPrice={item.foodPrice} personName={personName} bu={JSON.parse(JSON.stringify(item.buy)).includes(personName)} date={personOfDate.date} totalPeople={item.totalPeople} img={item.img}/>
+                            <Foods foodName={item.foodName} foodPrice={item.foodPrice} Name={personName} buy={JSON.parse(JSON.stringify(item.buy)).includes(personName)} date={personOfDate.date} totalPeople={item.totalPeople} img={item.img}/>
                         </div>
                     </>
                 ))}

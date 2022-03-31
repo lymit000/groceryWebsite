@@ -38,7 +38,7 @@ function Dates(props) {
     }
 
     async function updateMarkDone() {
-        const personDB = await fetch(server + '/api/updatemarkdone?param0='+props.personName+"&param1="+props.date+"&param2="+props.markDone.toString());
+        const personDB = await fetch(server + '/api/updatemarkdone?param0='+props.Name+"&param1="+props.date+"&param2="+props.markDone.toString());
     }
     return (
         <div>
