@@ -21,7 +21,7 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                 </Link>
 
                 {/*<Link href={server + "house/allFoods"} passHref>*/}
-                    <div className={"h-screen mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-3xl font-mono text-center"}>
+                    <div className={"h-screen mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-med font-mono text-center"}>
                         When marking food
                         <br/>
                         ONLY CLICK THE BUTTON ONCE EACH TIME
