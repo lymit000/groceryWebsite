@@ -189,6 +189,7 @@ export default async function handler(req, res) {
             }
 
             {changeFood.buy && changeFood.buy.map(async buyer => {
+                console.log(array.length + " is this size going into this")
                 await updateFalse(buyer.toString(), array.length, itemPrice);
                 await console.log(buyer + " what is this ")
             })}
