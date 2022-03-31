@@ -84,7 +84,7 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                     <>
                         <ProfileLink totalPrice={Aidan.totalPrice} date={Aidan.date} Name={"Aidan"} markDone={Aidan.markDone}/>
                         <ProfileLink totalPrice={Andoni.totalPrice} date={Andoni.date} Name={"Andoni"} markDone={Andoni.markDone}/>
-                        <ProfileLink talPrice={Atay.totalPrice} date={Atay.date} Name={"Atay"} markDone={Atay.markDone}/>
+                        <ProfileLink totalPrice={Atay.totalPrice} date={Atay.date} Name={"Atay"} markDone={Atay.markDone}/>
                         <ProfileLink totalPrice={Justin.totalPrice} date={Justin.date} Name={"Justin"} markDone={Justin.markDone}/>
                         <ProfileLink totalPrice={Keshav.totalPrice} date={Keshav.date} Name={"Keshav"} markDone={Keshav.markDone}/>
                         <ProfileLink totalPrice={Kulbir.totalPrice} date={Kulbir.date} Name={"Kulbir"} markDone={Kulbir.markDone}/>
