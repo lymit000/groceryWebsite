@@ -188,7 +188,7 @@ export default async function handler(req, res) {
                 console.log(firstTotal)
             }
 
-            await test(changeFood, array);
+            await printFiles(array, itemPrice);
 
         }
     }
@@ -199,6 +199,11 @@ export default async function handler(req, res) {
             updateFalse(buyer.toString(), array.length, itemPrice);
             console.log(buyer + " what is this ")
         })
+    }
+    async function printFiles(array, itemPrice) {
+        for (const element of changeFood.buy) {
+            await updateFalse(element, array, itemPrice)
+        }
     }
     const result = await res.json("HI")
 }
