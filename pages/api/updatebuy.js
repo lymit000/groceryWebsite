@@ -202,7 +202,7 @@ export default async function handler(req, res) {
     }
     async function printFiles(array, itemPrice) {
         for (const element of changeFood.buy) {
-            await updateFalse(element, array, itemPrice)
+            await updateFalse(element, array.length, itemPrice)
         }
     }
     const result = await res.json("HI")
