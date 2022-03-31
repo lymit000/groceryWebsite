@@ -40,6 +40,7 @@ function Foods(props, { person, receipt, date, didBuy }) {
             }
         }
         const result = await updateFoodName();
+        forceReload();
     }
 
     return (
