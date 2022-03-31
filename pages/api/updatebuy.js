@@ -188,12 +188,17 @@ export default async function handler(req, res) {
                 console.log(firstTotal)
             }
 
-            {changeFood.buy && changeFood.buy.map(async buyer => {
-                console.log(array.length + " is this size going into this")
-                await updateFalse(buyer.toString(), array.length, itemPrice);
-                await console.log(buyer + " what is this ")
-            })}
+            await test(changeFood, array);
+
         }
+    }
+
+    async function test(tester, array) {
+        tester.buy.forEach(buyer => {
+            console.log(array.length + " is this size going into this")
+            updateFalse(buyer.toString(), array.length, itemPrice);
+            console.log(buyer + " what is this ")
+        })
     }
     const result = await res.json("HI")
 }
