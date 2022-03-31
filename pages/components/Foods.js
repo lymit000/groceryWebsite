@@ -19,7 +19,6 @@ function Foods(props, { person, receipt, date, didBuy }) {
         const personDB = await fetch(server + 'api/updatebuy?param0=' + props.Name + "&param1=" + props.date + "&param2=" + props.buy + "&param3=" + props.foodName + "&param4=" + props.foodPrice);
     }
 
-
     useEffect(() => {
         if (bought === false) {
             setBuyButton("border-2 border-red-500 border-solid mx-2 my-2 bg-primary  flex items-center justify-center text-3xl font-mono h-max text-white")
@@ -30,17 +29,25 @@ function Foods(props, { person, receipt, date, didBuy }) {
     }, [bought]);
 
     async function handleButton() {
+        const result = await updateFoodName();
         if (!bought) {
             {
                 !bought && setBought(true), setBuyButton("border-2 border-red-500 border-solid mx-2 my-2 bg-primary  flex items-center justify-center text-3xl font-mono h-max text-white")
+                forceReload()
+
+                alert("Just added " + props.foodName + ". New total is " + Math.round(((props.totalPrice + (props.foodPrice / (props.totalPeople + 1))))* 100) / 100
+                )
             }
         } else {
             {
                 bought && setBought(false), setBuyButton("border-2 border-green-400 border-solid mx-2 my-2 bg-primary  flex items-center justify-center text-3xl font-mono h-max htext-white")
+                forceReload()
+
+                alert("Just removed " + props.foodName + ". New total is " + Math.round(((props.totalPrice - (props.foodPrice / (props.totalPeople))))* 100) / 100
+                )
+
             }
         }
-        const result = await updateFoodName();
-        // forceReload();
     }
 
     return (
@@ -60,12 +67,12 @@ function Foods(props, { person, receipt, date, didBuy }) {
                         ${Math.round((props.foodPrice / (props.totalPeople)) * 100) / 100} per person
                     </p>}
                 {props.buy ?
-                    <button className={"border-2 border-green-400 border-dotted w-full"} onClick={handleButton}>
+                    <button id="save" className={"border-2 border-green-400 border-dotted w-full"} onClick={handleButton}>
                         <h1>
                             {props.buy ? <h1> Sell </h1> : <h1> Buy </h1>}
                         </h1>
                     </button> :
-                    <button className={"border-2 border-red-500 border-dotted w-full"} onClick={handleButton}>
+                    <button id="save" className={"border-2 border-red-500 border-dotted w-full"} onClick={handleButton}>
                         <h1>
                             {props.buy ? <h1> Sell </h1> : <h1> Buy </h1>}
                         </h1>
