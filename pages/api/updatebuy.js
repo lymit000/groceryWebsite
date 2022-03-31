@@ -198,7 +198,7 @@ export default async function handler(req, res) {
 
     async function updateTrueFor(array, itemPrice) {
         for (const element of changeFood.buy) {
-            if (buyer.toString() !== personName) {
+            if (element.toString() !== personName) {
                 await updateTrue(element.toString(), array.length, itemPrice)
             }
         }
