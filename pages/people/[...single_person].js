@@ -9,7 +9,6 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
 
     return (
         <div className={"max-w flex items-center justify-center"}>
-            {count()}
             <div className={"bg-background h-screen w-screen "}>
                 <div className={"grid grid-cols-3"}>
                     <HomeButton/>
