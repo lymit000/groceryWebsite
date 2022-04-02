@@ -6,6 +6,7 @@ export default async function handler(req, res) {
     const newDate = (req.query.param2)
     const itemNumber = (req.query.param3)
     const img = (req.query.param4)
+    const exists = (req.query.param5)
 
     async function createListing(client, newListing) {
         // Which database youre going to use and which collection in the db
@@ -39,9 +40,7 @@ export default async function handler(req, res) {
     await wholeThing();
 
     async function wholeThing() {
-        db.listCollections({name: newDate})
-            .next(async function (err, collinfo) {
-                if (collinfo) {
+                if (exists === "true") {
                     await createListing(dataCollection, {
                         foodName: foodName,
                         foodPrice: foodPrice,
@@ -126,7 +125,6 @@ export default async function handler(req, res) {
 
                     // console.log("we just added " + foodName)
                 }
-            });
     }
 
 

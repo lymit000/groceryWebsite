@@ -6,7 +6,7 @@ import {useRouter} from "next/router";
 import Image from "next/image";
 
 
-export default function PageWithJSbasedForm({allFood, collectionName}) {
+export default function PageWithJSbasedForm({allFood, collectionName, exists}) {
     const router = useRouter();
     const forceReload = () => {
         router.reload();
@@ -21,7 +21,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
             img: event.target.img.value
         }
 
-        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2=allFoods"+"&param3="+data.itemNumber+"&param4="+data.img);
+        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2=allFoods"+"&param3="+data.itemNumber+"&param4="+data.img+"&param5="+exists);
         // Send the data to the server in JSON format.
         forceReload();
         // alert("just added " + first + "to all foods");
@@ -37,7 +37,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
             img: event.target.img.value
         }
 
-        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2="+collectionName.toString()+"&param3="+data.itemNumber+"&param4="+data.img);
+        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2="+collectionName.toString()+"&param3="+data.itemNumber+"&param4="+data.img+"&param5="+exists);
         // Send the data to the server in JSON format.
 
         // API endpoint where we send form data.
@@ -99,7 +99,8 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
 
 
 export async function getServerSideProps(context) {
-    const collectionName = context.query.new_file;
+    const collectionName = context.query.new_file[0];
+    const exists = context.query.new_file[1].toString();
     const client = await clientPromise
     const entireDB = await client.db("grocery-app");
 
@@ -108,6 +109,6 @@ export async function getServerSideProps(context) {
     const allFoodCollection = await foodCollection.find().toArray();
     const allFood = await JSON.parse(JSON.stringify(allFoodCollection));
     return {
-        props: {allFood, collectionName},
+        props: {allFood, collectionName, exists},
     }
 }

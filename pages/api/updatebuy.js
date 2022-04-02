@@ -65,7 +65,7 @@ export default async function handler(req, res) {
 
     async function updateFalseTwo(buyer, size, itemPrice) {
         //3
-        const personDB = await db.collection(buyer.toString()).findOne({date: date});
+        const personDB = await db.collection(buyer.toString()).findOne({date    : date});
 
         const add = Math.round((itemPrice / size) * 100) / 100
         const finalTotal = Math.round((personDB.totalPrice + add) * 100) / 100;
