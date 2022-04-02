@@ -21,11 +21,13 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                 </Link>
 
                 {/*<Link href={server + "house/allFoods"} passHref>*/}
-                    <div className={"h-screen mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-med font-mono text-center"}>
-                        Double clicking a button to undo does not work without refreshing.
-                        <br/> To remove/add an item you accidentally clicked, make sure to refresh the page first and click the button again.
-                        <br/>
-                        <br/> Also make sure to click "Calculate Total" after you're done.
+                    <div className={"h-screen mx-2 my-2 bg-otherBlack rounded-lg text-med font-mono text-center grid grid-cols 1 flex items-center justify-center"}>
+                        <div>
+                            Double clicking a button to undo does not work without refreshing
+                            <br/>
+                            <br/>
+                            To remove/add an item you accidentally clicked make sure to refresh the page first and click the button again
+                        </div>
                     </div>
                 {/*</Link>*/}
 
