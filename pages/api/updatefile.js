@@ -36,94 +36,99 @@ export default async function handler(req, res) {
         const result = await dataCollection.deleteOne({date: newDate});
     }
 
-    db.listCollections({name: newDate})
-        .next(async function (err, collinfo) {
-            if (collinfo) {
-                await createListing(dataCollection, {
-                    foodName: foodName,
-                    foodPrice: foodPrice,
-                    buy: [],
-                    totalPeople: 0,
-                    itemNumber: itemNumber,
-                    img: img
-                })
-                // console.log("we just added " + foodName)
+    await wholeThing();
+
+    async function wholeThing() {
+        db.listCollections({name: newDate})
+            .next(async function (err, collinfo) {
+                if (collinfo) {
+                    await createListing(dataCollection, {
+                        foodName: foodName,
+                        foodPrice: foodPrice,
+                        buy: [],
+                        totalPeople: 0,
+                        itemNumber: itemNumber,
+                        img: img
+                    })
+                    // console.log("we just added " + foodName)
 
 
-            } else {
-                // deleteByName(Aidan, newDate)
-                // deleteByName(Andoni, newDate)
-                // deleteByName(Atay, newDate)
-                // deleteByName(Justin, newDate)
-                // deleteByName(Keshav, newDate)
-                // deleteByName(Kulbir, newDate)
-                // deleteByName(Mitchell, newDate)
-                // deleteByName(Nathaniel, newDate)
-                // deleteByName(Ridge, newDate)
-                // console.log("delete ran")
-                await db.createCollection(newDate, function (err, result) {
-                    if (err) throw err;
-                    // console.log("Collection is created!");
-                });
+                } else {
+                    // deleteByName(Aidan, newDate)
+                    // deleteByName(Andoni, newDate)
+                    // deleteByName(Atay, newDate)
+                    // deleteByName(Justin, newDate)
+                    // deleteByName(Keshav, newDate)
+                    // deleteByName(Kulbir, newDate)
+                    // deleteByName(Mitchell, newDate)
+                    // deleteByName(Nathaniel, newDate)
+                    // deleteByName(Ridge, newDate)
+                    // console.log("delete ran")
+                    await db.createCollection(newDate, function (err, result) {
+                        if (err) throw err;
+                        // console.log("Collection is created!");
+                    });
 
-                await createListing(Aidan, {
-                    date: newDate,
-                    totalPrice: 0,
-                    markDone: false
-                })
-                await createListing(Andoni, {
-                    date: newDate,
-                    totalPrice: 0,
-                    markDone: false
-                })
-                await createListing(Atay, {
-                    date: newDate,
-                    totalPrice: 0,
-                    markDone: false
-                })
-                await createListing(Justin, {
-                    date: newDate,
-                    totalPrice: 0,
-                    markDone: false
-                })
-                await createListing(Keshav, {
-                    date: newDate,
-                    totalPrice: 0,
-                    markDone: false
-                })
-                await createListing(Kulbir, {
-                    date: newDate,
-                    totalPrice: 0,
-                    markDone: false
-                })
-                await createListing(Mitchell, {
-                    date: newDate,
-                    totalPrice: 0,
-                    markDone: false
-                })
-                await createListing(Nathaniel, {
-                    date: newDate,
-                    totalPrice: 0,
-                    markDone: false
-                })
-                await createListing(Ridge, {
-                    date: newDate,
-                    totalPrice: 0,
-                    markDone: false
-                })
+                    await createListing(Aidan, {
+                        date: newDate,
+                        totalPrice: 0,
+                        markDone: false
+                    })
+                    await createListing(Andoni, {
+                        date: newDate,
+                        totalPrice: 0,
+                        markDone: false
+                    })
+                    await createListing(Atay, {
+                        date: newDate,
+                        totalPrice: 0,
+                        markDone: false
+                    })
+                    await createListing(Justin, {
+                        date: newDate,
+                        totalPrice: 0,
+                        markDone: false
+                    })
+                    await createListing(Keshav, {
+                        date: newDate,
+                        totalPrice: 0,
+                        markDone: false
+                    })
+                    await createListing(Kulbir, {
+                        date: newDate,
+                        totalPrice: 0,
+                        markDone: false
+                    })
+                    await createListing(Mitchell, {
+                        date: newDate,
+                        totalPrice: 0,
+                        markDone: false
+                    })
+                    await createListing(Nathaniel, {
+                        date: newDate,
+                        totalPrice: 0,
+                        markDone: false
+                    })
+                    await createListing(Ridge, {
+                        date: newDate,
+                        totalPrice: 0,
+                        markDone: false
+                    })
 
-                await createListing(dataCollection, {
-                    foodName: foodName,
-                    foodPrice: foodPrice,
-                    buy: [],
-                    totalPeople: 0,
-                    itemNumber: itemNumber,
-                    img: img
-                })
+                    await createListing(dataCollection, {
+                        foodName: foodName,
+                        foodPrice: foodPrice,
+                        buy: [],
+                        totalPeople: 0,
+                        itemNumber: itemNumber,
+                        img: img
+                    })
 
-                // console.log("we just added " + foodName)
-            }
-        });
+                    // console.log("we just added " + foodName)
+                }
+            });
+    }
+
 
 
 
