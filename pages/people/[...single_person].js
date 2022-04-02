@@ -23,7 +23,7 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                 </div>
 
 
-                <div className="bg-otherBlack text-center w-full h-12 mx-2 my-2 text-white font-mono text-4xl">
+                <div className="bg-otherBlack text-center w-full h-12 mx-2 my-2 text-white font-mono text-3xl">
                     {personName}
                 </div>
                 <div className={"grid grid-cols-3 h-full w-full bg-background text-white"}>

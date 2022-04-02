@@ -36,7 +36,7 @@ function MovieDetails({ personName, personOfDate, receiptOfDate, date, returnCol
                 </div>
 
             <div className={"text-white w-full rounded-3xl mx-3"}>
-                <div className="flex items-center justify-center mx-20 text-6xl font-mono h-full text-center bg-otherBlack rounded-3xl">
+                <div className="flex items-center justify-center mx-20 text-4xl font-mono h-full text-center bg-otherBlack rounded-3xl">
                     <NameHeader Name={personName} totalPrice={personOfDate.totalPrice} date={date} buy={personOfDate.markDone}/>
                 </div>
             </div>

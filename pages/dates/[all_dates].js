@@ -41,14 +41,14 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                     <Link href={"dates/allDates"} passHref>
                         <button className={"text-white w-full rounded-3xl mx-3"}>
                             <div className="flex items-center justify-center mx-20  font-mono h-full text-center bg-otherBlack rounded-3xl">
-                                <p1 className={"items-center justify-center h-max text-6xl text-otherBlack"}> All Dates <br/> </p1>
+                                <p1 className={"items-center justify-center h-max text-4xl text-otherBlack"}> All Dates <br/> </p1>
                             </div>
                         </button>
                     </Link>
                     {count()}
                     <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                         <a href={"#0"} passHref className="btn btn-circle" >❮</a>
-                        <a href={server + "dates/allDates" } passHref className={"bg-primary rounded-xl p-1 text-6xl text-white font-mono"}> {"All Dates"}</a>
+                        <a href={server + "dates/allDates" } passHref className={"bg-primary rounded-xl p-1 text-4xl text-white font-mono"}> {"All Dates"}</a>
                         <a href={"#2"} passHref className="btn btn-circle">❯</a>
                     </div>
                 </div>
@@ -60,7 +60,7 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                         {count()}
                         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                             <a href={"#"+j} className="btn btn-circle" passHref>❮</a>
-                            <a href={server + "dates/" + singleDate.date + "#" + (j + 1)} passHref className={"bg-primary rounded-xl p-1 text-6xl text-white font-mono"}> {singleDate.date}</a>
+                            <a href={server + "dates/" + singleDate.date + "#" + (j + 1)} passHref className={"bg-primary rounded-xl p-1 text-4xl text-white font-mono"}> {singleDate.date}</a>
 
                             <a href={"#"+i} passHref className="btn btn-circle">❯</a>
                         </div>

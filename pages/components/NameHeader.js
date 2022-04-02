@@ -18,8 +18,8 @@ function Profile(props) {
 
 
     return (
-        <div className="justify-center place-items-center text-center mx-2 my-2 bg-otherBlack rounded-lg text-3xl font-mono h-5/6 ">
-            <div className={"text-4xl"}>
+        <div className="justify-center place-items-center text-center mx-2 my-2 bg-otherBlack rounded-lg text-2xl font-mono h-5/6 ">
+            <div className={"text-3xl"}>
                 {props.date}
             </div>
             {props.buy ? <div className={"text-green-400"}>

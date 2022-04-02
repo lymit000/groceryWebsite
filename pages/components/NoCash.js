@@ -6,13 +6,13 @@ import {useEffect, useState} from "react";
 function Profile(props) {
 
     const [ bought, setBought ] = useState(props.buy);
-    const [ buyButton, setBuyButton ] = useState("flex items-center justify-center mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-3xl font-mono h-5/6 ");
+    const [ buyButton, setBuyButton ] = useState("flex items-center justify-center mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-2xl font-mono h-5/6 ");
 
     useEffect(() => {
         if (bought === false ) {
-            setBuyButton("flex items-center justify-center mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-3xl font-mono h-5/6")
+            setBuyButton("flex items-center justify-center mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-2xl font-mono h-5/6")
         } else if (bought === true) {
-            setBuyButton("flex items-center justify-center mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-3xl font-mono h-5/6")
+            setBuyButton("flex items-center justify-center mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-2xl font-mono h-5/6")
         }
 
     }, [bought]);
