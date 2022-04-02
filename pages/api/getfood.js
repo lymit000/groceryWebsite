@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
 
     const data = await db.collection(query).find().toArray()
-    //
+
     // res.json(data);
     await res.json(data);
     // res.json({message: "IT WORKS!!"})

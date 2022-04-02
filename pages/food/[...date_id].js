@@ -49,8 +49,6 @@ function MovieDetails({ personName, personOfDate, receiptOfDate, date, returnCol
                         </div>
                     </>
                 ))}
-
-
             </div>
             </div>
 

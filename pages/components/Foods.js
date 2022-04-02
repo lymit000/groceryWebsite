@@ -33,16 +33,16 @@ function Foods(props, { person, receipt, date, didBuy }) {
         if (!bought) {
             {
                 !bought && setBought(true), setBuyButton("border-2 border-red-500 border-solid mx-2 my-2 bg-primary  flex items-center justify-center text-3xl font-mono h-max text-white")
-                forceReload()
+                // forceReload()
 
-                alert("Just added " + props.foodName + ". New total is " + Math.round(((props.totalPrice + (props.foodPrice / (props.totalPeople + 1))))* 100) / 100)
+                // alert("Just added " + props.foodName + ". New total is " + Math.round(((props.totalPrice + (props.foodPrice / (props.totalPeople + 1))))* 100) / 100)
             }
         } else {
             {
                 bought && setBought(false), setBuyButton("border-2 border-green-400 border-solid mx-2 my-2 bg-primary  flex items-center justify-center text-3xl font-mono h-max htext-white")
-                forceReload()
+                // forceReload()
 
-                alert("Just removed " + props.foodName + ". New total is " + Math.round(((props.totalPrice - (props.foodPrice / (props.totalPeople))))* 100) / 100)
+                // alert("Just removed " + props.foodName + ". New total is " + Math.round(((props.totalPrice - (props.foodPrice / (props.totalPeople))))* 100) / 100)
 
             }
         }
@@ -73,8 +73,9 @@ function Foods(props, { person, receipt, date, didBuy }) {
                             {props.buy ? <h1> Remove </h1> : <h1> Add </h1>}
                         </h1>
                     </button>}
-
-
+                <div className={"text-center text-small "}>
+                    {props.totalPeople === 0 ? "0 People" : ""}
+                </div>
             </div>
         </div>
 
