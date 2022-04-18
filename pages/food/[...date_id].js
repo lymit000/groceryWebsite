@@ -46,9 +46,9 @@ function MovieDetails({ personName, personOfDate, receiptOfDate, date, returnCol
                     <>
                         <div>
                             <Foods foodName={item.foodName} foodPrice={item.foodPrice} Name={personName} buy={JSON.parse(JSON.stringify(item.buy)).includes(personName)} date={personOfDate.date} totalPeople={item.totalPeople} img={item.img} totalPrice={personOfDate.totalPrice}/>
-                            <p1 className={"text-sm"}>
+                            <p1>
                                 {item.buy && item.buy.map(singlePersons => (
-                                    <p1>{singlePersons}</p1>
+                                    <p1>{singlePersons + " "}</p1>
                                 ))}
                             </p1>
                         </div>
