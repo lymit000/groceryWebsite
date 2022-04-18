@@ -43,12 +43,11 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
 export async function getServerSideProps(context) {
     const personName = context.query.single_person[0];
 
-    console.log(personName);
     const client = await clientPromise
     const db = client.db("grocery-app");
 
     const baseDB = await db.collection(personName).find().toArray();
-    const  base = await JSON.parse(JSON.stringify(baseDB));
+    const base = await JSON.parse(JSON.stringify(baseDB));
 
     return {
         props: {base, personName },
