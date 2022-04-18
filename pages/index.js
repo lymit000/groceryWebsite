@@ -13,26 +13,26 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                 Grocery Website
             </div>
 
-            <div className={"text-white grid grid-cols-3 flex items-center justify-center"}>
+            <div className={"text-white grid grid-cols-2 flex items-center justify-center"}>
                 <Link href={server + "dates/allDates"} passHref>
-                    <button className={"h-5/6 mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-3xl font-mono"}>
+                    <button className={"h-screen mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-3xl font-mono"}>
                         All Dates
                     </button>
                 </Link>
 
                 {/*<Link href={server + "house/allFoods"} passHref>*/}
-                    <div className={"h-screen mx-2 my-2 bg-otherBlack rounded-lg text-med font-mono text-center grid grid-cols 1 flex items-center justify-center"}>
-                        <div>
-                            Double clicking a button to undo does not work without refreshing
-                            <br/>
-                            <br/>
-                            To remove/add an item you accidentally clicked make sure to refresh the page first and click the button again
-                        </div>
-                    </div>
+                {/*    <div className={"h-screen mx-2 my-2 bg-otherBlack rounded-lg text-med font-mono text-center grid grid-cols 1 flex items-center justify-center"}>*/}
+                {/*        <div>*/}
+                {/*            Double clicking a button to undo does not work without refreshing*/}
+                {/*            <br/>*/}
+                {/*            <br/>*/}
+                {/*            To remove/add an item you accidentally clicked make sure to refresh the page first and click the button again*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
                 {/*</Link>*/}
 
                 <Link href={server + "people/allPeople"} passHref>
-                    <button className={"h-5/6 mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-3xl font-mono"}>
+                    <button className={"h-screen mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-3xl font-mono"}>
                         All People
                     </button>
                 </Link>
