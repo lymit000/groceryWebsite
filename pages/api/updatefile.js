@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     const itemNumber = (req.query.param3)
     const img = (req.query.param4)
     const exists = (req.query.param5)
-
+    const allOrNot = (req.query.param6)
     async function createListing(client, newListing) {
         // Which database youre going to use and which collection in the db
         // And inserts one
@@ -41,14 +41,25 @@ export default async function handler(req, res) {
 
     async function wholeThing() {
                 if (exists === "true") {
-                    await createListing(dataCollection, {
-                        foodName: foodName,
-                        foodPrice: foodPrice,
-                        buy: [],
-                        totalPeople: 0,
-                        itemNumber: itemNumber,
-                        img: img
-                    })
+                    if (allOrNot === "true") {
+                        await createListing(dataCollection, {
+                            foodName: foodName,
+                            foodPrice: foodPrice,
+                            buy: ["Aidan", "Andoni", "Atay", "Justin", "Keshav", "Kulbir", "Mitchell", "Nathaniel", "Ridge"],
+                            totalPeople: 9,
+                            itemNumber: itemNumber,
+                            img: img
+                        })
+                    } else {
+                        await createListing(dataCollection, {
+                            foodName: foodName,
+                            foodPrice: foodPrice,
+                            buy: [],
+                            totalPeople: 0,
+                            itemNumber: itemNumber,
+                            img: img
+                        })
+                    }
                     // console.log("we just added " + foodName)
 
 
@@ -114,14 +125,26 @@ export default async function handler(req, res) {
                         markDone: false
                     })
 
-                    await createListing(dataCollection, {
-                        foodName: foodName,
-                        foodPrice: foodPrice,
-                        buy: [],
-                        totalPeople: 0,
-                        itemNumber: itemNumber,
-                        img: img
-                    })
+                    if (allOrNot === "true") {
+                        await createListing(dataCollection, {
+                            foodName: foodName,
+                            foodPrice: foodPrice,
+                            buy: ["Aidan", "Andoni", "Atay", "Justin", "Keshav", "Kulbir", "Mitchell", "Nathaniel", "Ridge"],
+                            totalPeople: 9,
+                            itemNumber: itemNumber,
+                            img: img
+                        })
+                    } else {
+                        await createListing(dataCollection, {
+                            foodName: foodName,
+                            foodPrice: foodPrice,
+                            buy: [],
+                            totalPeople: 0,
+                            itemNumber: itemNumber,
+                            img: img
+                        })
+                    }
+
 
                     // console.log("we just added " + foodName)
                 }

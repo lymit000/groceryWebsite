@@ -6,7 +6,7 @@ import {useRouter} from "next/router";
 import Image from "next/image";
 
 
-export default function PageWithJSbasedForm({allFood, collectionName, exists}) {
+export default function PageWithJSbasedForm({allFood, collectionName, exists, allOrNot}) {
     const router = useRouter();
     const forceReload = () => {
         router.reload();
@@ -21,7 +21,7 @@ export default function PageWithJSbasedForm({allFood, collectionName, exists}) {
             img: event.target.img.value
         }
 
-        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2=allFoods"+"&param3="+data.itemNumber+"&param4="+data.img+"&param5=true");
+        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2=allFoods"+"&param3="+data.itemNumber+"&param4="+data.img+"&param5=true"+"&param6="+allOrNot);
         // Send the data to the server in JSON format.
         forceReload();
         // alert("just added " + first + "to all foods");
@@ -37,7 +37,7 @@ export default function PageWithJSbasedForm({allFood, collectionName, exists}) {
             img: event.target.img.value
         }
 
-        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2="+collectionName.toString()+"&param3="+data.itemNumber+"&param4="+data.img+"&param5="+exists);
+        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2="+collectionName.toString()+"&param3="+data.itemNumber+"&param4="+data.img+"&param5="+exists+"&param6="+allOrNot);
         // Send the data to the server in JSON format.
 
         // API endpoint where we send form data.
@@ -50,7 +50,7 @@ export default function PageWithJSbasedForm({allFood, collectionName, exists}) {
         <>
             <div className={"bg-background h-full text-white text-center"}>
                 <button className={"bg-otherBlack p-3"}>
-                    <Link href={`/`} scroll={false} passHref>
+                    <Link href={`/`} passHref>
                         <h1>
                             Home Page
                         </h1>
@@ -101,6 +101,8 @@ export default function PageWithJSbasedForm({allFood, collectionName, exists}) {
 export async function getServerSideProps(context) {
     const collectionName = context.query.new_file[0];
     const exists = context.query.new_file[1].toString();
+    const allOrNot = context.query.new_file[2].toString();
+    console.log(allOrNot);
     const client = await clientPromise
     const entireDB = await client.db("grocery-app");
 
@@ -109,6 +111,6 @@ export async function getServerSideProps(context) {
     const allFoodCollection = await foodCollection.find().toArray();
     const allFood = await JSON.parse(JSON.stringify(allFoodCollection));
     return {
-        props: {allFood, collectionName, exists},
+        props: {allFood, collectionName, exists, allOrNot},
     }
 }
