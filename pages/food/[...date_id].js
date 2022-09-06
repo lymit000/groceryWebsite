@@ -22,33 +22,40 @@ function MovieDetails({ personName, personOfDate, receiptOfDate, date, returnCol
     }
 
     return (
-            <div className={"bg-background h-screen w-screen "}>
-                <div className={"grid grid-cols-3"}>
+            <div className={"bg-whiteBackground h-screen w-screen"}>
+                <div className={"bg-grayBackground p-2 grid grid-cols-5"}>
                     <HomeButton/>
-                    <div></div>
+                    <div className={"text-7xl text-left font-bold text-greenFont flex justify-start place-items-center"}>
+                        {personName}
+                    </div>
+                    <NameHeader  totalPrice={personOfDate.totalPrice} date={date} buy={personOfDate.markDone}/>
+
+                    <div className={"text-5xl text-greenFont font-bold text-right justify-end flex place-items-center"}>
+                        {date}
+                    </div>
                     <div className={"text-right"}>
                         <Link href={server + "people/" + personName} passHref>
-                            <button className={"bg-otherBlack text-primary mx-1 w-fit font-mono rounded-lg p-1"}>
+                            <button className={"bg-greenBackground text-yellowFont p-2 mx-1 w-fit font-mono rounded-lg"}>
                                 Back to {personName}
                             </button>
                         </Link>
                     </div>
                 </div>
 
-            <div className={"text-white w-full rounded-3xl mx-3"}>
-                <div className="flex items-center justify-center mx-20 text-4xl font-mono h-full text-center bg-otherBlack rounded-3xl">
-                    <NameHeader Name={personName} totalPrice={personOfDate.totalPrice} date={date} buy={personOfDate.markDone}/>
-                </div>
-            </div>
+            {/*<div className={"text-white w-full rounded-3xl mx-3 mt-2"}>*/}
+            {/*    <div className="flex items-center justify-center mx-20 text-4xl font-mono h-full text-center bg-whiteBackground border-2 border-greenBackground rounded-3xl">*/}
+            {/*        <NameHeader Name={personName} totalPrice={personOfDate.totalPrice} date={date} buy={personOfDate.markDone}/>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
 
-            <div className={"grid grid-cols-3 bg-background"}>
+            <div className={"grid grid-cols-3 gap-2 bg-whiteBackground"}>
                 {receiptOfDate && receiptOfDate.map(item => (
                     <>
                         <div>
-                            <Foods foodName={item.foodName} foodPrice={item.foodPrice} Name={personName} buy={JSON.parse(JSON.stringify(item.buy)).includes(personName)} date={personOfDate.date} totalPeople={item.totalPeople} img={item.img} totalPrice={personOfDate.totalPrice}/>
-                            {item.buy && item.buy.map(singlePersons => (
-                                singlePersons + " "
-                            ))}
+                            <Foods foodName={item.foodName} foodPrice={item.foodPrice} Name={personName} buy={JSON.parse(JSON.stringify(item.buy)).includes(personName)} date={personOfDate.date} totalPeople={item.totalPeople} img={item.img} totalPrice={personOfDate.totalPrice} allPeople={item.buy}/>
+                            {/*{item.buy && item.buy.map(singlePersons => (*/}
+                            {/*    singlePersons + " "*/}
+                            {/*))}*/}
                         </div>
                     </>
                 ))}

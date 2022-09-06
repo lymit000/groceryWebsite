@@ -4,7 +4,7 @@ export default async function handler(req, res) {
     const personName = req.query.param0;
     const date = req.query.param1;
 
-    const allNames = ["Aidan", "Andoni", "Atay", "Justin", "Keshav", "Kulbir", "Mitchell", "Nathaniel", "Ridge"]
+    const allNames = ["Aidan", "Andoni", "John", "Justin", "Mitchell", "Sam", "Zach"]
 
     console.log(personName)
     console.log(date)

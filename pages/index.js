@@ -1,5 +1,5 @@
 import "tailwindcss/tailwind.css"
-import clientPromise from '../lib/mongodb'
+// import clientPromise from '../lib/mongodb'
 import Link from "next/link";
 import {server} from "../config";
 
@@ -9,13 +9,16 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
   return (
     <div className={"max-w flex items-center justify-center"}>
         <div className={"bg-background h-full w-screen "}>
-            <div className="bg-otherBlack text-center w-full h-12 mx-2 my-2 text-white font-mono text-4xl">
+            <div className={"bg-yellowBackground text-center text-7xl font-semibold font-clash p-5 text-greenFont"}>
                 Grocery Website
             </div>
+            {/*<div className="bg-otherBlack text-center w-full h-12 mx-2 my-2 text-white font-mono text-4xl">*/}
+            {/*    Grocery Website*/}
+            {/*</div>*/}
 
-            <div className={"text-white grid grid-cols-2 flex items-center justify-center"}>
+            <div className={"text-white grid grid-cols-2 h-screen flex items-center justify-center"}>
                 <Link href={server + "dates/allDates"} passHref>
-                    <button className={"h-screen mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-3xl font-mono"}>
+                    <button className={"h-full bg-greenBackground border-yellowBackground border-r-2 border-greenFont flex items-center justify-center text-3xl text-yellowFont"}>
                         All Dates
                     </button>
                 </Link>
@@ -32,7 +35,7 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                 {/*</Link>*/}
 
                 <Link href={server + "people/allPeople"} passHref>
-                    <button className={"h-screen mx-2 my-2 bg-otherBlack rounded-lg flex items-center justify-center text-3xl font-mono"}>
+                    <button className={"h-full text-yellowFont bg-greenBackground flex items-center justify-center text-3xl"}>
                         All People
                     </button>
                 </Link>
@@ -121,40 +124,40 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
 }
 
 
-export async function getServerSideProps(context) {
-    const client = await clientPromise
-    const db = client.db("grocery-app");
+// export async function getServerSideProps(context) {
+    // const client = await clientPromise
+    // const db = client.db("grocery-app");
+    // //
+    // const data = await db.collection("people").find().toArray()
+    // //
+    // const allPeople = await JSON.parse(JSON.stringify(data));
     //
-    const data = await db.collection("people").find().toArray()
+    // const aidanDB = await db.collection("Aidan").find().toArray();
+    // const Aidan = await JSON.parse(JSON.stringify(aidanDB));
     //
-    const allPeople = await JSON.parse(JSON.stringify(data));
-
-    const aidanDB = await db.collection("Aidan").find().toArray();
-    const Aidan = await JSON.parse(JSON.stringify(aidanDB));
-
-    const andoniDB = await db.collection("Aidan").find().toArray();
-    const Andoni = await JSON.parse(JSON.stringify(andoniDB));
-
-    const atayDB = await db.collection("Aidan").find().toArray();
-    const Atay = await JSON.parse(JSON.stringify(atayDB));
-
-    const justinDB = await db.collection("Aidan").find().toArray();
-    const Justin = await JSON.parse(JSON.stringify(justinDB));
-
-    const keshavDB = await db.collection("Aidan").find().toArray();
-    const Keshav = await JSON.parse(JSON.stringify(keshavDB));
-
-    const kulbirDB = await db.collection("Aidan").find().toArray();
-    const Kulbir = await JSON.parse(JSON.stringify(kulbirDB));
-
-    const mitchellDB = await db.collection("Aidan").find().toArray();
-    const Mitchell = await JSON.parse(JSON.stringify(mitchellDB));
-
-    const nathanielDB = await db.collection("Aidan").find().toArray();
-    const Nathaniel = await JSON.parse(JSON.stringify(nathanielDB));
-
-    const ridgeDB = await db.collection("Aidan").find().toArray();
-    const Ridge = await JSON.parse(JSON.stringify(ridgeDB));
+    // const andoniDB = await db.collection("Aidan").find().toArray();
+    // const Andoni = await JSON.parse(JSON.stringify(andoniDB));
+    //
+    // const atayDB = await db.collection("Aidan").find().toArray();
+    // const Atay = await JSON.parse(JSON.stringify(atayDB));
+    //
+    // const justinDB = await db.collection("Aidan").find().toArray();
+    // const Justin = await JSON.parse(JSON.stringify(justinDB));
+    //
+    // const keshavDB = await db.collection("Aidan").find().toArray();
+    // const Keshav = await JSON.parse(JSON.stringify(keshavDB));
+    //
+    // const kulbirDB = await db.collection("Aidan").find().toArray();
+    // const Kulbir = await JSON.parse(JSON.stringify(kulbirDB));
+    //
+    // const mitchellDB = await db.collection("Aidan").find().toArray();
+    // const Mitchell = await JSON.parse(JSON.stringify(mitchellDB));
+    //
+    // const nathanielDB = await db.collection("Aidan").find().toArray();
+    // const Nathaniel = await JSON.parse(JSON.stringify(nathanielDB));
+    //
+    // const ridgeDB = await db.collection("Aidan").find().toArray();
+    // const Ridge = await JSON.parse(JSON.stringify(ridgeDB));
 
 
     // const data = await fetch(`http://localhost:3000/api/moviedetails?movie_id=573a1390f29313caabcd42e8`);
@@ -164,7 +167,7 @@ export async function getServerSideProps(context) {
 
     // console.log(movie)
 
-    return {
-        props: { Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitchell, Nathaniel, Ridge, allPeople },
-    }
-}
+    // return {
+    //     props: { Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitchell, Nathaniel, Ridge, allPeople },
+    // }
+// }

@@ -10,6 +10,7 @@ function Profile(props) {
     const [bought, setBought] = useState(props.markDone);
     const [buyButton, setBuyButton] = useState("");
     const [textColor, setTextColor] = useState("");
+    const [boxColor, setBoxColor] = useState("");
 
     const router = useRouter();
     const forceReload = () => {
@@ -23,11 +24,13 @@ function Profile(props) {
 
     useEffect(() => {
         if (bought === false) {
-            setTextColor("text-red-500")
-            setBuyButton("items-center text-center p-1 border-2 bg-otherBlack w-5/6 border-red-500 border-dotted font-mono")
+            setBoxColor("w-full flex items-center justify-center bg-whiteBackground flex items-center justify-center text-xl h-5/6 rounded-t-xl border-2 border-redFont")
+            setTextColor("text-yellowFont")
+            setBuyButton("items-center text-center p-3 bg-redFont border-0 w-full rounded-b-xl border-redFont font-mono")
         } else if (bought === true) {
-            setTextColor("text-green-400")
-            setBuyButton("items-center text-center p-1 border-2 bg-otherBlack w-5/6 border-green-400 border-dotted font-mono")
+            setBoxColor("w-full flex items-center justify-center bg-whiteBackground flex items-center justify-center text-xl h-5/6 rounded-t-xl border-2 border-greenBackground")
+            setTextColor("text-yellowFont")
+            setBuyButton("items-center text-center p-3  border-2 bg-greenBackground border-0 w-full rounded-b-xl border-green-400 border-dotted font-mono")
         }
 
     }, [bought]);
@@ -35,13 +38,15 @@ function Profile(props) {
     async function handleButton() {
         if (!bought) {
             {
+                setBoxColor("w-full flex items-center justify-center bg-whiteBackground flex items-center justify-center text-xl h-5/6 rounded-t-xl border-2 border-redFont")
                 !bought && setBought(true), setBuyButton("items-center text-center p-1 border-2 bg-otherBlack w-5/6 border-red-500 border-dotted font-mono")
-                setTextColor("text-red-500")
+                setTextColor("text-yellowFont")
             }
         } else {
             {
+                setBoxColor("w-full flex items-center justify-center bg-whiteBackground flex items-center justify-center text-xl h-5/6 rounded-t-xl border-2 border-greenBackground")
                 bought && setBought(false), setBuyButton("items-center text-center p-1 border-2 bg-otherBlack w-5/6 border-green-400 border-dotted font-mono")
-                setTextColor("text-green-400")
+                setTextColor("text-yellowFont")
 
             }
         }
@@ -63,13 +68,13 @@ function Profile(props) {
     return (
         <div className={"w-full items-center justify-center text-center"}>
         <Link href={server + "food/" + props.Name + "/" + props.date} passHref>
-             <button className={"w-full flex items-center justify-center bg-otherBlack flex items-center justify-center text-xl font-mono h-5/6 border-l-4 border-t-4 border-r-2 border-background"}>
+             <button className={boxColor}>
                  <div>
                      <div>
-                         <div>
+                         <div className={"text-black"}>
                              {props.Name}
                          </div>
-                         <div className={textColor}>
+                         <div className={"text-black"}>
                              ${props.totalPrice}
                          </div>
                      </div>

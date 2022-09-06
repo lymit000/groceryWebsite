@@ -102,7 +102,7 @@ export async function getServerSideProps(context) {
     const collectionName = context.query.new_file[0];
     const exists = context.query.new_file[1].toString();
     const allOrNot = context.query.new_file[2].toString();
-    console.log(allOrNot);
+    // console.log(allOrNot);
     const client = await clientPromise
     const entireDB = await client.db("grocery-app");
 

@@ -8,7 +8,7 @@ import ProfileLink from "../components/ProfileLink";
 import NoCash from "../components/NoCash";
 
 
-export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitchell, Nathaniel, Ridge, base, query }) {
+export default function Home({ Aidan, Andoni, Atay, Justin, Mitchell, John, Sam, Zach, base, query }) {
     const allNames = ["Aidan", "Andoni", "Atay", "Justin", "Keshav", "Kulbir", "Mitchell", "Nathaniel", "Ridge"]
     let i = 1;
     let j = -1;
@@ -22,13 +22,13 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
         j = -1;
     }
     return (
-        <div className={"bg-background h-screen w-screen text-center"}>
-            <div className={"grid grid-cols-3"}>
+        <div className={"bg-whiteBackground h-screen w-screen text-center"}>
+            <div className={"grid bg-grayBackground grid-cols-3 p-2 mb-2"}>
                 <HomeButton/>
                 <div></div>
                 <div className={"text-right"}>
                     <Link href={server + "dates/allDates#1"} passHref>
-                        <button className={"bg-otherBlack text-primary mx-1 w-fit font-mono rounded-lg p-1"}>
+                        <button className={"bg-greenBackground text-yellowFont mx-1 w-fit rounded-lg p-2"}>
                             Back to All Dates
                         </button>
                     </Link>
@@ -39,17 +39,17 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
             <div className="carousel w-full">
                 <div id={"1"} className="carousel-item relative w-full">
                     <Link href={"dates/allDates"} passHref>
-                        <button className={"text-white w-full rounded-3xl mx-3"}>
-                            <div className="flex items-center justify-center mx-20  font-mono h-full text-center bg-otherBlack rounded-3xl">
-                                <p1 className={"items-center justify-center h-max text-4xl text-otherBlack"}> All Dates <br/> </p1>
+                        <button className={"h-full w-full text-white w-full rounded-3xl mx-3"}>
+                            <div className="flex items-center justify-center mx-20  font-mono h-full text-center  border-greenBackground rounded-3xl">
+                                <p1 className={"items-center justify-center h-max text-4xl text-otherBlack p-5"}> All Dates <br/> </p1>
                             </div>
                         </button>
                     </Link>
                     {count()}
                     <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href={"#0"} passHref className="btn btn-circle" >❮</a>
-                        <a href={server + "dates/allDates" } passHref className={"bg-primary rounded-xl p-1 text-4xl text-white font-mono"}> {"All Dates"}</a>
-                        <a href={"#2"} passHref className="btn btn-circle">❯</a>
+                        <a href={"#0"} passHref className="my-2 btn btn-circle bg-whiteBackground border-4 border-greenBackground hover:bg-greenBackground hover:border-0" >❮</a>
+                        <a href={server + "dates/allDates" } passHref className={"border-2 p-4 border-greenBackground rounded-xl p-1 text-4xl text-yellowFont bg-greenBackground font-mono"}> {"All Dates"}</a>
+                        <a href={"#2"} passHref className="my-2 btn btn-circle bg-whiteBackground border-4 border-greenBackground hover:bg-greenBackground hover:border-0">❯</a>
                     </div>
                 </div>
                 {base && base.map(singleDate => (
@@ -58,18 +58,18 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
 
                     <CardDate  totalPrice={singleDate.totalPrice}/>
                         {count()}
-                        <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                            <a href={"#"+j} className="btn btn-circle" passHref>❮</a>
-                            <a href={server + "dates/" + singleDate.date + "#" + (j + 1)} passHref className={"bg-primary rounded-xl p-1 text-4xl text-white font-mono"}> {singleDate.date}</a>
+                        <div className="absolute bg-whiteBackground p-1 flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                            <a href={"#"+j} className="my-2 btn btn-circle bg-whiteBackground border-4 border-greenBackground hover:bg-greenBackground hover:border-0" passHref>❮</a>
+                            <a href={server + "dates/" + singleDate.date + "#" + (j + 1)} passHref className={"border-2 p-4 border-greenBackground rounded-xl p-1 text-4xl text-yellowFont bg-greenBackground font-mono"}> {singleDate.date}</a>
 
-                            <a href={"#"+i} passHref className="btn btn-circle">❯</a>
+                            <a href={"#"+i} passHref className="my-2 btn btn-circle bg-whiteBackground border-4 border-greenBackground hover:bg-greenBackground hover:border-0">❯</a>
                         </div>
                     </div>
                 ))}
             </div>
 
             {reset()}
-            <div className={"h-screen grid grid-cols-3 text-white bg-background"}>
+            <div className={"h-screen grid grid-cols-3 gap-10 p-2 text-white bg-whiteBackground"}>
                 {query === "allDates" ? (
                     <>
                     {base.map(singleDates => (
@@ -84,13 +84,13 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitc
                     <>
                         <ProfileLink totalPrice={Aidan.totalPrice} date={Aidan.date} Name={"Aidan"} markDone={Aidan.markDone}/>
                         <ProfileLink totalPrice={Andoni.totalPrice} date={Andoni.date} Name={"Andoni"} markDone={Andoni.markDone}/>
-                        <ProfileLink totalPrice={Atay.totalPrice} date={Atay.date} Name={"Atay"} markDone={Atay.markDone}/>
+                        <ProfileLink totalPrice={John.totalPrice} date={John.date} Name={"John"} markDone={John.markDone}/>
                         <ProfileLink totalPrice={Justin.totalPrice} date={Justin.date} Name={"Justin"} markDone={Justin.markDone}/>
-                        <ProfileLink totalPrice={Keshav.totalPrice} date={Keshav.date} Name={"Keshav"} markDone={Keshav.markDone}/>
-                        <ProfileLink totalPrice={Kulbir.totalPrice} date={Kulbir.date} Name={"Kulbir"} markDone={Kulbir.markDone}/>
+                        {/*<ProfileLink totalPrice={Keshav.totalPrice} date={Keshav.date} Name={"Keshav"} markDone={Keshav.markDone}/>*/}
+                        {/*<ProfileLink totalPrice={Kulbir.totalPrice} date={Kulbir.date} Name={"Kulbir"} markDone={Kulbir.markDone}/>*/}
                         <ProfileLink totalPrice={Mitchell.totalPrice} date={Mitchell.date} Name={"Mitchell"} markDone={Mitchell.markDone}/>
-                        <ProfileLink totalPrice={Nathaniel.totalPrice} date={Nathaniel.date} Name={"Nathaniel"} markDone={Nathaniel.markDone}/>
-                        <ProfileLink totalPrice={Ridge.totalPrice} date={Ridge.date} Name={"Ridge"} markDone={Ridge.markDone}/>
+                        <ProfileLink totalPrice={Sam.totalPrice} date={Sam.date} Name={"Sam"} markDone={Sam.markDone}/>
+                        <ProfileLink totalPrice={Zach.totalPrice} date={Zach.date} Name={"Zach"} markDone={Zach.markDone}/>
                     </>
                     )}
 
@@ -106,6 +106,8 @@ export async function getServerSideProps(context) {
     const personName = context.query
     const client = await clientPromise
     const db = client.db("grocery-app");
+    const baseDB = await db.collection("Aidan").find().toArray();
+    const base = await JSON.parse(JSON.stringify(baseDB));
 
     const aidanDB = await db.collection("Aidan").findOne({date: query});
     const Aidan = await JSON.parse(JSON.stringify(aidanDB));
@@ -113,30 +115,36 @@ export async function getServerSideProps(context) {
     const andoniDB = await db.collection("Andoni").findOne({date: query});
     const Andoni = await JSON.parse(JSON.stringify(andoniDB));
 
-    const atayDB = await db.collection("Atay").findOne({date: query});
-    const Atay = await JSON.parse(JSON.stringify(atayDB));
+    // const atayDB = await db.collection("Atay").findOne({date: query});
+    // const Atay = await JSON.parse(JSON.stringify(atayDB));
 
     const justinDB = await db.collection("Justin").findOne({date: query});
     const Justin = await JSON.parse(JSON.stringify(justinDB));
 
-    const keshavDB = await db.collection("Keshav").findOne({date: query});
-    const Keshav = await JSON.parse(JSON.stringify(keshavDB));
-
-    const kulbirDB = await db.collection("Kulbir").findOne({date: query});
-    const Kulbir = await JSON.parse(JSON.stringify(kulbirDB));
+    // const keshavDB = await db.collection("Keshav").findOne({date: query});
+    // const Keshav = await JSON.parse(JSON.stringify(keshavDB));
+    //
+    // const kulbirDB = await db.collection("Kulbir").findOne({date: query});
+    // const Kulbir = await JSON.parse(JSON.stringify(kulbirDB));
 
     const mitchellDB = await db.collection("Mitchell").findOne({date: query});
     const Mitchell = await JSON.parse(JSON.stringify(mitchellDB));
 
-    const baseDB = await db.collection("Aidan").find().toArray();
-    const  base = await JSON.parse(JSON.stringify(baseDB));
+    // const nathanielDB = await db.collection("Nathaniel").findOne({date: query});
+    // const Nathaniel = await JSON.parse(JSON.stringify(nathanielDB));
+    //
+    // const ridgeDB = await db.collection("Ridge").findOne({date: query});
+    // const Ridge = await JSON.parse(JSON.stringify(ridgeDB));
 
-    const nathanielDB = await db.collection("Nathaniel").findOne({date: query});
-    const Nathaniel = await JSON.parse(JSON.stringify(nathanielDB));
+    const johnDB = await db.collection("John").findOne({date: query});
+    const John = await JSON.parse(JSON.stringify(johnDB));
 
-    const ridgeDB = await db.collection("Ridge").findOne({date: query});
-    const Ridge = await JSON.parse(JSON.stringify(ridgeDB));
+    const samDB = await db.collection("Sam").findOne({date: query});
+    const Sam = await JSON.parse(JSON.stringify(samDB));
+
+    const zachDB = await db.collection("Zach").findOne({date: query});
+    const Zach = await JSON.parse(JSON.stringify(zachDB));
     return {
-        props: { Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitchell, Nathaniel, Ridge, base, query},
+        props: { Aidan, Andoni, John, Justin, Mitchell, Sam, Zach, base, query},
     }
 }

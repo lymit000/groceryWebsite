@@ -7,7 +7,7 @@ function date(props) {
 
     return (
         <Link href={server} passHref>
-            <div className={"flex items-center justify-left bg-otherBlack text-primary mx-1 w-fit font-mono rounded-lg p-1"}>
+            <div className={"h-max flex items-center justify-left bg-greenBackground text-yellowFont mx-1 w-fit font-mono rounded-lg p-2"}>
                 <button>
                     Back to Home
                 </button>

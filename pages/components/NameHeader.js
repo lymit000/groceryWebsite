@@ -18,16 +18,18 @@ function Profile(props) {
 
 
     return (
-        <div className="justify-center place-items-center text-center mx-2 my-2 bg-otherBlack rounded-lg text-2xl font-mono h-5/6 ">
-            <div className={"text-3xl"}>
-                {props.date}
-            </div>
-            {props.buy ? <div className={"text-green-400"}>
+        <div className="justify-center place-items-center text-center my-1  border- rounded-lg text-2xl font-mono h-5/6">
+            <button className={"bg-greenBackground text-yellowFont p-2 rounded-lg font-semi"} onClick={updateFoodName}> Calculate Total
+                {props.buy ? <div className={"font-thin text-yellowFont"}>
+                ${props.totalPrice}
+            </div>:<div className={"text-yellowFont"}>
                 {props.Name} ${props.totalPrice}
-            </div>:<div className={"text-red-500"}>
-                {props.Name} ${props.totalPrice}
-            </div>}
-            <button className={"bg-primary p-1 my-1 rounded-lg"} onClick={updateFoodName}> Calculate Total </button>
+            </div>} </button>
+
+            {/*<div className={"text-3xl text-black"}>*/}
+            {/*    {props.date}*/}
+            {/*</div>*/}
+
         </div>
     )
 }

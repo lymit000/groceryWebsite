@@ -25,13 +25,13 @@ export default async function handler(req, res) {
 
     const Aidan = await db.collection("Aidan");
     const Andoni = await db.collection("Andoni");
-    const Atay = await db.collection("Atay");
+    const John = await db.collection("John");
     const Justin = await db.collection("Justin");
-    const Keshav = await db.collection("Keshav");
-    const Kulbir = await db.collection("Kulbir");
+    // const Keshav = await db.collection("Keshav");
+    // const Kulbir = await db.collection("Kulbir");
     const Mitchell = await db.collection("Mitchell");
-    const Nathaniel = await db.collection("Nathaniel");
-    const Ridge = await db.collection("Ridge");
+    const Sam = await db.collection("Sam");
+    const Zach = await db.collection("Zach");
 
     async function deleteByName(dataCollection, newDate) {
         const result = await dataCollection.deleteOne({date: newDate});
@@ -45,8 +45,8 @@ export default async function handler(req, res) {
                         await createListing(dataCollection, {
                             foodName: foodName,
                             foodPrice: foodPrice,
-                            buy: ["Aidan", "Andoni", "Atay", "Justin", "Keshav", "Kulbir", "Mitchell", "Nathaniel", "Ridge"],
-                            totalPeople: 9,
+                            buy: ["Aidan", "Andoni", "John", "Justin", "Mitchell", "Sam", "Zach"],
+                            totalPeople: 7,
                             itemNumber: itemNumber,
                             img: img
                         })
@@ -89,7 +89,7 @@ export default async function handler(req, res) {
                         totalPrice: 0,
                         markDone: false
                     })
-                    await createListing(Atay, {
+                    await createListing(John, {
                         date: newDate,
                         totalPrice: 0,
                         markDone: false
@@ -99,27 +99,27 @@ export default async function handler(req, res) {
                         totalPrice: 0,
                         markDone: false
                     })
-                    await createListing(Keshav, {
-                        date: newDate,
-                        totalPrice: 0,
-                        markDone: false
-                    })
-                    await createListing(Kulbir, {
-                        date: newDate,
-                        totalPrice: 0,
-                        markDone: false
-                    })
+                    // await createListing(Keshav, {
+                    //     date: newDate,
+                    //     totalPrice: 0,
+                    //     markDone: false
+                    // })
+                    // await createListing(Kulbir, {
+                    //     date: newDate,
+                    //     totalPrice: 0,
+                    //     markDone: false
+                    // })
                     await createListing(Mitchell, {
                         date: newDate,
                         totalPrice: 0,
                         markDone: false
                     })
-                    await createListing(Nathaniel, {
+                    await createListing(Sam, {
                         date: newDate,
                         totalPrice: 0,
                         markDone: false
                     })
-                    await createListing(Ridge, {
+                    await createListing(Zach, {
                         date: newDate,
                         totalPrice: 0,
                         markDone: false
@@ -129,8 +129,8 @@ export default async function handler(req, res) {
                         await createListing(dataCollection, {
                             foodName: foodName,
                             foodPrice: foodPrice,
-                            buy: ["Aidan", "Andoni", "Atay", "Justin", "Keshav", "Kulbir", "Mitchell", "Nathaniel", "Ridge"],
-                            totalPeople: 9,
+                            buy: ["Aidan", "Andoni", "John", "Justin", "Mitchell", "Sam", "Zach"],
+                            totalPeople: 7,
                             itemNumber: itemNumber,
                             img: img
                         })

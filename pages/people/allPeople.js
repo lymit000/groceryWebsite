@@ -4,7 +4,7 @@ import NoProfile from "../components/NoProfile";
 import clientPromise from "../../lib/mongodb";
 import ProfileLinkFlipped from "../components/ProfileLinkFlipped";
 
-export default function Home({Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitchell, Nathaniel, Ridge}) {
+export default function Home({Aidan, Andoni, Atay, Justin, Mitchell, John, Sam, Zach}) {
 
     // const allNames = ["Aidan", "Andoni", "Atay", "Justin", "Keshav", "Kulbir", "Mitchell", "Nathaniel", "Ridge"]
     //
@@ -18,11 +18,13 @@ export default function Home({Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitch
         singleTotal = 0;
     }
     return (
-        <div className={"bg-background h-full w-screen "}>
-            <HomeButton/>
+        <div className={"h-full w-screen "}>
+            <div className={"bg-grayBackground p-2"}>
+                <HomeButton/>
+            </div>
 
 
-            <div className={"bg-background h-screen grid grid-cols-3 flex items-center justify-center text-white"}>
+            <div className={"bg-whiteBackground h-screen grid grid-cols-3 flex items-center justify-center text-white"}>
                 {Aidan && Aidan.map(singleDate => (
                     <>
                         {singleDate.markDone && computeTotal(singleDate.totalPrice)}
@@ -37,12 +39,12 @@ export default function Home({Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitch
                 ))}
                 <NoProfile Name={"Andoni"} totalPrice={Math.round((singleTotal) * 100) / 100}/>
                 {reset()}
-                {Atay && Atay.map(singleDate => (
+                {John && John.map(singleDate => (
                     <>
                         {singleDate.markDone && computeTotal(singleDate.totalPrice)}
                     </>
                 ))}
-                <NoProfile Name={"Atay"} totalPrice={Math.round((singleTotal) * 100) / 100}/>
+                <NoProfile Name={"John"} totalPrice={Math.round((singleTotal) * 100) / 100}/>
                 {reset()}
                 {Justin && Justin.map(singleDate => (
                     <>
@@ -51,20 +53,20 @@ export default function Home({Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitch
                 ))}
                 <NoProfile Name={"Justin"} totalPrice={Math.round((singleTotal) * 100) / 100}/>
                 {reset()}
-                {Keshav && Keshav.map(singleDate => (
-                    <>
-                        {singleDate.markDone && computeTotal(singleDate.totalPrice)}
-                    </>
-                ))}
-                <NoProfile Name={"Keshav"} totalPrice={Math.round((singleTotal) * 100) / 100}/>
-                {reset()}
-                {Kulbir && Kulbir.map(singleDate => (
-                    <>
-                        {singleDate.markDone && computeTotal(singleDate.totalPrice)}
-                    </>
-                ))}
-                <NoProfile Name={"Kulbir"} totalPrice={Math.round((singleTotal) * 100) / 100}/>
-                {reset()}
+                {/*{Keshav && Keshav.map(singleDate => (*/}
+                {/*    <>*/}
+                {/*        {singleDate.markDone && computeTotal(singleDate.totalPrice)}*/}
+                {/*    </>*/}
+                {/*))}*/}
+                {/*<NoProfile Name={"Keshav"} totalPrice={Math.round((singleTotal) * 100) / 100}/>*/}
+                {/*{reset()}*/}
+                {/*{Kulbir && Kulbir.map(singleDate => (*/}
+                {/*    <>*/}
+                {/*        {singleDate.markDone && computeTotal(singleDate.totalPrice)}*/}
+                {/*    </>*/}
+                {/*))}*/}
+                {/*<NoProfile Name={"Kulbir"} totalPrice={Math.round((singleTotal) * 100) / 100}/>*/}
+                {/*{reset()}*/}
                 {Mitchell && Mitchell.map(singleDate => (
                     <>
                         {singleDate.markDone && computeTotal(singleDate.totalPrice)}
@@ -72,19 +74,19 @@ export default function Home({Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitch
                 ))}
                 <NoProfile Name={"Mitchell"} totalPrice={Math.round((singleTotal) * 100) / 100}/>
                 {reset()}
-                {Nathaniel && Nathaniel.map(singleDate => (
+                {Sam && Sam.map(singleDate => (
                     <>
                         {singleDate.markDone && computeTotal(singleDate.totalPrice)}
                     </>
                 ))}
-                <NoProfile Name={"Nathaniel"} totalPrice={Math.round((singleTotal) * 100) / 100}/>
+                <NoProfile Name={"Sam"} totalPrice={Math.round((singleTotal) * 100) / 100}/>
                 {reset()}
-                {Ridge && Ridge.map(singleDate => (
+                {Zach && Zach.map(singleDate => (
                     <>
                         {singleDate.markDone && computeTotal(singleDate.totalPrice)}
                     </>
                 ))}
-                <NoProfile Name={"Ridge"} totalPrice={Math.round((singleTotal) * 100) / 100}/>
+                <NoProfile Name={"Zach"} totalPrice={Math.round((singleTotal) * 100) / 100}/>
                 {reset()}
 
             </div>
@@ -102,29 +104,38 @@ export async function getServerSideProps(context) {
     const andoniDB = await db.collection("Andoni").find().toArray();
     const Andoni = await JSON.parse(JSON.stringify(andoniDB));
 
-    const atayDB = await db.collection("Atay").find().toArray();
-    const Atay = await JSON.parse(JSON.stringify(atayDB));
+    // const atayDB = await db.collection("Atay").find().toArray();
+    // const Atay = await JSON.parse(JSON.stringify(atayDB));
 
     const justinDB = await db.collection("Justin").find().toArray();
     const Justin = await JSON.parse(JSON.stringify(justinDB));
 
-    const keshavDB = await db.collection("Keshav").find().toArray();
-    const Keshav = await JSON.parse(JSON.stringify(keshavDB));
-
-    const kulbirDB = await db.collection("Kulbir").find().toArray();
-    const Kulbir = await JSON.parse(JSON.stringify(kulbirDB));
+    // const keshavDB = await db.collection("Keshav").find().toArray();
+    // const Keshav = await JSON.parse(JSON.stringify(keshavDB));
+    //
+    // const kulbirDB = await db.collection("Kulbir").find().toArray();
+    // const Kulbir = await JSON.parse(JSON.stringify(kulbirDB));
 
     const mitchellDB = await db.collection("Mitchell").find().toArray();
     const Mitchell = await JSON.parse(JSON.stringify(mitchellDB));
 
-    const nathanielDB = await db.collection("Nathaniel").find().toArray();
-    const Nathaniel = await JSON.parse(JSON.stringify(nathanielDB));
+    // const nathanielDB = await db.collection("Nathaniel").find().toArray();
+    // const Nathaniel = await JSON.parse(JSON.stringify(nathanielDB));
+    //
+    // const ridgeDB = await db.collection("Ridge").find().toArray();
+    // const Ridge = await JSON.parse(JSON.stringify(ridgeDB));
 
-    const ridgeDB = await db.collection("Ridge").find().toArray();
-    const Ridge = await JSON.parse(JSON.stringify(ridgeDB));
+    const johnDB = await db.collection("John").find().toArray();
+    const John = await JSON.parse(JSON.stringify(johnDB));
+
+    const samDB = await db.collection("Sam").find().toArray();
+    const Sam = await JSON.parse(JSON.stringify(samDB));
+
+    const zachDB = await db.collection("Zach").find().toArray();
+    const Zach = await JSON.parse(JSON.stringify(zachDB));
 
     return {
-        props: { Aidan, Andoni, Atay, Justin, Keshav, Kulbir, Mitchell, Nathaniel, Ridge },
+        props: { Aidan, Andoni, Justin, Mitchell, John, Sam, Zach },
     }
 }
 
