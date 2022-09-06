@@ -3,6 +3,8 @@ import HomeButton from "../components/HomeButton";
 import NoProfile from "../components/NoProfile";
 import clientPromise from "../../lib/mongodb";
 import ProfileLinkFlipped from "../components/ProfileLinkFlipped";
+import {server} from "../../config";
+import Link from "next/link";
 
 export default function Home({Aidan, Andoni, Atay, Justin, Mitchell, John, Sam, Zach}) {
 
@@ -19,8 +21,16 @@ export default function Home({Aidan, Andoni, Atay, Justin, Mitchell, John, Sam, 
     }
     return (
         <div className={"h-full w-screen "}>
-            <div className={"bg-grayBackground p-2"}>
+            <div className={"bg-grayBackground p-2 grid-cols-3 grid"}>
                 <HomeButton/>
+                <div></div>
+                <div className={"flex justify-end"}>
+                    <Link href={server + "dates/allDates"} passHref>
+                        <button className={"bg-greenBackground text-yellowFont mx-1 w-fit rounded-lg p-2"}>
+                            Go to All Dates
+                        </button>
+                    </Link>
+                </div>
             </div>
 
 

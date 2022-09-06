@@ -27,9 +27,9 @@ export default function Home({ Aidan, Andoni, Atay, Justin, Mitchell, John, Sam,
                 <HomeButton/>
                 <div></div>
                 <div className={"text-right"}>
-                    <Link href={server + "dates/allDates#1"} passHref>
+                    <Link href={server + "people/allPeople"} passHref>
                         <button className={"bg-greenBackground text-yellowFont mx-1 w-fit rounded-lg p-2"}>
-                            Back to All Dates
+                            Go to All People
                         </button>
                     </Link>
                 </div>
