@@ -25,7 +25,7 @@ function MovieDetails({ personName, personOfDate, receiptOfDate, date, returnCol
             <div className={"bg-whiteBackground h-screen w-screen"}>
                 <div className={"bg-grayBackground p-2 grid grid-cols-5"}>
                     <HomeButton/>
-                    <div className={"text-7xl text-left font-bold text-greenFont flex justify-start place-items-center"}>
+                    <div className={"text-5xl text-left font-bold text-greenFont flex justify-start place-items-center"}>
                         {personName}
                     </div>
                     <NameHeader  totalPrice={personOfDate.totalPrice} date={date} buy={personOfDate.markDone}/>
