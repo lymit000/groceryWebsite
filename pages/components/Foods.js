@@ -30,12 +30,12 @@ function Foods(props, { person, receipt, date, didBuy }) {
     useEffect(() => {
         if (bought === false) {
             setWords("Add");
-            setActualBuyButton("items-center text-center p-3  border-2 bg-greenBackground border-0 w-full rounded-b-xl border-green-400 border-dotted font-mono");
+            setActualBuyButton("items-center text-center p-3  border-2 bg-redFont border-0 w-full rounded-b-xl border-green-400 border-dotted font-mono");
             setBuyButton("flex w-full bg-whiteBackground h-full border-t-2 border-r-2 border-l-2 border-redFont  p-2 flex-col")
             setHeader("items-center text-center p-2 text-yellowFont border-2 bg-redFont border-0 w-full rounded-t-xl border-green-400 border-dotted");
         } else if (bought === true) {
             setWords("Remove");
-            setActualBuyButton("items-center text-center p-3  border-2 bg-redFont border-0 w-full rounded-b-xl border-green-400 border-dotted font-mono");
+            setActualBuyButton("items-center text-center p-3  border-2 bg-greenBackground border-0 w-full rounded-b-xl border-green-400 border-dotted font-mono");
             setHeader("items-center text-center p-2  border-2 bg-greenBackground border-0 w-full rounded-t-xl border-green-400 border-dotted font-mono");
             setBuyButton("flex w-full bg-whiteBackground h-full border-t-2 border-r-2 border-l-2 border-greenBackground  p-2 flex-col")
         }
