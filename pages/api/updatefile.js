@@ -39,101 +39,190 @@ export default async function handler(req, res) {
         const result = await dataCollection.deleteOne({date: newDate});
     }
 
-    await test()
 
     // wholeThing();
     async function test() {
+        if (db.listCollections({ name: newDate }).hasNext()) {
+            if (allOrNot === "true") {
+                await createListing(dataCollection, {
+                    foodName: foodName,
+                    foodPrice: foodPrice,
+                    buy: ["Aidan", "Andoni", "John", "Justin", "Mitchell", "Sam", "Zach"],
+                    totalPeople: 7,
+                    itemNumber: itemNumber,
+                    img: img
+                })
+            } else {
+                await createListing(dataCollection, {
+                    foodName: foodName,
+                    foodPrice: foodPrice,
+                    buy: [],
+                    totalPeople: 0,
+                    itemNumber: itemNumber,
+                    img: img
+                })
+            }
+        } else {
+            if (allOrNot === "true") {
+                await createListing(dataCollection, {
+                    foodName: foodName,
+                    foodPrice: foodPrice,
+                    buy: ["Aidan", "Andoni", "John", "Justin", "Mitchell", "Sam", "Zach"],
+                    totalPeople: 7,
+                    itemNumber: itemNumber,
+                    img: img
+                })
+            } else {
+                await createListing(dataCollection, {
+                    foodName: foodName,
+                    foodPrice: foodPrice,
+                    buy: [],
+                    totalPeople: 0,
+                    itemNumber: itemNumber,
+                    img: img
+                })
+            }
 
-        db.listCollections({name: newDate})
-            .next(async function (err, collinfo) {
-                if (collinfo) {
-                    if (allOrNot === "true") {
-                        await createListing(dataCollection, {
-                            foodName: foodName,
-                            foodPrice: foodPrice,
-                            buy: ["Aidan", "Andoni", "John", "Justin", "Mitchell", "Sam", "Zach"],
-                            totalPeople: 7,
-                            itemNumber: itemNumber,
-                            img: img
-                        })
-                    } else {
-                        await createListing(dataCollection, {
-                            foodName: foodName,
-                            foodPrice: foodPrice,
-                            buy: [],
-                            totalPeople: 0,
-                            itemNumber: itemNumber,
-                            img: img
-                        })
-                    }
-                } else {
-                    if (allOrNot === "true") {
-                        await createListing(dataCollection, {
-                            foodName: foodName,
-                            foodPrice: foodPrice,
-                            buy: ["Aidan", "Andoni", "John", "Justin", "Mitchell", "Sam", "Zach"],
-                            totalPeople: 7,
-                            itemNumber: itemNumber,
-                            img: img
-                        })
-                    } else {
-                        await createListing(dataCollection, {
-                            foodName: foodName,
-                            foodPrice: foodPrice,
-                            buy: [],
-                            totalPeople: 0,
-                            itemNumber: itemNumber,
-                            img: img
-                        })
-                    }
-
-                    await createListing(Aidan, {
-                        date: newDate,
-                        totalPrice: 0,
-                        markDone: false
-                    })
-                    await createListing(Andoni, {
-                        date: newDate,
-                        totalPrice: 0,
-                        markDone: false
-                    })
-                    await createListing(John, {
-                        date: newDate,
-                        totalPrice: 0,
-                        markDone: false
-                    })
-                    await createListing(Justin, {
-                        date: newDate,
-                        totalPrice: 0,
-                        markDone: false
-                    })
-                    // await createListing(Keshav, {
-                    //     date: newDate,
-                    //     totalPrice: 0,
-                    //     markDone: false
-                    // })
-                    // await createListing(Kulbir, {
-                    //     date: newDate,
-                    //     totalPrice: 0,
-                    //     markDone: false
-                    // })
-                    await createListing(Mitchell, {
-                        date: newDate,
-                        totalPrice: 0,
-                        markDone: false
-                    })
-                    await createListing(Sam, {
-                        date: newDate,
-                        totalPrice: 0,
-                        markDone: false
-                    })
-                    await createListing(Zach, {
-                        date: newDate,
-                        totalPrice: 0,
-                        markDone: false
-                    })
-                }
+            await createListing(Aidan, {
+                date: newDate,
+                totalPrice: 0,
+                markDone: false
             })
+            await createListing(Andoni, {
+                date: newDate,
+                totalPrice: 0,
+                markDone: false
+            })
+            await createListing(John, {
+                date: newDate,
+                totalPrice: 0,
+                markDone: false
+            })
+            await createListing(Justin, {
+                date: newDate,
+                totalPrice: 0,
+                markDone: false
+            })
+            // await createListing(Keshav, {
+            //     date: newDate,
+            //     totalPrice: 0,
+            //     markDone: false
+            // })
+            // await createListing(Kulbir, {
+            //     date: newDate,
+            //     totalPrice: 0,
+            //     markDone: false
+            // })
+            await createListing(Mitchell, {
+                date: newDate,
+                totalPrice: 0,
+                markDone: false
+            })
+            await createListing(Sam, {
+                date: newDate,
+                totalPrice: 0,
+                markDone: false
+            })
+            await createListing(Zach, {
+                date: newDate,
+                totalPrice: 0,
+                markDone: false
+            })
+        }
+    }
+
+    await test()
+    res.json({message: "IT WORKS!!"})
+        // db.listCollections({name: newDate})
+        //     .next(async function (err, collinfo) {
+        //         if (collinfo) {
+        //             if (allOrNot === "true") {
+        //                 await createListing(dataCollection, {
+        //                     foodName: foodName,
+        //                     foodPrice: foodPrice,
+        //                     buy: ["Aidan", "Andoni", "John", "Justin", "Mitchell", "Sam", "Zach"],
+        //                     totalPeople: 7,
+        //                     itemNumber: itemNumber,
+        //                     img: img
+        //                 })
+        //             } else {
+        //                 await createListing(dataCollection, {
+        //                     foodName: foodName,
+        //                     foodPrice: foodPrice,
+        //                     buy: [],
+        //                     totalPeople: 0,
+        //                     itemNumber: itemNumber,
+        //                     img: img
+        //                 })
+        //             }
+        //         } else {
+        //             if (allOrNot === "true") {
+        //                 await createListing(dataCollection, {
+        //                     foodName: foodName,
+        //                     foodPrice: foodPrice,
+        //                     buy: ["Aidan", "Andoni", "John", "Justin", "Mitchell", "Sam", "Zach"],
+        //                     totalPeople: 7,
+        //                     itemNumber: itemNumber,
+        //                     img: img
+        //                 })
+        //             } else {
+        //                 await createListing(dataCollection, {
+        //                     foodName: foodName,
+        //                     foodPrice: foodPrice,
+        //                     buy: [],
+        //                     totalPeople: 0,
+        //                     itemNumber: itemNumber,
+        //                     img: img
+        //                 })
+        //             }
+        //
+        //             await createListing(Aidan, {
+        //                 date: newDate,
+        //                 totalPrice: 0,
+        //                 markDone: false
+        //             })
+        //             await createListing(Andoni, {
+        //                 date: newDate,
+        //                 totalPrice: 0,
+        //                 markDone: false
+        //             })
+        //             await createListing(John, {
+        //                 date: newDate,
+        //                 totalPrice: 0,
+        //                 markDone: false
+        //             })
+        //             await createListing(Justin, {
+        //                 date: newDate,
+        //                 totalPrice: 0,
+        //                 markDone: false
+        //             })
+        //             // await createListing(Keshav, {
+        //             //     date: newDate,
+        //             //     totalPrice: 0,
+        //             //     markDone: false
+        //             // })
+        //             // await createListing(Kulbir, {
+        //             //     date: newDate,
+        //             //     totalPrice: 0,
+        //             //     markDone: false
+        //             // })
+        //             await createListing(Mitchell, {
+        //                 date: newDate,
+        //                 totalPrice: 0,
+        //                 markDone: false
+        //             })
+        //             await createListing(Sam, {
+        //                 date: newDate,
+        //                 totalPrice: 0,
+        //                 markDone: false
+        //             })
+        //             await createListing(Zach, {
+        //                 date: newDate,
+        //                 totalPrice: 0,
+        //                 markDone: false
+        //             })
+        //         }
+        //     })
     }
 
     // async function wholeThing() {
@@ -483,8 +572,7 @@ export default async function handler(req, res) {
 
             //
     //
-    res.json({message: "IT WORKS!!"})
-}
+
 
 // import clientPromise from '../../lib/mongodb'
 // import {ObjectId} from "mongodb";
