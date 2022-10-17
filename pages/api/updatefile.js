@@ -41,102 +41,82 @@ export default async function handler(req, res) {
     }
 
     async function createPeople() {
-        await createListing(Aidan, {
-            date: newDate,
-            totalPrice: 0,
-            markDone: false
-        })
-        await createListing(Andoni, {
-            date: newDate,
-            totalPrice: 0,
-            markDone: false
-        })
-        await createListing(John, {
-            date: newDate,
-            totalPrice: 0,
-            markDone: false
-        })
-        await createListing(Justin, {
-            date: newDate,
-            totalPrice: 0,
-            markDone: false
-        })
-        // await createListing(Keshav, {
-        //     date: newDate,
-        //     totalPrice: 0,
-        //     markDone: false
-        // })
-        // await createListing(Kulbir, {
-        //     date: newDate,
-        //     totalPrice: 0,
-        //     markDone: false
-        // })
-        await createListing(Mitchell, {
-            date: newDate,
-            totalPrice: 0,
-            markDone: false
-        })
-        await createListing(Sam, {
-            date: newDate,
-            totalPrice: 0,
-            markDone: false
-        })
-        await createListing(Zach, {
-            date: newDate,
-            totalPrice: 0,
-            markDone: false
-        })
+        if (exists) {
+            await createListing(Aidan, {
+                date: newDate,
+                totalPrice: 0,
+                markDone: false
+            })
+            await createListing(Andoni, {
+                date: newDate,
+                totalPrice: 0,
+                markDone: false
+            })
+            await createListing(John, {
+                date: newDate,
+                totalPrice: 0,
+                markDone: false
+            })
+            await createListing(Justin, {
+                date: newDate,
+                totalPrice: 0,
+                markDone: false
+            })
+            // await createListing(Keshav, {
+            //     date: newDate,
+            //     totalPrice: 0,
+            //     markDone: false
+            // })
+            // await createListing(Kulbir, {
+            //     date: newDate,
+            //     totalPrice: 0,
+            //     markDone: false
+            // })
+            await createListing(Mitchell, {
+                date: newDate,
+                totalPrice: 0,
+                markDone: false
+            })
+            await createListing(Sam, {
+                date: newDate,
+                totalPrice: 0,
+                markDone: false
+            })
+            await createListing(Zach, {
+                date: newDate,
+                totalPrice: 0,
+                markDone: false
+            })
+        }
     }
 
 
     // wholeThing();
     async function test() {
-        if (exists) {
-            if (allOrNot === "true") {
-                await createListing(dataCollection, {
-                    foodName: foodName,
-                    foodPrice: foodPrice,
-                    buy: ["Aidan", "Andoni", "John", "Justin", "Mitchell", "Sam", "Zach"],
-                    totalPeople: 7,
-                    itemNumber: itemNumber,
-                    img: img
-                })
-            } else {
-                await createListing(dataCollection, {
-                    foodName: foodName,
-                    foodPrice: foodPrice,
-                    buy: [],
-                    totalPeople: 0,
-                    itemNumber: itemNumber,
-                    img: img
-                })
-            }
+        if (allOrNot === "true") {
+            await createListing(dataCollection, {
+                foodName: foodName,
+                foodPrice: foodPrice,
+                buy: ["Aidan", "Andoni", "John", "Justin", "Mitchell", "Sam", "Zach"],
+                totalPeople: 7,
+                itemNumber: itemNumber,
+                img: img
+            })
         } else {
-            await createPeople()
-            if (allOrNot === "true") {
-                await createListing(dataCollection, {
-                    foodName: foodName,
-                    foodPrice: foodPrice,
-                    buy: ["Aidan", "Andoni", "John", "Justin", "Mitchell", "Sam", "Zach"],
-                    totalPeople: 7,
-                    itemNumber: itemNumber,
-                    img: img
-                })
-            } else {
-                await createListing(dataCollection, {
-                    foodName: foodName,
-                    foodPrice: foodPrice,
-                    buy: [],
-                    totalPeople: 0,
-                    itemNumber: itemNumber,
-                    img: img
-                })
-            }
-
+            await createListing(dataCollection, {
+                foodName: foodName,
+                foodPrice: foodPrice,
+                buy: [],
+                totalPeople: 0,
+                itemNumber: itemNumber,
+                img: img
+            })
         }
     }
 
     await test()
+    await createPeople()
+
     res.json({message: "IT WORKS!!"})
         // db.listCollections({name: newDate})
         //     .next(async function (err, collinfo) {
