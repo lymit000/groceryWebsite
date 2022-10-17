@@ -7,6 +7,8 @@ export default async function handler(req, res) {
     const itemNumber = (req.query.param3)
     const img = (req.query.param4)
     const allOrNot = (req.query.param5)
+    const oldFoodName = (req.query.param6)
+    const oldImg = (req.query.param7)
 
 
     async function createListing(client, newListing) {
@@ -23,6 +25,7 @@ export default async function handler(req, res) {
 
 
     const dataCollection = await db.collection(newDate);
+    const allFoods = await db.collection("allFoods");
 
     const Aidan = await db.collection("Aidan");
     const Andoni = await db.collection("Andoni");
@@ -38,6 +41,25 @@ export default async function handler(req, res) {
 
     async function deleteByName(dataCollection, newDate) {
         const result = await dataCollection.deleteOne({date: newDate});
+    }
+
+    async function updateAllFoods() {
+        allFoods.update(
+            {
+                foodName: oldFoodName
+            },
+            { $set:
+            {
+                    foodName: foodName,
+                    foodPrice: foodPrice,
+                    buy: [],
+                    totalPeople: 0,
+                    itemNumber: itemNumber,
+                    img: oldImg,
+                    imgAddress: img
+            }}
+        )
+        console.log("enter")
     }
 
     async function createPeople() {
@@ -100,7 +122,7 @@ export default async function handler(req, res) {
                 buy: ["Aidan", "Andoni", "John", "Justin", "Mitchell", "Sam", "Zach"],
                 totalPeople: 7,
                 itemNumber: itemNumber,
-                img: img
+                imgAddress: img
             })
         } else {
             await createListing(dataCollection, {
@@ -109,13 +131,14 @@ export default async function handler(req, res) {
                 buy: [],
                 totalPeople: 0,
                 itemNumber: itemNumber,
-                img: img
+                imgAddress: img
             })
         }
     }
 
     await test()
     await createPeople()
+    await updateAllFoods()
 
     res.json({message: "IT WORKS!!"})
         // db.listCollections({name: newDate})
