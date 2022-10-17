@@ -122,7 +122,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
                             <input type="text" id="itemNumber" className={" bg-greenBackground border-redFont rounded-xl mb-1 p-2"} name="itemNumber" defaultValue={item.itemNumber} required/>
                             <input type="text" id="img" name="img" className={"hidden bg-greenBackground border-redFont border-t-2 p-2"} defaultValue={item.img} required />
                         </div>
-                        <Image src={"/.." + item.img} height={250} width={250} alt= {"../../img/Garlic.jpeg"} Plaiceholder={"blur"}/>
+                        <Image src={"/" + item.img} height={250} width={250} alt={item.foodName} Plaiceholder={"blur"}/>
                             {/*<input id={"allOrNot"} type={"radio"} class="form-radio text-indigo-600"  value={"true"}/>*/}
                         <div className={"grid grid-cols-2"}>
                             <input type="radio" id={item.foodName + "True"} name={"radioButton"} value="true" />

@@ -78,7 +78,7 @@ function Foods(props, { person, receipt, date, didBuy }) {
                 <div className={buyButton}>
 
                     <div className={""}>
-                        <Image alt={props.foodName} src={"/.." + props.img} className={""} width={"550"} height={"550"}/>
+                        <Image alt={props.foodName} src={"/" + props.img} className={""} width={"550"} height={"550"}/>
                     </div>
                     {/*<div className={"mt-auto border-2 border-yellowBackground w-full p-2 rounded-xl"}>*/}
                     {/*    {props.allPeople}*/}
