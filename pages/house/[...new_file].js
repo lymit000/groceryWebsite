@@ -22,7 +22,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
             img: event.target.img.value
         }
 
-        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2=allFoods"+"&param3="+data.itemNumber+"&param4="+data.img+"&param5=true&param6=EMPTY&param7=EMPTY");
+        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2=allFoods"+"&param3="+data.itemNumber+"&param4="+data.img+"&param5=true&param6=EMPTY");
         // Send the data to the server in JSON format.
         // alert("just added " + data.first + " to all foods");
         forceReload();
@@ -50,10 +50,9 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
             img: event.target.img.value,
             allOrNot: event.target.radioButton.value,
             oldFoodName : event.target.oldFoodName.value,
-            oldImg: event.target.oldImg.value
         }
 
-        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2="+collectionName.toString()+"&param3="+data.itemNumber+"&param4="+data.img.replaceAll('&','*')+"&param5="+data.allOrNot+"&param6="+data.oldFoodName+"&param7="+data.oldImg);
+        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2="+collectionName.toString()+"&param3="+data.itemNumber+"&param4="+data.img.replaceAll('&','*')+"&param5="+data.allOrNot+"&param6="+data.oldFoodName);
         // Send the data to the server in JSON format.
 
         // API endpoint where we send form data.
@@ -107,7 +106,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
                     <input type="text" id="first" name="first" className={"my-2 placeholder-redFont text-greenBackground bg-grayBackground block w-full p-4 rounded-lg"} placeholder={"Food Name"} required />
                     <input type="text" id="last" name="last" placeholder={"Food Price"} required className={"text-greenBackground my-2 placeholder-redFont bg-grayBackground block w-full p-4 rounded-lg"}/>
                     <input type="text" id="itemNumber" name="itemNumber" placeholder={"Item Number"} required className={"text-greenBackground my-2 placeholder-redFont bg-grayBackground block w-full p-4 rounded-lg"}/>
-                    <input defaultValue={"../../img/"} type="text" id="img" name="img" required className={"text-greenBackground placeholder-redFont bg-grayBackground block w-full p-4 rounded-lg"}/>
+                    <input placeholder={"Image Address"} type="text" id="img" name="img" required className={"text-greenBackground placeholder-redFont bg-grayBackground block w-full p-4 rounded-lg"}/>
                     <button className={"p-3 rounded-lg my-1 bg-greenBackground mt-4 text-yellowFont text-center"} type="submit">Add New Food</button>
                 </form>
             </div>
@@ -122,11 +121,11 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
                             <input type="text" id="first" name="first" className={"placeholder-black bg-greenBackground p-2 mb-1 rounded-xl text-yellowFont"} defaultValue={item.foodName} required/>
                             <input type="text" id="last" name="last" className={" bg-greenBackground border-redFont rounded-xl mb-1 p-2"} required defaultValue={item.foodPrice}/>
                             <input type="text" id="itemNumber" className={" bg-greenBackground border-redFont rounded-xl mb-1 p-2"} name="itemNumber" defaultValue={item.itemNumber} required/>
-                            <input type="text" id="img" name="img" className={"rounded-lg bg-greenBackground border-redFont mb-1 p-2"} defaultValue={item.img} required />
+                            <input type="text" id="img" name="img" className={"rounded-lg bg-greenBackground border-redFont mb-1 p-2"} defaultValue={item.imgAddress ? item.imgAddress : item.img} required />
                         </div>
                         {/*<img src={"/" + item.img} height={250} width={250} alt={item.foodName}/>*/}
                             <Image
-                                src={item.imgAddress ? item.imgAddress : "/.." + item.img}
+                                src={item.imgAddress ? item.imgAddress : "/" + item.img.slice(6)}
                                 // src={item.img.charAt(0) === 'h' ?  item.img : "/.." + item.img }
 
                                 height={400}
@@ -141,7 +140,6 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
                             <label htmlFor={item.foodName + "False"}>None</label>
                         </div>
                         <input hidden id={"oldFoodName"} name={"oldFoodName"} value={item.foodName}/>
-                        <input className={"hidden w-full bg-greenBackground rounded-b-lg text-redFont p-2 my-1"} id={"oldImg"} name={"oldImg"} value={item.img}/>
                         <button className={"w-full bg-greenBackground rounded-b-lg text-white p-2"} type="submit" scroll={false}>Add</button>
                     </form>
 

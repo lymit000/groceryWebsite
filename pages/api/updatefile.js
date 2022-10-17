@@ -8,7 +8,6 @@ export default async function handler(req, res) {
     const img = (req.query.param4)
     const allOrNot = (req.query.param5)
     const oldFoodName = (req.query.param6)
-    const oldImg = (req.query.param7)
 
 
     async function createListing(client, newListing) {
@@ -40,30 +39,45 @@ export default async function handler(req, res) {
     const exists = db.listCollections({ name: newDate }).hasNext()
 
     async function deleteByName(dataCollection, newDate) {
-        const result = await dataCollection.deleteOne({date: newDate});
+        const result = await dataCollection.deleteMany({date: "10-16-22"});
     }
 
     async function updateAllFoods() {
-        allFoods.update(
-            {
-                foodName: oldFoodName
-            },
-            { $set:
-            {
-                    foodName: foodName,
-                    foodPrice: foodPrice,
-                    buy: [],
-                    totalPeople: 0,
-                    itemNumber: itemNumber,
-                    img: oldImg,
-                    imgAddress: img
-            }}
-        )
-        console.log("enter")
+        if (oldImg.charAt(0) === 'h' ){
+            allFoods.update(
+                {
+                    foodName: oldFoodName
+                },
+                { $set:
+                        {
+                            foodName: foodName,
+                            foodPrice: foodPrice,
+                            buy: [],
+                            totalPeople: 0,
+                            itemNumber: itemNumber,
+                            imgAddress: img,
+                        }}
+            )
+        } else {
+            allFoods.update(
+                {
+                    foodName: oldFoodName
+                },
+                { $set:
+                        {
+                            foodName: foodName,
+                            foodPrice: foodPrice,
+                            buy: [],
+                            totalPeople: 0,
+                            itemNumber: itemNumber,
+                            img: img,
+                        }}
+            )
+        }
     }
 
     async function createPeople() {
-        if (exists) {
+        if (!exists) {
             await createListing(Aidan, {
                 date: newDate,
                 totalPrice: 0,
@@ -139,6 +153,15 @@ export default async function handler(req, res) {
     await test()
     await createPeople()
     await updateAllFoods()
+    // await deleteByName(Aidan, newDate)
+    // await  deleteByName(Andoni, newDate)
+    // await  deleteByName(John, newDate)
+    // await  deleteByName(Justin, newDate)
+    // await  deleteByName(Mitchell, newDate)
+    // await  deleteByName(Sam, newDate)
+    // await  deleteByName(Zach, newDate)
+    // await  deleteByName(Nathaniel, newDate)
+    // await  deleteByName(Ridge, newDate)
 
     res.json({message: "IT WORKS!!"})
         // db.listCollections({name: newDate})
