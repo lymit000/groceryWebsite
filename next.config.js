@@ -2,7 +2,7 @@
 const nextConfig = {
     reactStrictMode: true,
     images : {
-        domains : ['images.costco-static.com','richmedia.ca-richimage.com'],
+        domains : ['images.costco-static.com','richmedia.ca-richimage.com','images.albertsons-media.com'],
     },
 }
 
