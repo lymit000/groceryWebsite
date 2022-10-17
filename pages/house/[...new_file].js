@@ -6,6 +6,7 @@ import {useRouter} from "next/router";
 import Image from "next/image";
 
 
+
 export default function PageWithJSbasedForm({allFood, collectionName}) {
     const router = useRouter();
     const forceReload = () => {
@@ -23,8 +24,8 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
 
         const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2=allFoods"+"&param3="+data.itemNumber+"&param4="+data.img+"&param5=true");
         // Send the data to the server in JSON format.
-        // forceReload();
-        alert("just added " + data.first + " to all foods");
+        forceReload();
+        // alert("just added " + data.first + " to all foods");
         // API endpoint where we send form data.
     }
 
@@ -98,19 +99,11 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
 
             <div className={"p-8 text-center"}>
                 <form onSubmit={refreshSubmit} className={""}>
-                    {/*<label htmlFor="first">Food Name</label>*/}
-                    <input type="text" id="first" name="first" className={"my-2 placeholder-greenBackground text-greenBackground bg-grayBackground block w-full p-4 rounded-lg"} placeholder={"Food Name"} required />
-
-                    {/*<label htmlFor="last">Food Price</label>*/}
-                    <input type="text" id="last" name="last" placeholder={"Food Price"} required className={"text-greenBackground my-2 placeholder-greenBackground bg-grayBackground block w-full p-4 rounded-lg"}/>
-
-                    {/*<label htmlFor="itemNumber">Item Number</label>*/}
-                    <input type="text" id="itemNumber" name="itemNumber" placeholder={"Item Number"} required className={"text-greenBackground my-2 placeholder-greenBackground bg-grayBackground block w-full p-4 rounded-lg"}/>
-
-                    {/*<label htmlFor="img">Img</label>*/}
-                    <input defaultValue={"../../img/"} type="text" id="img" name="img" required className={"text-greenBackground placeholder-greenBackground bg-grayBackground block w-full p-4 rounded-lg"}/>
+                    <input type="text" id="first" name="first" className={"my-2 placeholder-redFont text-greenBackground bg-grayBackground block w-full p-4 rounded-lg"} placeholder={"Food Name"} required />
+                    <input type="text" id="last" name="last" placeholder={"Food Price"} required className={"text-greenBackground my-2 placeholder-redFont bg-grayBackground block w-full p-4 rounded-lg"}/>
+                    <input type="text" id="itemNumber" name="itemNumber" placeholder={"Item Number"} required className={"text-greenBackground my-2 placeholder-redFont bg-grayBackground block w-full p-4 rounded-lg"}/>
+                    <input defaultValue={"../../img/"} type="text" id="img" name="img" required className={"text-greenBackground placeholder-redFont bg-grayBackground block w-full p-4 rounded-lg"}/>
                     <button className={"p-3 rounded-lg my-1 bg-greenBackground mt-4 text-yellowFont text-center"} type="submit">Add New Food</button>
-
                 </form>
             </div>
 
@@ -126,7 +119,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
                             <input type="text" id="itemNumber" className={" bg-greenBackground border-redFont rounded-xl mb-1 p-2"} name="itemNumber" defaultValue={item.itemNumber} required/>
                             <input type="text" id="img" name="img" className={"hidden bg-greenBackground border-redFont border-t-2 p-2"} defaultValue={item.img} required />
                         </div>
-                        <img src={"/" + item.img} alt={"not working so temp right here"}/>
+                        <img src={"/" + item.img} height={200} width={200} alt={""}/>
                             {/*<input id={"allOrNot"} type={"radio"} class="form-radio text-indigo-600"  value={"true"}/>*/}
                         <div className={"grid grid-cols-2"}>
                             <input type="radio" id={item.foodName + "True"} name={"radioButton"} value="true" />
