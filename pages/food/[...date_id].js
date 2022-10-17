@@ -52,7 +52,7 @@ function MovieDetails({ personName, personOfDate, receiptOfDate, date, returnCol
                 {receiptOfDate && receiptOfDate.map(item => (
                     <>
                         <div>
-                            <Foods foodName={item.foodName} foodPrice={item.foodPrice} Name={personName} buy={JSON.parse(JSON.stringify(item.buy)).includes(personName)} date={personOfDate.date} totalPeople={item.totalPeople} img={item.imgAddress ? item.imgAddress.charAt(0) === 'h' ? item.imgAddress : item.imgAddress.slice(6) : "/" + item.img.slice(6)} totalPrice={personOfDate.totalPrice} allPeople={item.buy}/>
+                            <Foods foodName={item.foodName} foodPrice={item.foodPrice} Name={personName} buy={JSON.parse(JSON.stringify(item.buy)).includes(personName)} date={personOfDate.date} totalPeople={item.totalPeople} img={(item.imgAddress ? item.imgAddress : "/" + item.img.slice(6))} totalPrice={personOfDate.totalPrice} allPeople={item.buy}/>
                             {/*{item.buy && item.buy.map(singlePersons => (*/}
                             {/*    singlePersons + " "*/}
                             {/*))}*/}
