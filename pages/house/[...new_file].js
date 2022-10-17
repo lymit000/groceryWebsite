@@ -23,8 +23,8 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
 
         const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2=allFoods"+"&param3="+data.itemNumber+"&param4="+data.img+"&param5=true");
         // Send the data to the server in JSON format.
-        forceReload();
-        // alert("just added " + first + "to all foods");
+        // forceReload();
+        alert("just added " + data.first + " to all foods");
         // API endpoint where we send form data.
     }
 
@@ -117,10 +117,10 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
 
             <div className={"bg-whiteBackground h-full grid place-items-center grid-cols-5 gap-4 justify-items-center text-yellowFont p-2 max-w"}>
                 {allFood && allFood.map(item => (
-                    <div className={"radio-toolbar"}>
+                    <div className={"radio-toolbar"} key={item.foodName}>
 
                     <form onSubmit={handleSubmit} className={"bg-grayBackground p-4 rounded-xl rounded-t-lg font-semibold text-center w-min"}>
-                        <div class={"radio-toolbar"}>
+                        <div className={"radio-toolbar"}>
                             <input type="text" id="first" name="first" className={"placeholder-black bg-greenBackground p-2 mb-1 rounded-xl text-yellowFont"} defaultValue={item.foodName} required/>
                             <input type="text" id="last" name="last" className={" bg-greenBackground border-redFont rounded-xl mb-1 p-2"} required defaultValue={item.foodPrice}/>
                             <input type="text" id="itemNumber" className={" bg-greenBackground border-redFont rounded-xl mb-1 p-2"} name="itemNumber" defaultValue={item.itemNumber} required/>
@@ -130,9 +130,9 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
                             {/*<input id={"allOrNot"} type={"radio"} class="form-radio text-indigo-600"  value={"true"}/>*/}
                         <div className={"grid grid-cols-2"}>
                             <input type="radio" id={item.foodName + "True"} name={"radioButton"} value="true" />
-                            <label for={item.foodName + "True"}>All</label>
+                            <label htmlFor={item.foodName + "True"}>All</label>
                             <input type="radio" id={item.foodName + "False"} name={"radioButton"} value="false" checked/>
-                            <label for={item.foodName + "False"}>None</label>
+                            <label htmlFor={item.foodName + "False"}>None</label>
                         </div>
                         <button className={"w-full bg-greenBackground rounded-b-lg text-white p-2"} type="submit" scroll={false}>Add</button>
                     </form>
