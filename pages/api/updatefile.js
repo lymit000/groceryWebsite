@@ -8,6 +8,7 @@ export default async function handler(req, res) {
     const img = (req.query.param4)
     const allOrNot = (req.query.param5)
 
+
     async function createListing(client, newListing) {
         // Which database youre going to use and which collection in the db
         // And inserts one
@@ -20,6 +21,7 @@ export default async function handler(req, res) {
     const client = await clientPromise
     const db = await client.db("grocery-app")
 
+
     const dataCollection = await db.collection(newDate);
 
     const Aidan = await db.collection("Aidan");
@@ -31,6 +33,7 @@ export default async function handler(req, res) {
     const Mitchell = await db.collection("Mitchell");
     const Sam = await db.collection("Sam");
     const Zach = await db.collection("Zach");
+    const int = await db.List.indexOf(newDate);
 
     async function deleteByName(dataCollection, newDate) {
         const result = await dataCollection.deleteOne({date: newDate});
@@ -40,9 +43,9 @@ export default async function handler(req, res) {
 
     // wholeThing();
     async function test() {
-        db.listCollections({name: newDate})
-            .next(async function (err, collinfo) {
-                if (collinfo) {
+        // db.listCollections({name: newDate})
+        //     .next(async function (err, collinfo) {
+                if (db.listCollections({ name: newDate }).hasNext()) {
                     if (allOrNot === "true") {
                         await createListing(dataCollection, {
                             foodName: foodName,
@@ -62,7 +65,6 @@ export default async function handler(req, res) {
                             img: img
                         })
                     }
-
                 } else {
                     if (allOrNot === "true") {
                         await createListing(dataCollection, {
@@ -130,8 +132,8 @@ export default async function handler(req, res) {
                         markDone: false
                     })
                 }
-            });
-    }
+            }
+
 
     // async function wholeThing() {
     //             // if (allOrNot === "allFoods") {
