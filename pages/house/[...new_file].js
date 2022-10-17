@@ -22,12 +22,10 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
             img: event.target.img.value
         }
 
-        const personDB = await fetch(server + '/api/updateAllFoods?param0='+data.first+"&param1="+data.last+"&param2="+data.itemNumber+"&param3="+data.img);
+        const personDB = await fetch(server + '/api/updateAllFoods?param0='+data.first+"&param1="+data.last+"&param2="+data.itemNumber+"&param3="+data.img.replaceAll('&','*'));
         // Send the data to the server in JSON format.
-        // alert("just added " + data.first + " to all foods");
-        forceReload();
-        forceReload();
-
+        alert("just added " + data.first + " to all foods");
+        forceReload()
         // API endpoint where we send form data.
     }
 
@@ -49,10 +47,9 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
             itemNumber: event.target.itemNumber.value,
             img: event.target.img.value,
             allOrNot: event.target.radioButton.value,
-            oldFoodName : event.target.oldFoodName.value,
         }
 
-        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2="+collectionName.toString()+"&param3="+data.itemNumber+"&param4="+data.img.replaceAll('&','*')+"&param5="+data.allOrNot+"&param6="+data.oldFoodName);
+        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2="+collectionName.toString()+"&param3="+data.itemNumber+"&param4="+data.img.replaceAll('&','*')+"&param5="+data.allOrNot);
         // Send the data to the server in JSON format.
 
         // API endpoint where we send form data.
@@ -102,7 +99,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
             </div>
 
             <div className={"p-8 text-center"}>
-                <form onSubmit={refreshSubmit} className={""}>
+                <form onSubmit={refreshSubmit}>
                     <input type="text" id="first" name="first" className={"my-2 placeholder-redFont text-greenBackground bg-grayBackground block w-full p-4 rounded-lg"} placeholder={"Food Name"} required />
                     <input type="text" id="last" name="last" placeholder={"Food Price"} required className={"text-greenBackground my-2 placeholder-redFont bg-grayBackground block w-full p-4 rounded-lg"}/>
                     <input type="text" id="itemNumber" name="itemNumber" placeholder={"Item Number"} required className={"text-greenBackground my-2 placeholder-redFont bg-grayBackground block w-full p-4 rounded-lg"}/>

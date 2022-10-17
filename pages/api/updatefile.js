@@ -7,7 +7,6 @@ export default async function handler(req, res) {
     const itemNumber = (req.query.param3)
     const img = (req.query.param4).replaceAll('*','&')
     const allOrNot = (req.query.param5)
-    const oldFoodName = (req.query.param6)
 
 
     async function createListing(client, newListing) {
@@ -42,39 +41,39 @@ export default async function handler(req, res) {
         // const result = await dataCollection.deleteMany({date: "10-16-22"});
     }
 
-    async function updateAllFoods() {
-        if (img.charAt(0) === 'h' ){
-            allFoods.update(
-                {
-                    foodName: oldFoodName
-                },
-                { $set:
-                        {
-                            foodName: foodName,
-                            foodPrice: foodPrice,
-                            buy: [],
-                            totalPeople: 0,
-                            itemNumber: itemNumber,
-                            imgAddress: img,
-                        }}
-            )
-        } else {
-            allFoods.update(
-                {
-                    foodName: oldFoodName
-                },
-                { $set:
-                        {
-                            foodName: foodName,
-                            foodPrice: foodPrice,
-                            buy: [],
-                            totalPeople: 0,
-                            itemNumber: itemNumber,
-                            img: img,
-                        }}
-            )
-        }
-    }
+    // async function updateAllFoods() {
+    //     if (img.charAt(0) === 'h' ){
+    //         allFoods.update(
+    //             {
+    //                 foodName: oldFoodName
+    //             },
+    //             { $set:
+    //                     {
+    //                         foodName: foodName,
+    //                         foodPrice: foodPrice,
+    //                         buy: [],
+    //                         totalPeople: 0,
+    //                         itemNumber: itemNumber,
+    //                         imgAddress: img,
+    //                     }}
+    //         )
+    //     } else {
+    //         allFoods.update(
+    //             {
+    //                 foodName: oldFoodName
+    //             },
+    //             { $set:
+    //                     {
+    //                         foodName: foodName,
+    //                         foodPrice: foodPrice,
+    //                         buy: [],
+    //                         totalPeople: 0,
+    //                         itemNumber: itemNumber,
+    //                         img: img,
+    //                     }}
+    //         )
+    //     }
+    // }
 
     async function createPeople() {
         if (!exists) {
@@ -163,7 +162,6 @@ export default async function handler(req, res) {
     // await  deleteByName(Nathaniel, newDate)
     // await  deleteByName(Ridge, newDate)
 
-    res.json({message: "IT WORKS!!"})
         // db.listCollections({name: newDate})
         //     .next(async function (err, collinfo) {
         //         if (collinfo) {
