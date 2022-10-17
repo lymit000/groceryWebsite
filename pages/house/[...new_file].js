@@ -31,7 +31,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
             body: JSON.stringify({first: event.target.first.value,
             last: event.target.last.value,
             itemNumber: event.target.itemNumber.value,
-            img: event.target.img.value}),
+            img: event.target.img.value.replace("images.costco-static.com", "richmedia.ca-richimage.com")}),
         })
 
         // Send the data to the server in JSON format.
@@ -122,7 +122,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
                     <input type="text" id="first" name="first" className={"my-2 placeholder-redFont text-greenBackground bg-grayBackground block w-full p-4 rounded-lg"} placeholder={"Food Name"} required />
                     <input type="text" id="last" name="last" placeholder={"Food Price"} required className={"text-greenBackground my-2 placeholder-redFont bg-grayBackground block w-full p-4 rounded-lg"}/>
                     <input type="text" id="itemNumber" name="itemNumber" placeholder={"Item Number"} required className={"text-greenBackground my-2 placeholder-redFont bg-grayBackground block w-full p-4 rounded-lg"}/>
-                    <input placeholder={"Image Address"} type="text" id="img" name="img" required className={"text-greenBackground placeholder-redFont bg-grayBackground block w-full p-4 rounded-lg"} defaultValue={"https://richmedia.ca-richimage.com/"}/>
+                    <input placeholder={"Image Address"} type="text" id="img" name="img" required className={"text-greenBackground placeholder-redFont bg-grayBackground block w-full p-4 rounded-lg"} />
                     <button className={"p-3 rounded-lg my-1 bg-greenBackground mt-4 text-yellowFont text-center"} type="submit">Add New Food</button>
                 </form>
             </div>
@@ -137,7 +137,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
                             <input type="text" id="first" name="first" className={"placeholder-black bg-greenBackground p-2 mb-1 rounded-xl text-yellowFont"} defaultValue={item.foodName} required/>
                             <input type="text" id="last" name="last" className={" bg-greenBackground border-redFont rounded-xl mb-1 p-2"} required defaultValue={item.foodPrice}/>
                             <input type="text" id="itemNumber" className={" bg-greenBackground border-redFont rounded-xl mb-1 p-2"} name="itemNumber" defaultValue={item.itemNumber} required/>
-                            <input type="text" id="img" name="img" className={"rounded-lg bg-greenBackground border-redFont mb-1 p-2"} defaultValue={item.imgAddress ? item.imgAddress : item.img} required />
+                            <input type="text" id="img" name="img" className={"hidden rounded-lg bg-greenBackground border-redFont mb-1 p-2"} defaultValue={item.imgAddress ? item.imgAddress : item.img} required />
                         </div>
                         {/*<img src={"/" + item.img} height={250} width={250} alt={item.foodName}/>*/}
                             <Image
@@ -148,12 +148,12 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
                             />
                         {/*<input id={"allOrNot"} type={"radio"} class="form-radio text-indigo-600"  value={"true"}/>*/}
                         <div className={"grid grid-cols-2"}>
-                            <input type="radio" id={item.foodName + "True"} name={"radioButton"} value="true" />
+                            <input type="radio" id={item.foodName + "True"} name={"radioButton"} defaultValue="true" />
                             <label htmlFor={item.foodName + "True"}>All</label>
-                            <input type="radio" id={item.foodName + "False"} name={"radioButton"} value="false" defaultChecked/>
+                            <input type="radio" id={item.foodName + "False"} name={"radioButton"} defaultValue="false" defaultChecked/>
                             <label htmlFor={item.foodName + "False"}>None</label>
                         </div>
-                        <input hidden id={"oldFoodName"} name={"oldFoodName"} value={item.foodName}/>
+                        <input hidden id={"oldFoodName"} name={"oldFoodName"} defaultValue={item.foodName}/>
                         <button className={"w-full bg-greenBackground rounded-b-lg text-white p-2"} type="submit" scroll={false}>Add</button>
                     </form>
 
@@ -202,11 +202,8 @@ export async function getServerSideProps(context) {
 
     const foodCollection = await entireDB.collection("allFoods");
 
-    const session = client.startSession();
-        const allFoodCollection = await foodCollection.find().toArray();
-        const allFood = await JSON.parse(JSON.stringify(allFoodCollection));
-        await session.endSession();
-
+    const allFoodCollection = await foodCollection.find().toArray();
+    const allFood = await JSON.parse(JSON.stringify(allFoodCollection));
     return {
         props: {allFood, collectionName},
     }
