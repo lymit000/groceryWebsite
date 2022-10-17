@@ -33,19 +33,20 @@ export default async function handler(req, res) {
     const Mitchell = await db.collection("Mitchell");
     const Sam = await db.collection("Sam");
     const Zach = await db.collection("Zach");
-    const int = await db.List.indexOf(newDate);
+    // const int = await db.List.indexOf(newDate);
 
     async function deleteByName(dataCollection, newDate) {
         const result = await dataCollection.deleteOne({date: newDate});
     }
 
-    await test();
+    await test()
 
     // wholeThing();
     async function test() {
-        // db.listCollections({name: newDate})
-        //     .next(async function (err, collinfo) {
-                if (db.listCollections({ name: newDate }).hasNext()) {
+
+        db.listCollections({name: newDate})
+            .next(async function (err, collinfo) {
+                if (collinfo) {
                     if (allOrNot === "true") {
                         await createListing(dataCollection, {
                             foodName: foodName,
@@ -132,8 +133,8 @@ export default async function handler(req, res) {
                         markDone: false
                     })
                 }
-            }
-
+            });
+    }
 
     // async function wholeThing() {
     //             // if (allOrNot === "allFoods") {
