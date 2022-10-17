@@ -34,15 +34,64 @@ export default async function handler(req, res) {
     const Sam = await db.collection("Sam");
     const Zach = await db.collection("Zach");
     // const int = await db.List.indexOf(newDate);
+    const exists = db.listCollections({ name: newDate }).hasNext()
 
     async function deleteByName(dataCollection, newDate) {
         const result = await dataCollection.deleteOne({date: newDate});
     }
 
+    async function createPeople() {
+        await createListing(Aidan, {
+            date: newDate,
+            totalPrice: 0,
+            markDone: false
+        })
+        await createListing(Andoni, {
+            date: newDate,
+            totalPrice: 0,
+            markDone: false
+        })
+        await createListing(John, {
+            date: newDate,
+            totalPrice: 0,
+            markDone: false
+        })
+        await createListing(Justin, {
+            date: newDate,
+            totalPrice: 0,
+            markDone: false
+        })
+        // await createListing(Keshav, {
+        //     date: newDate,
+        //     totalPrice: 0,
+        //     markDone: false
+        // })
+        // await createListing(Kulbir, {
+        //     date: newDate,
+        //     totalPrice: 0,
+        //     markDone: false
+        // })
+        await createListing(Mitchell, {
+            date: newDate,
+            totalPrice: 0,
+            markDone: false
+        })
+        await createListing(Sam, {
+            date: newDate,
+            totalPrice: 0,
+            markDone: false
+        })
+        await createListing(Zach, {
+            date: newDate,
+            totalPrice: 0,
+            markDone: false
+        })
+    }
+
 
     // wholeThing();
     async function test() {
-        if (db.listCollections({ name: newDate }).hasNext()) {
+        if (exists) {
             if (allOrNot === "true") {
                 await createListing(dataCollection, {
                     foodName: foodName,
@@ -63,6 +112,7 @@ export default async function handler(req, res) {
                 })
             }
         } else {
+            await createPeople()
             if (allOrNot === "true") {
                 await createListing(dataCollection, {
                     foodName: foodName,
@@ -83,51 +133,6 @@ export default async function handler(req, res) {
                 })
             }
 
-            await createListing(Aidan, {
-                date: newDate,
-                totalPrice: 0,
-                markDone: false
-            })
-            await createListing(Andoni, {
-                date: newDate,
-                totalPrice: 0,
-                markDone: false
-            })
-            await createListing(John, {
-                date: newDate,
-                totalPrice: 0,
-                markDone: false
-            })
-            await createListing(Justin, {
-                date: newDate,
-                totalPrice: 0,
-                markDone: false
-            })
-            // await createListing(Keshav, {
-            //     date: newDate,
-            //     totalPrice: 0,
-            //     markDone: false
-            // })
-            // await createListing(Kulbir, {
-            //     date: newDate,
-            //     totalPrice: 0,
-            //     markDone: false
-            // })
-            await createListing(Mitchell, {
-                date: newDate,
-                totalPrice: 0,
-                markDone: false
-            })
-            await createListing(Sam, {
-                date: newDate,
-                totalPrice: 0,
-                markDone: false
-            })
-            await createListing(Zach, {
-                date: newDate,
-                totalPrice: 0,
-                markDone: false
-            })
         }
     }
 
