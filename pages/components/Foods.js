@@ -81,8 +81,8 @@ function Foods(props, { person, receipt, date, didBuy }) {
                         <Image
                             src={props.img}
                             // src={item.img.charAt(0) === 'h' ?  item.img : "/.." + item.img }
-                            height={550}
-                            width={500}
+                            height={600}
+                            width={600}
                             alt={props.foodName}
                         />
                         {/*<img alt={props.foodName} src={"/" + props.img} className={""} width={"550"} height={"550"}/>*/}

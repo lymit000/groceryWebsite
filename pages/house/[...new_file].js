@@ -52,19 +52,27 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const data = {
-            first: event.target.first.value,
-            last: event.target.last.value,
-            itemNumber: event.target.itemNumber.value,
-            img: event.target.img.value,
-            allOrNot: event.target.radioButton.value,
-        }
+        const imgAdd = (event.target.img.value).charAt(0) === 'h'
 
-        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2="+collectionName.toString()+"&param3="+data.itemNumber+"&param4="+data.img.replaceAll('&','*')+"&param5="+data.allOrNot);
+        // const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2="+collectionName.toString()+"&param3="+data.itemNumber+"&param4="+data.img.replaceAll('&','*')+"&param5="+data.allOrNot);
+        const personDB = await fetch(server + '/api/updatefile', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                first: event.target.first.value,
+                last: event.target.last.value,
+                newDate: collectionName.toString(),
+                itemNumber: event.target.itemNumber.value,
+                img: event.target.img.value,
+                allOrNot: event.target.radioButton.value,
+                imgAddy: imgAdd}),
+        })
         // Send the data to the server in JSON format.
 
         // API endpoint where we send form data.
-        alert("Just added " + data.first + " to " + collectionName.toString());
+        alert("Just added " + " food " + " to " + collectionName.toString());
 
     }
 
