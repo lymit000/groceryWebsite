@@ -125,7 +125,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
                         </div>
                         {/*<img src={"/" + item.img} height={250} width={250} alt={item.foodName}/>*/}
                             <Image
-                                src={item.imgAddress ? item.imgAddress : "/" + item.img.slice(6)}
+                                src={item.imgAddress ? item.imgAddress.charAt(0) === 'h' ? item.imgAddress : item.imgAddress.slice(6) : "/" + item.img.slice(6)}
                                 // src={item.img.charAt(0) === 'h' ?  item.img : "/.." + item.img }
 
                                 height={400}
