@@ -6,7 +6,7 @@ import {useRouter} from "next/router";
 import Image from "next/image";
 
 
-export default function PageWithJSbasedForm({allFood, collectionName, exists, allOrNot}) {
+export default function PageWithJSbasedForm({allFood, collectionName}) {
     const router = useRouter();
     const forceReload = () => {
         router.reload();
@@ -21,11 +21,21 @@ export default function PageWithJSbasedForm({allFood, collectionName, exists, al
             img: event.target.img.value
         }
 
-        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2=allFoods"+"&param3="+data.itemNumber+"&param4="+data.img+"&param5=true"+"&param6="+allOrNot);
+        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2=allFoods"+"&param3="+data.itemNumber+"&param4="+data.img+"&param5=true");
         // Send the data to the server in JSON format.
         forceReload();
         // alert("just added " + first + "to all foods");
         // API endpoint where we send form data.
+    }
+
+    function handleInput()  {
+        if (document.getElementById("exists").value === "true") {
+            document.getElementById("exists").value = "false"
+        } else {
+            document.getElementById("exists").value = "true"
+        }
+
+        alert(document.getElementById("exists").value)
     }
 
     const handleSubmit = async (event) => {
@@ -34,74 +44,138 @@ export default function PageWithJSbasedForm({allFood, collectionName, exists, al
             first: event.target.first.value,
             last: event.target.last.value,
             itemNumber: event.target.itemNumber.value,
-            img: event.target.img.value
+            img: event.target.img.value,
+            allOrNot: event.target.radioButton.value
         }
+        // alert(data.allOrNot)
 
-        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2="+collectionName.toString()+"&param3="+data.itemNumber+"&param4="+data.img+"&param5="+exists+"&param6="+allOrNot);
+        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2="+collectionName.toString()+"&param3="+data.itemNumber+"&param4="+data.img+"&param5="+data.allOrNot);
         // Send the data to the server in JSON format.
 
         // API endpoint where we send form data.
-        alert("Just added " + data.first + "to " + collectionName.toString());
+        alert("Just added " + data.first + " to " + collectionName.toString());
+
+    }
+
+
+    const redirect =  (event) => {
+        event.preventDefault()
+
+        const data = {
+            date: event.target.date.value,
+        }
+        // action="nextpage.php"
+        window.location.href=data.date;
+        // alert(data.allOrNot)
+
 
     }
 
     return (
         // We pass the event to the handleSubmit() function on submit.
         <>
-            <div className={"bg-background h-full text-white text-center"}>
-                <button className={"bg-otherBlack p-3"}>
-                    <Link href={`/`} passHref>
-                        <h1>
-                            Home Page
-                        </h1>
-                    </Link>
-                </button>
-                <form onSubmit={refreshSubmit}>
-                    <label htmlFor="first">Food Name</label>
-                    <input type="text" id="first" name="first" required className={"bg-otherBlack block w-full shadow py-3 px-4 placeholder-otherBlack focus:ring-blue-500 focus:border-blue-500 border-otherBlack rounded-md focus:outline-none focus:ring-2"}/>
+            <div className={"grid grid-cols-3 bg-grayBackground p-2"}>
+                <div></div>
+                <form className={"flex place-items-center justify-center"} onSubmit={redirect}>
+                    <div className={"grid grid-cols-2 mt-3"}>
+                        <label className={"text-right mr-2 text-xl text-redFont font-bold"}>Current Date is</label>
+                        <input className={"text-center w-36 text-xl text-greenBackground"} name={"date"} id={"date"} defaultValue={collectionName.toString()}/>
+                        {/*<button type={"submit"}> Click me</button>*/}
+                    </div>
+                </form>
+                <div className={"bg-grayBackground h-full text-white text-right"}>
 
-                    <label htmlFor="last">Food Price</label>
-                    <input type="text" id="last" name="last" required className={"bg-otherBlack block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"}/>
+                    <button className={"bg-greenBackground p-3 mt-2 rounded-md"}>
+                        <Link href={`/`} passHref>
+                            <h1>
+                                Home Page
+                            </h1>
+                        </Link>
+                    </button>
 
-                    <label htmlFor="itemNumber">Item Number</label>
-                    <input type="text" id="itemNumber" name="itemNumber" required className={"bg-otherBlack bg-otherBlack block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"}/>
+                </div>
+            </div>
 
-                    <label htmlFor="img">Img</label>
-                    <input defaultValue={"../../img/"} type="text" id="img" name="img" required className={"bg-otherBlack block w-full shadow py-3 px-4 placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md focus:outline-none focus:ring-2"}/>
+            <div className={"p-8 text-center"}>
+                <form onSubmit={refreshSubmit} className={""}>
+                    {/*<label htmlFor="first">Food Name</label>*/}
+                    <input type="text" id="first" name="first" className={"my-2 placeholder-greenBackground text-greenBackground bg-grayBackground block w-full p-4 rounded-lg"} placeholder={"Food Name"} required />
 
-                    <button className={"bg-otherBlack p-3 rounded-lg my-1"} type="submit">Add New Food</button>
+                    {/*<label htmlFor="last">Food Price</label>*/}
+                    <input type="text" id="last" name="last" placeholder={"Food Price"} required className={"text-greenBackground my-2 placeholder-greenBackground bg-grayBackground block w-full p-4 rounded-lg"}/>
+
+                    {/*<label htmlFor="itemNumber">Item Number</label>*/}
+                    <input type="text" id="itemNumber" name="itemNumber" placeholder={"Item Number"} required className={"text-greenBackground my-2 placeholder-greenBackground bg-grayBackground block w-full p-4 rounded-lg"}/>
+
+                    {/*<label htmlFor="img">Img</label>*/}
+                    <input defaultValue={"../../img/"} type="text" id="img" name="img" required className={"text-greenBackground placeholder-greenBackground bg-grayBackground block w-full p-4 rounded-lg"}/>
+                    <button className={"p-3 rounded-lg my-1 bg-greenBackground mt-4 text-yellowFont text-center"} type="submit">Add New Food</button>
+
                 </form>
             </div>
 
-            <div className={"bg-background h-full grid place-items-center grid-cols-6 gap-4 justify-items-center text-white p-2 max-w"}>
 
+            <div className={"bg-whiteBackground h-full grid place-items-center grid-cols-5 gap-4 justify-items-center text-yellowFont p-2 max-w"}>
                 {allFood && allFood.map(item => (
-                    <>
-                        <div className={"bg-otherBlack font-semibold text-center w-min p-2 bg-otherBlack"}>
-                            <form onSubmit={handleSubmit}>
-                                <input type="text" id="first" name="first" className={"bg-otherBlack"} defaultValue={item.foodName} required/>
-                                <input type="text" id="last" name="last" className={"bg-otherBlack"} required defaultValue={item.foodPrice}/>
-                                <input type="text" id="itemNumber" className={"bg-otherBlack"} name="itemNumber" defaultValue={item.itemNumber} required/>
-                                <input type="text" id="img" name="img" className={"bg-otherBlack"} defaultValue={item.img} required />
-                                <img src={"/" + item.img} alt={"not working so temp right here"}/>
-                                <button className={"w-full border-2 border-primary border-dashed  stext-white p-1 "} type="submit" scroll={false}>Add</button>
-                            </form>
-                            <br/>
-                            <br/>
+                    <div className={"radio-toolbar"}>
+
+                    <form onSubmit={handleSubmit} className={"bg-grayBackground p-4 rounded-xl rounded-t-lg font-semibold text-center w-min"}>
+                        <div class={"radio-toolbar"}>
+                            <input type="text" id="first" name="first" className={"placeholder-black bg-greenBackground p-2 mb-1 rounded-xl text-yellowFont"} defaultValue={item.foodName} required/>
+                            <input type="text" id="last" name="last" className={" bg-greenBackground border-redFont rounded-xl mb-1 p-2"} required defaultValue={item.foodPrice}/>
+                            <input type="text" id="itemNumber" className={" bg-greenBackground border-redFont rounded-xl mb-1 p-2"} name="itemNumber" defaultValue={item.itemNumber} required/>
+                            <input type="text" id="img" name="img" className={"hidden bg-greenBackground border-redFont border-t-2 p-2"} defaultValue={item.img} required />
                         </div>
-                    </>
+                        <img src={"/" + item.img} alt={"not working so temp right here"}/>
+                            {/*<input id={"allOrNot"} type={"radio"} class="form-radio text-indigo-600"  value={"true"}/>*/}
+                        <div className={"grid grid-cols-2"}>
+                            <input type="radio" id={item.foodName + "True"} name={"radioButton"} value="true" />
+                            <label for={item.foodName + "True"}>All</label>
+                            <input type="radio" id={item.foodName + "False"} name={"radioButton"} value="false" checked/>
+                            <label for={item.foodName + "False"}>None</label>
+                        </div>
+                        <button className={"w-full bg-greenBackground rounded-b-lg text-white p-2"} type="submit" scroll={false}>Add</button>
+                    </form>
+
+                    </div>
                 ))}
             </div>
-        </>
+            <style jsx>
+                {`
+          .radio-toolbar input[type="radio"] {
+                opacity: 0;
+                position: fixed;
+                width: 0;
+            }
 
+          .radio-toolbar label {
+                display: inline-block;
+                background-color: #677C55;
+                padding: 10px 20px;
+                font-family: sans-serif, Arial;
+                font-size: 16px;
+            }
+
+          .radio-toolbar input[type="radio"]:checked + label {
+                background-color: #F55555;
+            }
+            
+            .radio-toolbar label:hover {
+              background-color: #dfd;
+            }
+        `}
+            </style>
+        </>
     )
+
 }
+
 
 
 export async function getServerSideProps(context) {
     const collectionName = context.query.new_file[0];
-    const exists = context.query.new_file[1].toString();
-    const allOrNot = context.query.new_file[2].toString();
+    // const exists = context.query.new_file[1].toString();
+    // const allOrNot = context.query.new_file[2].toString();
     // console.log(allOrNot);
     const client = await clientPromise
     const entireDB = await client.db("grocery-app");
@@ -111,6 +185,6 @@ export async function getServerSideProps(context) {
     const allFoodCollection = await foodCollection.find().toArray();
     const allFood = await JSON.parse(JSON.stringify(allFoodCollection));
     return {
-        props: {allFood, collectionName, exists, allOrNot},
+        props: {allFood, collectionName},
     }
 }

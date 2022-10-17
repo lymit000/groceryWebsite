@@ -6,8 +6,8 @@ export default async function handler(req, res) {
     const newDate = (req.query.param2)
     const itemNumber = (req.query.param3)
     const img = (req.query.param4)
-    const exists = (req.query.param5)
-    const allOrNot = (req.query.param6)
+    const allOrNot = (req.query.param5)
+
     async function createListing(client, newListing) {
         // Which database youre going to use and which collection in the db
         // And inserts one
@@ -15,7 +15,6 @@ export default async function handler(req, res) {
         // We're going to store this value in result
         const result = await client.insertOne(newListing);
     }
-
 
 
     const client = await clientPromise
@@ -37,10 +36,13 @@ export default async function handler(req, res) {
         const result = await dataCollection.deleteOne({date: newDate});
     }
 
-    await wholeThing();
+    await test();
 
-    async function wholeThing() {
-                if (exists === "true") {
+    // wholeThing();
+    async function test() {
+        db.listCollections({name: newDate})
+            .next(async function (err, collinfo) {
+                if (collinfo) {
                     if (allOrNot === "true") {
                         await createListing(dataCollection, {
                             foodName: foodName,
@@ -60,24 +62,27 @@ export default async function handler(req, res) {
                             img: img
                         })
                     }
-                    // console.log("we just added " + foodName)
-
 
                 } else {
-                    // deleteByName(Aidan, newDate)
-                    // deleteByName(Andoni, newDate)
-                    // deleteByName(Atay, newDate)
-                    // deleteByName(Justin, newDate)
-                    // deleteByName(Keshav, newDate)
-                    // deleteByName(Kulbir, newDate)
-                    // deleteByName(Mitchell, newDate)
-                    // deleteByName(Nathaniel, newDate)
-                    // deleteByName(Ridge, newDate)
-                    // console.log("delete ran")
-                    await db.createCollection(newDate, function (err, result) {
-                        if (err) throw err;
-                        // console.log("Collection is created!");
-                    });
+                    if (allOrNot === "true") {
+                        await createListing(dataCollection, {
+                            foodName: foodName,
+                            foodPrice: foodPrice,
+                            buy: ["Aidan", "Andoni", "John", "Justin", "Mitchell", "Sam", "Zach"],
+                            totalPeople: 7,
+                            itemNumber: itemNumber,
+                            img: img
+                        })
+                    } else {
+                        await createListing(dataCollection, {
+                            foodName: foodName,
+                            foodPrice: foodPrice,
+                            buy: [],
+                            totalPeople: 0,
+                            itemNumber: itemNumber,
+                            img: img
+                        })
+                    }
 
                     await createListing(Aidan, {
                         date: newDate,
@@ -124,31 +129,128 @@ export default async function handler(req, res) {
                         totalPrice: 0,
                         markDone: false
                     })
-
-                    if (allOrNot === "true") {
-                        await createListing(dataCollection, {
-                            foodName: foodName,
-                            foodPrice: foodPrice,
-                            buy: ["Aidan", "Andoni", "John", "Justin", "Mitchell", "Sam", "Zach"],
-                            totalPeople: 7,
-                            itemNumber: itemNumber,
-                            img: img
-                        })
-                    } else {
-                        await createListing(dataCollection, {
-                            foodName: foodName,
-                            foodPrice: foodPrice,
-                            buy: [],
-                            totalPeople: 0,
-                            itemNumber: itemNumber,
-                            img: img
-                        })
-                    }
-
-
-                    // console.log("we just added " + foodName)
                 }
+            });
     }
+
+    // async function wholeThing() {
+    //             // if (allOrNot === "allFoods") {
+    //             //     await createListing(dataCollection, {
+    //             //         foodName: foodName,
+    //             //         foodPrice: foodPrice,
+    //             //         buy: [],
+    //             //         totalPeople: 7,
+    //             //         itemNumber: itemNumber,
+    //             //         img: img
+    //             //     })
+    //             // }
+    //             if (exists === "true") {
+    //                 if (allOrNot === "true") {
+    //                     await createListing(dataCollection, {
+    //                         foodName: foodName,
+    //                         foodPrice: foodPrice,
+    //                         buy: ["Aidan", "Andoni", "John", "Justin", "Mitchell", "Sam", "Zach"],
+    //                         totalPeople: 7,
+    //                         itemNumber: itemNumber,
+    //                         img: img
+    //                     })
+    //                 } else {
+    //                     await createListing(dataCollection, {
+    //                         foodName: foodName,
+    //                         foodPrice: foodPrice,
+    //                         buy: [],
+    //                         totalPeople: 0,
+    //                         itemNumber: itemNumber,
+    //                         img: img
+    //                     })
+    //                 }
+    //                 // console.log("we just added " + foodName)
+    //             } else {
+    //                 // deleteByName(Aidan, newDate)
+    //                 // deleteByName(Andoni, newDate)
+    //                 // deleteByName(Atay, newDate)
+    //                 // deleteByName(Justin, newDate)
+    //                 // deleteByName(Keshav, newDate)
+    //                 // deleteByName(Kulbir, newDate)
+    //                 // deleteByName(Mitchell, newDate)
+    //                 // deleteByName(Nathaniel, newDate)
+    //                 // deleteByName(Ridge, newDate)
+    //                 // console.log("delete ran")
+    //                 await db.createCollection(newDate, function (err, result) {
+    //                     if (err) throw err;
+    //                     // console.log("Collection is created!");
+    //                 });
+    //
+    //                 await createListing(Aidan, {
+    //                     date: newDate,
+    //                     totalPrice: 0,
+    //                     markDone: false
+    //                 })
+    //                 await createListing(Andoni, {
+    //                     date: newDate,
+    //                     totalPrice: 0,
+    //                     markDone: false
+    //                 })
+    //                 await createListing(John, {
+    //                     date: newDate,
+    //                     totalPrice: 0,
+    //                     markDone: false
+    //                 })
+    //                 await createListing(Justin, {
+    //                     date: newDate,
+    //                     totalPrice: 0,
+    //                     markDone: false
+    //                 })
+    //                 // await createListing(Keshav, {
+    //                 //     date: newDate,
+    //                 //     totalPrice: 0,
+    //                 //     markDone: false
+    //                 // })
+    //                 // await createListing(Kulbir, {
+    //                 //     date: newDate,
+    //                 //     totalPrice: 0,
+    //                 //     markDone: false
+    //                 // })
+    //                 await createListing(Mitchell, {
+    //                     date: newDate,
+    //                     totalPrice: 0,
+    //                     markDone: false
+    //                 })
+    //                 await createListing(Sam, {
+    //                     date: newDate,
+    //                     totalPrice: 0,
+    //                     markDone: false
+    //                 })
+    //                 await createListing(Zach, {
+    //                     date: newDate,
+    //                     totalPrice: 0,
+    //                     markDone: false
+    //                 })
+    //
+    //                 if (allOrNot === "true") {
+    //                     await createListing(dataCollection, {
+    //                         foodName: foodName,
+    //                         foodPrice: foodPrice,
+    //                         buy: ["Aidan", "Andoni", "John", "Justin", "Mitchell", "Sam", "Zach"],
+    //                         totalPeople: 7,
+    //                         itemNumber: itemNumber,
+    //                         img: img
+    //                     })
+    //                 } else {
+    //                     await createListing(dataCollection, {
+    //                         foodName: foodName,
+    //                         foodPrice: foodPrice,
+    //                         buy: [],
+    //                         totalPeople: 0,
+    //                         itemNumber: itemNumber,
+    //                         img: img
+    //                     })
+    //                 }
+    //
+    //
+    //                 // console.log("we just added " + foodName)
+    //             }
+
 
 
 
@@ -377,8 +479,8 @@ export default async function handler(req, res) {
 
 
             //
-    await res.json("done");
-    // res.json({message: "IT WORKS!!"})
+    //
+    res.json({message: "IT WORKS!!"})
 }
 
 // import clientPromise from '../../lib/mongodb'
