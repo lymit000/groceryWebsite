@@ -4,7 +4,8 @@ export default async function handler(req, res) {
     const foodName = (req.query.param0)
     const foodPrice = (req.query.param1)
     const itemNumber = (req.query.param2)
-    const img = (req.query.param3).replaceAll('*', '&')
+    // const img = (req.query.param3).replaceAll('*', '&')
+    const img = (req.query.param3)
 
 
     async function createListing(client, newListing) {
