@@ -128,8 +128,8 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
                                 src={item.imgAddress ? item.imgAddress : "/" + item.img.slice(6)}
                                 // src={item.img.charAt(0) === 'h' ?  item.img : "/.." + item.img }
 
-                                height={40000}
-                                width={40000}
+                                height={400}
+                                width={400}
                                 alt={item.foodName}
                             />
                         {/*<input id={"allOrNot"} type={"radio"} class="form-radio text-indigo-600"  value={"true"}/>*/}

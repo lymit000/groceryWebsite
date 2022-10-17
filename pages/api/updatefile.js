@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     const foodPrice = (req.query.param1)
     const newDate = (req.query.param2)
     const itemNumber = (req.query.param3)
-    const img = (req.query.param4)
+    const img = (req.query.param4.replaceAll('*','&'))
     const allOrNot = (req.query.param5)
     const oldFoodName = (req.query.param6)
 
@@ -43,7 +43,7 @@ export default async function handler(req, res) {
     }
 
     async function updateAllFoods() {
-        if (oldImg.charAt(0) === 'h' ){
+        if (img.charAt(0) === 'h' ){
             allFoods.update(
                 {
                     foodName: oldFoodName
@@ -129,25 +129,48 @@ export default async function handler(req, res) {
 
     // wholeThing();
     async function test() {
-        if (allOrNot === "true") {
-            await createListing(dataCollection, {
-                foodName: foodName,
-                foodPrice: foodPrice,
-                buy: ["Aidan", "Andoni", "John", "Justin", "Mitchell", "Sam", "Zach"],
-                totalPeople: 7,
-                itemNumber: itemNumber,
-                imgAddress: img
-            })
+        if (img.charAt(0) === 'h' ){
+            if (allOrNot === "true") {
+                await createListing(dataCollection, {
+                    foodName: foodName,
+                    foodPrice: foodPrice,
+                    buy: ["Aidan", "Andoni", "John", "Justin", "Mitchell", "Sam", "Zach"],
+                    totalPeople: 7,
+                    itemNumber: itemNumber,
+                    imgAddress: img
+                })
+            } else {
+                await createListing(dataCollection, {
+                    foodName: foodName,
+                    foodPrice: foodPrice,
+                    buy: [],
+                    totalPeople: 0,
+                    itemNumber: itemNumber,
+                    imgAddress: img
+                })
+            }
         } else {
-            await createListing(dataCollection, {
-                foodName: foodName,
-                foodPrice: foodPrice,
-                buy: [],
-                totalPeople: 0,
-                itemNumber: itemNumber,
-                imgAddress: img
-            })
+            if (allOrNot === "true") {
+                await createListing(dataCollection, {
+                    foodName: foodName,
+                    foodPrice: foodPrice,
+                    buy: ["Aidan", "Andoni", "John", "Justin", "Mitchell", "Sam", "Zach"],
+                    totalPeople: 7,
+                    itemNumber: itemNumber,
+                    img: img
+                })
+            } else {
+                await createListing(dataCollection, {
+                    foodName: foodName,
+                    foodPrice: foodPrice,
+                    buy: [],
+                    totalPeople: 0,
+                    itemNumber: itemNumber,
+                    img: img
+                })
+            }
         }
+
     }
 
     await test()
