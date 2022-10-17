@@ -15,18 +15,27 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
     // Handles the submit event on form submit.
     const refreshSubmit = async (event) => {
         event.preventDefault()
-        const data = {
-            first: event.target.first.value,
-            last: event.target.last.value,
-            itemNumber: event.target.itemNumber.value,
-            img: event.target.img.value.replaceAll('&','*')
-        }
+        // const data = {
+        //     first: event.target.first.value,
+        //     last: event.target.last.value,
+        //     itemNumber: event.target.itemNumber.value,
+        //     img: event.target.img.value
+        // }
 
         // const personDB = await fetch(server + '/api/updateAllFoods?param0='+data.first+"&param1="+data.last+"&param2="+data.itemNumber+"&param3="+data.img.replaceAll('&','*'));
-        const personDB = await fetch(server + '/api/updateAllFoods?param0='+data.first+"&param1="+data.last+"&param2="+data.itemNumber+"&param3="+data.img);
+        const personDB = await fetch(server + '/api/updateAllFoods', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({first: event.target.first.value,
+            last: event.target.last.value,
+            itemNumber: event.target.itemNumber.value,
+            img: event.target.img.value}),
+        })
 
         // Send the data to the server in JSON format.
-        alert("just added " + data.first + " to all foods");
+        alert("just added " + " food " + " to all foods");
         forceReload()
         // API endpoint where we send form data.
     }
