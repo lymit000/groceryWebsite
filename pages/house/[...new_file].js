@@ -122,7 +122,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
                     <input type="text" id="first" name="first" className={"my-2 placeholder-redFont text-greenBackground bg-grayBackground block w-full p-4 rounded-lg"} placeholder={"Food Name"} required />
                     <input type="text" id="last" name="last" placeholder={"Food Price"} required className={"text-greenBackground my-2 placeholder-redFont bg-grayBackground block w-full p-4 rounded-lg"}/>
                     <input type="text" id="itemNumber" name="itemNumber" placeholder={"Item Number"} required className={"text-greenBackground my-2 placeholder-redFont bg-grayBackground block w-full p-4 rounded-lg"}/>
-                    <input placeholder={"Image Address"} type="text" id="img" name="img" required className={"text-greenBackground placeholder-redFont bg-grayBackground block w-full p-4 rounded-lg"}/>
+                    <input placeholder={"Image Address"} type="text" id="img" name="img" required className={"text-greenBackground placeholder-redFont bg-grayBackground block w-full p-4 rounded-lg"} defaultValue={"https://richmedia.ca-richimage.com/"}/>
                     <button className={"p-3 rounded-lg my-1 bg-greenBackground mt-4 text-yellowFont text-center"} type="submit">Add New Food</button>
                 </form>
             </div>
