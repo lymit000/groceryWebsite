@@ -19,7 +19,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
             first: event.target.first.value,
             last: event.target.last.value,
             itemNumber: event.target.itemNumber.value,
-            img: event.target.img.value
+            img: event.target.img.value.replaceAll('&','*')
         }
 
         // const personDB = await fetch(server + '/api/updateAllFoods?param0='+data.first+"&param1="+data.last+"&param2="+data.itemNumber+"&param3="+data.img.replaceAll('&','*'));
