@@ -152,7 +152,7 @@ export default async function handler(req, res) {
 
     await test()
     await createPeople()
-    await updateAllFoods()
+    // await updateAllFoods()
     // await deleteByName(Aidan, newDate)
     // await  deleteByName(Andoni, newDate)
     // await  deleteByName(John, newDate)
