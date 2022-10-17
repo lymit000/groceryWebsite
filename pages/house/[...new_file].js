@@ -22,7 +22,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
             img: event.target.img.value
         }
 
-        const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2=allFoods"+"&param3="+data.itemNumber+"&param4="+data.img+"&param5=true&param6=EMPTY");
+        const personDB = await fetch(server + '/api/updateAllFoods?param0='+data.first+"&param1="+data.last+"&param2="+data.itemNumber+"&param3="+data.img);
         // Send the data to the server in JSON format.
         // alert("just added " + data.first + " to all foods");
         forceReload();
