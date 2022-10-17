@@ -24,8 +24,10 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
 
         const personDB = await fetch(server + '/api/updatefile?param0='+data.first+"&param1="+data.last+"&param2=allFoods"+"&param3="+data.itemNumber+"&param4="+data.img+"&param5=true");
         // Send the data to the server in JSON format.
-        // forceReload();
         alert("just added " + data.first + " to all foods");
+        forceReload();
+        forceReload();
+
         // API endpoint where we send form data.
     }
 
@@ -70,6 +72,8 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
 
 
     }
+
+
 
     return (
         // We pass the event to the handleSubmit() function on submit.
@@ -118,7 +122,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
                             <input type="text" id="itemNumber" className={" bg-greenBackground border-redFont rounded-xl mb-1 p-2"} name="itemNumber" defaultValue={item.itemNumber} required/>
                             <input type="text" id="img" name="img" className={"hidden bg-greenBackground border-redFont border-t-2 p-2"} defaultValue={item.img} required />
                         </div>
-                        <img src={"/" + item.img} height={200} width={200} alt={""}/>
+                        <Image src={"/.." + item.img} height={250} width={250} alt= {"../../img/Garlic.jpeg"} Plaiceholder={"blur"}/>
                             {/*<input id={"allOrNot"} type={"radio"} class="form-radio text-indigo-600"  value={"true"}/>*/}
                         <div className={"grid grid-cols-2"}>
                             <input type="radio" id={item.foodName + "True"} name={"radioButton"} value="true" />
@@ -142,14 +146,14 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
 
           .radio-toolbar label {
                 display: inline-block;
-                background-color: #677C55;
+                background-color: #F55555;
                 padding: 10px 20px;
                 font-family: sans-serif, Arial;
                 font-size: 16px;
             }
 
           .radio-toolbar input[type="radio"]:checked + label {
-                background-color: #F55555;
+                background-color: #677C55;
             }
             
             .radio-toolbar label:hover {
