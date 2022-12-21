@@ -51,12 +51,14 @@ function MovieDetails({ personName, personOfDate, receiptOfDate, date, returnCol
             <div className={"grid grid-cols-3 gap-2 bg-whiteBackground"}>
                 {receiptOfDate && receiptOfDate.map(item => (
                     <>
-                        <div>
-                            <Foods foodName={item.foodName} foodPrice={item.foodPrice} Name={personName} buy={JSON.parse(JSON.stringify(item.buy)).includes(personName)} date={personOfDate.date} totalPeople={item.totalPeople} img={(item.imgAddress ? item.imgAddress : "/" + item.img.slice(6))} totalPrice={personOfDate.totalPrice} allPeople={item.buy}/>
-                            {/*{item.buy && item.buy.map(singlePersons => (*/}
-                            {/*    singlePersons + " "*/}
-                            {/*))}*/}
-                        </div>
+                        {item.totalPeople === 0 ?
+                            <div className={"bg-purple-200 rounded-3xl"}>
+                                <Foods foodName={item.foodName} foodPrice={item.foodPrice} Name={personName} buy={JSON.parse(JSON.stringify(item.buy)).includes(personName)} date={personOfDate.date} totalPeople={item.totalPeople} img={(item.imgAddress ? item.imgAddress : "/" + item.img.slice(6))} totalPrice={personOfDate.totalPrice} allPeople={item.buy}/>
+                            </div>
+                        :
+                            <div >
+                                <Foods foodName={item.foodName} foodPrice={item.foodPrice} Name={personName} buy={JSON.parse(JSON.stringify(item.buy)).includes(personName)} date={personOfDate.date} totalPeople={item.totalPeople} img={(item.imgAddress ? item.imgAddress : "/" + item.img.slice(6))} totalPrice={personOfDate.totalPrice} allPeople={item.buy}/>
+                            </div>}
                     </>
                 ))}
             </div>
