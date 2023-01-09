@@ -31,7 +31,7 @@ export default function PageWithJSbasedForm({allFood, collectionName}) {
             body: JSON.stringify({first: event.target.first.value,
             last: event.target.last.value,
             itemNumber: event.target.itemNumber.value,
-            img: event.target.img.value.replace("images.costco-static.com", "richmedia.ca-richimage.com")}),
+            img: event.target.img.value.replace("images.costco-static.com", "richmedia.ca-richimage.com").replace("images.costcobusinessdelivery.com", "richmedia.ca-richimage.com")}),
         })
 
         // Send the data to the server in JSON format.
